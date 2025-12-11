@@ -7,7 +7,7 @@ export async function POST(request: Request) {
 
     // In a real app, use a more secure way to manage secrets, but for this simple use case:
     // Default password is 'admin' if not set in env
-    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '025590';
+    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
     if (password === ADMIN_PASSWORD) {
         // Create a simple session cookie

@@ -85,7 +85,6 @@ export default function Navbar({ lang, dict }: NavbarProps) {
     if (isEditorPage) return null;
 
     return (
-    return (
         <nav className={`fixed w-full z-50 transition-colors duration-500 py-4 md:py-6 ${showBackground ? 'bg-white/95 shadow-md' : 'bg-transparent'}`}>
             <Container size="xl">
                 <div className="flex justify-between items-center">

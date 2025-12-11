@@ -1,0 +1,62 @@
+import Link from 'next/link';
+import { Mail, Github, Linkedin, Euro } from 'lucide-react';
+import { ObfuscatedMail } from '@/components/ObfuscatedMail';
+import React from 'react';
+import { Container } from '@/components/ui/Container';
+
+export default function Footer({ dict, navDict, lang }: { dict: any, navDict: any, lang: string }) {
+    const currentYear = new Date().getFullYear();
+
+    return (
+        <footer className="bg-gmrt-blue text-white py-16">
+            <Container size="xl">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+                    {/* Brand Section */}
+                    <div className="md:col-span-5">
+                        <Link href={`/${lang}`} className="inline-block group mb-6">
+                            <span className="font-display font-medium text-4xl tracking-wide text-white">
+                                GMRT
+                            </span>
+                        </Link>
+                        <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-sm">
+                            {dict.subtitle || "German-Malaysian Round Table – Die Plattform für wirtschaftlichen und kulturellen Austausch."}
+                        </p>
+                        <div className="flex gap-4">
+                            <Link
+                                href={`/${lang}/contact`}
+                                aria-label="Contact via Email"
+                                className="w-10 h-10 flex items-center justify-center bg-white/10 text-white hover:bg-gmrt-salmon hover:text-white transition-all transform hover:scale-105"
+                            >
+                                <Mail size={20} />
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Navigation Links */}
+                    <div className="md:col-span-3 md:col-start-7">
+                        <h3 className="text-white font-bold text-lg mb-6">{dict.navigation_title || 'Navigation'}</h3>
+                        <ul className="space-y-4">
+                            <li><Link href={`/${lang}`} className="text-slate-300 hover:text-gmrt-salmon transition-colors">{navDict?.home || 'Home'}</Link></li>
+                            <li><Link href={`/${lang}/about`} className="text-slate-300 hover:text-gmrt-salmon transition-colors">{navDict?.about || 'About'}</Link></li>
+                            <li><Link href={`/${lang}/news`} className="text-slate-300 hover:text-gmrt-salmon transition-colors">{navDict?.news || 'News'}</Link></li>
+                            <li><Link href={`/${lang}/contact`} className="text-slate-300 hover:text-gmrt-salmon transition-colors">{navDict?.contact || 'Contact'}</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Legal Links */}
+                    <div className="md:col-span-3">
+                        <h3 className="text-white font-bold text-lg mb-6">{dict.legal_title || 'Rechtliches'}</h3>
+                        <ul className="space-y-4">
+                            <li><Link href={`/${lang}/impressum`} className="text-slate-300 hover:text-gmrt-salmon transition-colors">{dict.impressum}</Link></li>
+                            <li><Link href={`/${lang}/privacy`} className="text-slate-300 hover:text-gmrt-salmon transition-colors">{dict.privacy}</Link></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-center md:justify-between items-center gap-4 text-sm text-slate-400">
+                    <p>&copy; {currentYear} German Malaysian Round Table. {dict.rights}</p>
+                </div>
+            </Container>
+        </footer>
+    );
+}

@@ -1,0 +1,120 @@
+{
+    "navigation": {
+        "home": "Home",
+        "about": "Über uns",
+        "news": "News",
+        "contact": "Kontakt",
+        "impressum": "Impressum",
+        "create_post": "Beitrag erstellen",
+        "login": "Login",
+        "logging_out": "Abmelden..."
+    },
+    "footer": {
+        "rights": "Alle Rechte vorbehalten.",
+        "privacy": "Datenschutz",
+        "impressum": "Impressum",
+        "navigation_title": "Navigation",
+        "legal_title": "Rechtliches"
+    },
+    "homepage": {
+        "hero": {
+            "title": "German Malaysian Round Table",
+            "subtitle": "Die Plattform für wirtschaftlichen und kulturellen Austausch zwischen Deutschland und Malaysia.",
+            "cta": "Mehr erfahren"
+        },
+        "upcoming": {
+            "title": "Kommende Veranstaltungen",
+            "no_events": "Aktuell sind keine kommenden Veranstaltungen geplant."
+        },
+        "past": {
+            "title": "Vergangene Veranstaltungen",
+            "read_more": "Weiterlesen"
+        },
+        "features": {
+            "network": {
+                "title": "Netzwerk",
+                "description": "Verbinden Sie sich mit Experten und Unternehmen im deutsch-malaysischen Kontext."
+            },
+            "events": {
+                "title": "Events & Wirtschaft",
+                "description": "Regelmäßige Veranstaltungen zu aktuellen Wirtschaftsthemen und kulturellem Austausch."
+            },
+            "updates": {
+                "title": "Updates",
+                "description": "Bleiben Sie informiert über die neuesten Entwicklungen und Möglichkeiten."
+            }
+        },
+        "expertise": {
+            "title": "Synergien für den Erfolg in ASEAN",
+            "lead": "Ehrenamtlich und privat organisiert schaffen unsere Chapter Initiators, Sprecher und Teilnehmenden auf lokaler Ebene wertvolle Synergien für den Austausch zwischen Deutschland und der ASEAN-Region.",
+            "text": "Ob Expatriates, Unternehmer, Investoren, Wissenschaftler oder Regierungsvertreter – unsere Community lebt von der Vielfalt ihrer Perspektiven."
+        }
+    },
+    "about": {
+        "hero": {
+            "title": "Wer wir sind",
+            "subtitle": "GMRT – für Unternehmen, Investoren und Forschende mit Fokus auf ASEAN."
+        },
+        "mission": {
+            "lead": "Ehrenamtlich und privat organisiert schaffen unsere Chapter Initiators, Sprecher:innen und Teilnehmenden auf lokaler Ebene wertvolle Synergien für den Austausch zwischen Deutschland und der ASEAN-Region.",
+            "text": "Ob Expatriates, Unternehmer:innen, Investor:innen, Wissenschaftler:innen oder Regierungsvertreter – unsere Community lebt von der Vielfalt ihrer Perspektiven. Was sie eint, ist der gemeinsame Anspruch, sich zu inspirieren, voneinander zu lernen und Impulse zu setzen – um den globalen Wandel aktiv mitzugestalten."
+        },
+        "principles": {
+            "title": "Unsere Grundsätze",
+            "items": [
+                {
+                    "bold": "Keine Gewinnziele:",
+                    "text": "GMRT verfolgt keine wirtschaftlichen Gewinnziele, sondern setzt sich für die gemeinnützigen sozialen, wirtschaftlichen und kulturellen Zielen seiner Teilnehmer ein."
+                },
+                {
+                    "bold": "Unabhängig:",
+                    "text": "Als unabhängige Plattform verzichtet GMRT bewusst auf Verbindungen zu wirtschaftlichen Lobbys oder Interessengruppen."
+                },
+                {
+                    "bold": "Neutral:",
+                    "text": "GMRT gehört zu keiner Handelskammer und vertritt nur die Interessen seiner individuellen Teilnehmer."
+                }
+            ]
+        },
+        "team": {
+            "title": "Gründer & Initiatoren"
+        }
+    },
+    "contact": {
+        "title": "Kontaktieren Sie uns",
+        "subtitle": "Wir freuen uns darauf, von Ihnen zu hören. Werden Sie Teil unseres Netzwerks.",
+        "name": "Name",
+        "email": "E-Mail",
+        "message": "Nachricht",
+        "submit": "Absenden",
+        "security_question": "Sicherheitsfrage: Was ist 3 + 4?",
+        "address_title": "Anschrift",
+        "email_title": "E-Mail",
+        "response_time": "Wir antworten in der Regel innerhalb von 24 Stunden."
+    },
+    "news": {
+        "title": "News & Events",
+        "subtitle": "Aktuelle Einblicke, Berichte und Ankündigungen",
+        "upcoming": "Bevorstehend",
+        "past": "Vergangen",
+        "no_events": "Aktuell sind keine Beiträge vorhanden.",
+        "create_first": "Ersten Beitrag erstellen",
+        "create_button": "Beitrag erstellen",
+        "back_to_news": "Zurück zur Übersicht"
+    },
+    "impressum": {
+        "title": "Impressum",
+        "back_home": "Zurück zur Startseite",
+        "tmg": "Angaben gemäß § 5 TMG",
+        "represented_by": "Vertreten durch",
+        "contact": "Kontakt",
+        "responsible": "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
+        "disclaimer_title": "Haftungsausschluss",
+        "liability_content": "Haftung für Inhalte",
+        "liability_links": "Haftung für Links",
+        "copyright": "Urheberrecht",
+        "liability_content_text": "Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.",
+        "liability_links_text": "Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.",
+        "copyright_text": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers."
+    }
+}

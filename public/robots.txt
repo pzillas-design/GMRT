@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /create
+Disallow: /edit/
+
+Sitemap: https://gmrt.de/sitemap.xml

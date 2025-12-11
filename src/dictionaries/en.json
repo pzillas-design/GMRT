@@ -1,0 +1,120 @@
+{
+    "navigation": {
+        "home": "Home",
+        "about": "About Us",
+        "news": "News",
+        "contact": "Contact",
+        "impressum": "Imprint",
+        "create_post": "Create Post",
+        "login": "Login",
+        "logging_out": "Logging out..."
+    },
+    "footer": {
+        "rights": "All rights reserved.",
+        "privacy": "Privacy Policy",
+        "impressum": "Imprint",
+        "navigation_title": "Navigation",
+        "legal_title": "Legal"
+    },
+    "homepage": {
+        "hero": {
+            "title": "German Malaysian Round Table",
+            "subtitle": "The platform for economic and cultural exchange between Germany and Malaysia.",
+            "cta": "Learn more"
+        },
+        "upcoming": {
+            "title": "Upcoming Events",
+            "no_events": "There are currently no upcoming events planned."
+        },
+        "past": {
+            "title": "Past Events",
+            "read_more": "Read more"
+        },
+        "features": {
+            "network": {
+                "title": "Network",
+                "description": "Connect with experts and companies in the German-Malaysian context."
+            },
+            "events": {
+                "title": "Events & Economy",
+                "description": "Regular events on current economic topics and cultural exchange."
+            },
+            "updates": {
+                "title": "Updates",
+                "description": "Stay informed about latest developments and opportunities."
+            }
+        },
+        "expertise": {
+            "title": "Synergies for Success in ASEAN",
+            "lead": "Organized on a voluntary and private basis, our Chapter Initiators, speakers, and participants create valuable synergies at the local level for exchange between Germany and the ASEAN region.",
+            "text": "Whether expatriates, entrepreneurs, investors, scientists, or government representatives – our community thrives on the diversity of its perspectives."
+        }
+    },
+    "about": {
+        "hero": {
+            "title": "Who We Are",
+            "subtitle": "GMRT – for companies, investors, and researchers with a focus on ASEAN."
+        },
+        "mission": {
+            "lead": "Organized on a voluntary and private basis, our Chapter Initiators, speakers, and participants create valuable synergies at the local level for exchange between Germany and the ASEAN region.",
+            "text": "Whether expatriates, entrepreneurs, investors, scientists, or government representatives – our community thrives on the diversity of its perspectives. What unites them is the common aspiration to inspire, learn from one another, and set impulses – to actively shape global change."
+        },
+        "principles": {
+            "title": "Our Principles",
+            "items": [
+                {
+                    "bold": "Non-profit:",
+                    "text": "GMRT does not pursue economic profit goals but advocates for the non-profit social, economic, and cultural goals of its participants."
+                },
+                {
+                    "bold": "Independent:",
+                    "text": "As an independent platform, GMRT consciously refrains from connections to economic lobbies or interest groups."
+                },
+                {
+                    "bold": "Neutral:",
+                    "text": "GMRT does not belong to any chamber of commerce and represents only the interests of its individual participants."
+                }
+            ]
+        },
+        "team": {
+            "title": "Founders & Initiators"
+        }
+    },
+    "contact": {
+        "title": "Contact Us",
+        "subtitle": "We look forward to hearing from you. Become part of our network.",
+        "name": "Name",
+        "email": "Email",
+        "message": "Message",
+        "submit": "Send",
+        "security_question": "Security Question: What is 3 + 4?",
+        "address_title": "Address",
+        "email_title": "Email",
+        "response_time": "We usually respond within 24 hours."
+    },
+    "news": {
+        "title": "News & Events",
+        "subtitle": "Latest insights, reports and announcements",
+        "upcoming": "Upcoming",
+        "past": "Previous",
+        "no_events": "No posts currently available.",
+        "create_first": "Create First Post",
+        "create_button": "Create Post",
+        "back_to_news": "Back to Overview"
+    },
+    "impressum": {
+        "title": "Imprint",
+        "back_home": "Back to Home",
+        "tmg": "Information according to § 5 TMG",
+        "represented_by": "Represented by",
+        "contact": "Contact",
+        "responsible": "Responsible for content according to § 55 Abs. 2 RStV",
+        "disclaimer_title": "Disclaimer",
+        "liability_content": "Liability for Content",
+        "liability_links": "Liability for Links",
+        "copyright": "Copyright",
+        "liability_content_text": "As a service provider, we are responsible for our own content on these pages in accordance with general laws pursuant to § 7 Abs.1 TMG. However, according to §§ 8 to 10 TMG, we as a service provider are not obliged to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity.",
+        "liability_links_text": "Our offer contains links to external third-party websites, the contents of which we have no influence on. Therefore, we cannot assume any liability for these external contents. The respective provider or operator of the pages is always responsible for the content of the linked pages.",
+        "copyright_text": "The content and works created by the site operators on these pages are subject to German copyright law. Duplication, processing, distribution, and any kind of exploitation outside the limits of copyright law require the written consent of the respective author or creator."
+    }
+}

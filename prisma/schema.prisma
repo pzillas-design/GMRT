@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // Uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // Uses direct connection
+}
+
+model Post {
+  id            Int      @id @default(autoincrement())
+  title         String
+  content       String? // Keep as optional for backward compatibility or simple summary
+  contentBlocks String   @default("[]") // JSON string for modular content blocks
+  location      String   @default("Allgemein") // Düsseldorf, Frankfurt, München, Allgemein
+  eventDate     DateTime @default(now())
+  createdAt     DateTime @default(now())
+  coverImage    String?  // URL for the header/teaser image
+  isLegacy      Boolean  @default(false) // Flag to identify imported posts
+}

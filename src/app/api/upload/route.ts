@@ -44,11 +44,29 @@ export async function POST(request: Request) {
             }
         }
 
-        // Ensure upload directory exists
+        // --- NEW: Cloud Storage (Vercel Blob) Check ---
+        if (process.env.BLOB_READ_WRITE_TOKEN) {
+            try {
+                const { put } = await import('@vercel/blob');
+                const contentType = file.type.startsWith('image/') ? 'image/webp' : file.type;
+
+                const blob = await put(filename, finalBuffer, {
+                    access: 'public',
+                    contentType
+                });
+
+                return NextResponse.json({ url: blob.url });
+            } catch (err) {
+                console.error('Vercel Blob upload failed:', err);
+                throw new Error('Cloud upload failed');
+            }
+        }
+        // -----------------------------------------------
+
+        // Fallback: Local Storage (Dev Mode)
         const uploadDir = join(process.cwd(), 'public', 'uploads');
         await mkdir(uploadDir, { recursive: true });
 
-        // Save file
         const path = join(uploadDir, filename);
         await writeFile(path, finalBuffer);
 

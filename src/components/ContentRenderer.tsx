@@ -2,6 +2,7 @@
 import React from 'react';
 import { ContentBlock } from '@/types';
 import { FileText, Link as LinkIcon, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 
 interface ContentRendererProps {
     blocks: ContentBlock[];
@@ -65,12 +66,17 @@ export function ContentRenderer({ blocks }: ContentRendererProps) {
                         );
                     case 'image':
                         return (
-                            <figure key={block.id} className="my-8">
-                                <img
-                                    src={block.content}
-                                    alt={block.caption || 'Blog image'}
-                                    className="w-full rounded-2xl shadow-sm"
-                                />
+                            <figure key={block.id} className="my-8 relative w-full rounded-2xl overflow-hidden shadow-sm">
+                                <div className="relative w-full aspect-[16/9] md:aspect-[21/9]">
+                                    <Image
+                                        src={block.content}
+                                        alt={block.caption || 'Blog image'}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1000px"
+                                        className="object-cover"
+                                        priority={false}
+                                    />
+                                </div>
                                 {block.caption && (
                                     <figcaption className="text-center text-sm text-slate-500 mt-3 italic">
                                         {block.caption}
@@ -79,14 +85,31 @@ export function ContentRenderer({ blocks }: ContentRendererProps) {
                             </figure>
                         );
                     case 'video':
+                        let videoSrc = block.content;
+                        if (!videoSrc) return null;
+
+                        // Simple Youtube/Vimeo embedding logic
+                        if (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be')) {
+                            const videoId = videoSrc.includes('v=') ? videoSrc.split('v=')[1].split('&')[0] : videoSrc.split('/').pop();
+                            videoSrc = `https://www.youtube.com/embed/${videoId}`;
+                        } else if (videoSrc.includes('vimeo.com')) {
+                            const videoId = videoSrc.split('/').pop();
+                            videoSrc = `https://player.vimeo.com/video/${videoId}`;
+                        }
+
                         return (
                             <div key={block.id} className="my-8 aspect-video rounded-2xl overflow-hidden shadow-sm bg-slate-100">
-                                <iframe
-                                    src={block.content.replace('watch?v=', 'embed/')}
-                                    className="w-full h-full"
-                                    allowFullScreen
-                                    title="Video player"
-                                />
+                                {videoSrc.startsWith('http') && !videoSrc.match(/\.(mp4|webm|mov)$/) ? (
+                                    <iframe
+                                        src={videoSrc}
+                                        className="w-full h-full"
+                                        allowFullScreen
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        title="Video player"
+                                    />
+                                ) : (
+                                    <video src={block.content} controls className="w-full h-full" playsInline />
+                                )}
                             </div>
                         );
                     case 'pdf':

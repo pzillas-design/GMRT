@@ -8,7 +8,7 @@ export default async function PrivacyPage({ params }: { params: { lang: string }
     const dict = await getDictionary(lang as 'de' | 'en');
 
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-white min-h-screen text-slate-900">
             <SimpleHeader
                 title={lang === 'de' ? 'Datenschutz' : 'Privacy Policy'}
                 subtitle={lang === 'de' ? 'Informationen zur Verarbeitung Ihrer Daten' : 'Information about data processing'}

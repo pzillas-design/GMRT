@@ -53,7 +53,7 @@ export default function LoginPage() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Passwort eingeben"
-                            className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-gmrt-blue focus:ring-2 focus:ring-gmrt-blue/20 outline-none transition-all"
+                            className="w-full px-4 py-3 rounded-lg border border-slate-200 text-slate-900 focus:border-gmrt-blue focus:ring-2 focus:ring-gmrt-blue/20 outline-none transition-all"
                             autoFocus
                         />
                     </div>

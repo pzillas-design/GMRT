@@ -22,7 +22,7 @@ export function ImageHeader({
     children
 }: ImageHeaderProps) {
     return (
-        <div className="relative min-h-[60vh] w-full flex items-end pb-16 pt-40">
+        <div className="relative min-h-[40vh] md:min-h-[60vh] w-full flex items-end pb-10 md:pb-16 pt-32 md:pt-40">
             {/* Background Layer */}
             <div className="absolute inset-0 z-0">
                 {backgroundImage && (

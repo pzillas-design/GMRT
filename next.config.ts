@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'www.gmrt.de',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.public.blob.vercel-storage.com',
+        pathname: '/**',
       }
     ],
   },

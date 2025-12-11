@@ -8,7 +8,7 @@ export default async function ImpressumPage({ params }: { params: Promise<{ lang
     const dict: any = await getDictionary(lang as 'de' | 'en');
 
     return (
-        <div className="min-h-screen bg-white pt-32 pb-20">
+        <div className="min-h-screen bg-white pt-32 pb-20 text-slate-900">
             <div className="max-w-3xl mx-auto px-6 md:px-12">
                 <Link href={`/${lang}`} className="inline-flex items-center text-gmrt-blue hover:text-gmrt-salmon transition-colors mb-8 group">
                     <ArrowLeft size={20} className="mr-2 transition-transform group-hover:-translate-x-1" /> {dict.impressum.back_home}

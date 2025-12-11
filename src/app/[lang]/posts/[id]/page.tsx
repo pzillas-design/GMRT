@@ -81,18 +81,17 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
                 </div>
             </ImageHeader>
 
-            <div className="max-w-5xl mx-auto px-6 md:px-12 py-12 md:py-24 min-h-screen bg-white">
+            <div className="max-w-5xl mx-auto px-6 md:px-12 py-12 md:py-24 bg-white">
                 <ContentRenderer blocks={blocks} />
 
-                {/* Edit Button (End of Post, Subtle) */}
-                <div className="flex justify-end mt-16 pt-8 border-t border-slate-50">
+                {/* Edit Button (Left Aligned, Boxed, Icon Only) */}
+                <div className="mt-16 pt-8 border-t border-slate-100 flex justify-start">
                     <Link
                         href={`/edit/${post.id}`}
-                        className="flex items-center gap-2 text-slate-300 hover:text-gmrt-blue transition-colors group"
+                        className="flex items-center justify-center w-12 h-12 bg-slate-100 hover:bg-gmrt-blue text-slate-600 hover:text-white transition-colors group rounded-sm"
                         title="Beitrag bearbeiten"
                     >
-                        <span className="text-xs font-medium uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Bearbeiten</span>
-                        <Edit2 size={18} />
+                        <Edit2 size={20} />
                     </Link>
                 </div>
             </div>

@@ -100,23 +100,78 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                             </div>
                         )}
 
-                        {/* Upload State (if empty) */}
-                        {(!block.content || block.type !== 'image') && (
-                            <div className="flex gap-2">
-                                <label className="flex-grow cursor-pointer bg-white hover:bg-slate-50 border border-slate-200 hover:border-gmrt-blue text-slate-500 hover:text-gmrt-blue h-32 transition-all flex flex-col items-center justify-center gap-2 text-sm font-medium rounded-none">
-                                    <Upload size={24} />
-                                    <span>
-                                        {block.type === 'image' ? "Bild hochladen" : block.type === 'video' ? "Video hochladen" : "PDF hochladen"}
-                                    </span>
-                                    <input
-                                        type="file"
-                                        className="hidden"
-                                        accept={block.type === 'image' ? "image/*" : block.type === 'video' ? "video/*" : "application/pdf"}
-                                        onChange={(e) => e.target.files?.[0] && onFileUpload(e.target.files[0], block.id)}
-                                    />
-                                </label>
+                        {block.type === 'video' && block.content && (
+                            <div className="relative w-full overflow-hidden border border-slate-100 shadow-sm group/video bg-black">
+                                <video src={block.content} controls className="w-full h-auto max-h-[500px]" />
+                                <div className="absolute top-2 right-2 opacity-0 group-hover/video:opacity-100 transition-opacity">
+                                    <button
+                                        type="button"
+                                        onClick={() => onUpdate(block.id, { content: '' })}
+                                        className="bg-white/90 text-slate-700 p-2 rounded-sm shadow-sm hover:bg-red-50 hover:text-red-600"
+                                        title="Video entfernen"
+                                    >
+                                        <Trash2 size={16} />
+                                    </button>
+                                </div>
                             </div>
                         )}
+
+                        {/* Upload State (if empty) */}
+                        {!block.content && (
+                            <div className="flex flex-col gap-4">
+                                <div className="flex gap-2">
+                                    <label className="flex-grow cursor-pointer bg-white hover:bg-slate-50 border border-slate-200 hover:border-gmrt-blue text-slate-500 hover:text-gmrt-blue h-32 transition-all flex flex-col items-center justify-center gap-2 text-sm font-medium rounded-none">
+                                        <Upload size={24} />
+                                        <span>
+                                            {block.type === 'image' ? "Bild hochladen" : block.type === 'video' ? "Video hochladen" : "PDF hochladen"}
+                                        </span>
+                                        <input
+                                            type="file"
+                                            className="hidden"
+                                            accept={block.type === 'image' ? "image/*" : block.type === 'video' ? "video/*" : "application/pdf"}
+                                            onChange={(e) => e.target.files?.[0] && onFileUpload(e.target.files[0], block.id)}
+                                        />
+                                    </label>
+                                </div>
+
+                                {/* Video Link Option */}
+                                {block.type === 'video' && (
+                                    <div className="flex items-center gap-3">
+                                        <div className="h-px bg-slate-200 flex-grow"></div>
+                                        <span className="text-xs font-bold text-slate-400 uppercase">ODER LINK</span>
+                                        <div className="h-px bg-slate-200 flex-grow"></div>
+                                    </div>
+                                )}
+                                {block.type === 'video' && (
+                                    <div className="flex gap-2">
+                                        <div className="relative flex-grow">
+                                            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+                                                <LinkIcon size={16} />
+                                            </div>
+                                            <input
+                                                type="text"
+                                                placeholder="YouTube, Vimeo oder Video-URL einfügen..."
+                                                className="w-full pl-10 pr-4 py-2 border border-slate-200 bg-slate-50 focus:bg-white focus:border-gmrt-blue outline-none transition-colors text-sm"
+                                                onBlur={(e) => {
+                                                    if (e.target.value.trim()) {
+                                                        onUpdate(block.id, { content: e.target.value.trim() });
+                                                    }
+                                                }}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === 'Enter') {
+                                                        e.preventDefault();
+                                                        if (e.currentTarget.value.trim()) {
+                                                            onUpdate(block.id, { content: e.currentTarget.value.trim() });
+                                                        }
+                                                    }
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
 
                         <input
                             type="text"

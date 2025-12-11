@@ -25,6 +25,8 @@ export async function generateStaticParams() {
     return [{ lang: 'de' }, { lang: 'en' }]
 }
 
+import { ToastProvider } from '@/components/ui/Toast';
+
 export default async function RootLayout({
     children,
     params
@@ -42,11 +44,13 @@ export default async function RootLayout({
             <body
                 className={`${inter.variable} ${lexend.variable} antialiased min-h-screen flex flex-col bg-slate-50`}
             >
-                <Navbar lang={lang as 'de' | 'en'} dict={dict.navigation} />
-                <main className="flex-grow">
-                    {children}
-                </main>
-                <Footer dict={dict.footer} navDict={dict.navigation} lang={lang as string} />
+                <ToastProvider>
+                    <Navbar lang={lang as 'de' | 'en'} dict={dict.navigation} />
+                    <main className="flex-grow">
+                        {children}
+                    </main>
+                    <Footer dict={dict.footer} navDict={dict.navigation} lang={lang as string} />
+                </ToastProvider>
             </body>
         </html>
     );

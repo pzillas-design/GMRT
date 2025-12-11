@@ -1,4 +1,4 @@
-import React from 'react';
+import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
 
 interface PageHeroProps {
@@ -12,10 +12,12 @@ export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, imageSrc })
         <div className="relative h-[500px] w-full flex items-center">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
-                <img
+                <Image
                     src={imageSrc}
                     alt={title}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    priority
                 />
                 <div className="absolute inset-0 bg-black/40"></div>
             </div>

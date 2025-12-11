@@ -56,7 +56,7 @@ async function scrapeContent() {
                 let date: string | null = null;
                 // Scope to article/post container to avoid picking up sidebar dates (e.g. upcoming events)
                 const articleContainer = $('article.post, .post, #content, .entry-content').first();
-                const dateContext = articleContainer.length ? articleContainer : $.root();
+                const dateContext = articleContainer.length ? articleContainer : $('body');
 
                 const metaDate = dateContext.find('.updated, .date, .post-date, .fusion-meta-info .date, .entry-date').first().text().trim();
 

@@ -11,7 +11,7 @@ export default async function PrivacyPage({ params }: { params: { lang: string }
         <div className="bg-white min-h-screen">
             <SimpleHeader
                 title={lang === 'de' ? 'Datenschutz' : 'Privacy Policy'}
-                description={lang === 'de' ? 'Informationen zur Verarbeitung Ihrer Daten' : 'Information about data processing'}
+                subtitle={lang === 'de' ? 'Informationen zur Verarbeitung Ihrer Daten' : 'Information about data processing'}
             />
 
             <Container className="py-12 md:py-20 prose prose-lg max-w-4xl prose-slate">

@@ -1,5 +1,5 @@
 
-import { getDictionary } from '@/dictionaries';
+import { getDictionary } from '@/get-dictionary';
 import { SimpleHeader } from '@/components/headers/SimpleHeader';
 import { Container } from '@/components/ui/Container';
 

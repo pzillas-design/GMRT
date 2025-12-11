@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 
@@ -17,10 +19,12 @@ export const Hero: React.FC<HeroProps> = ({ dict }) => {
         <div className="relative h-[700px] w-full flex items-center">
             {/* Background Image - Skyline */}
             <div className="absolute inset-0 z-0">
-                <img
-                    src="https://images.unsplash.com/photo-1564506414752-a73fbe0c6b00?q=80&w=4332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Kuala Lumpur Skyline"
-                    className="w-full h-full object-cover"
+                <Image
+                    src="/images/frankfurt.png"
+                    alt="Hero Background"
+                    fill
+                    className="object-cover"
+                    priority
                 />
                 {/* Subtle overlay to ensure text readability like in reference */}
                 <div className="absolute inset-0 bg-black/30"></div>

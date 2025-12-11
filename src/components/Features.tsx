@@ -1,5 +1,6 @@
 import React from 'react';
-import { Users, Newspaper, MapPin } from 'lucide-react';
+import { Users, Globe2, Briefcase } from 'lucide-react';
+import Image from 'next/image';
 
 interface FeaturesProps {
     dict?: any;

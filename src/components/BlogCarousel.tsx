@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getPostImage } from '@/lib/blog-utils';
 
 type Post = {
@@ -52,10 +53,12 @@ export function BlogCarousel({ posts }: { posts: Post[] }) {
                     <div key={post.id} className="min-w-[70vw] md:min-w-[300px] snap-center flex-shrink-0">
                         <Link href={`/posts/${post.id}`} className="group/card cursor-pointer block h-full bg-white border border-slate-100 hover:shadow-lg transition-all duration-300 flex flex-col">
                             <div className="aspect-video w-full overflow-hidden bg-slate-100 relative">
-                                <img
-                                    src={(post as any).coverImage || getPostImage(post.location)}
+                                <Image
+                                    src={post.image}
                                     alt={post.title}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105"
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
                                 <div className="absolute top-4 left-4">
                                     <span className="bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gmrt-blue shadow-sm">

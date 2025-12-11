@@ -54,7 +54,7 @@ export function BlogCarousel({ posts }: { posts: Post[] }) {
                         <Link href={`/posts/${post.id}`} className="group/card cursor-pointer block h-full bg-white border border-slate-100 hover:shadow-lg transition-all duration-300 flex flex-col">
                             <div className="aspect-video w-full overflow-hidden bg-slate-100 relative">
                                 <Image
-                                    src={post.image}
+                                    src={(post as any).coverImage || getPostImage(post.location)}
                                     alt={post.title}
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"

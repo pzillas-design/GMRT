@@ -13,14 +13,20 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
     const [activeIndex, setActiveIndex] = useState<number | null>(0); // Default open first one
 
     return (
-        <section className="py-24 bg-slate-950 text-white overflow-hidden">
-            {/* Dark background for contrast/fresh look */}
+    return (
+        <section className="py-24 bg-white text-gmrt-blue overflow-hidden">
+            {/* Light background for fresh look */}
             <div className="max-w-[1600px] mx-auto px-4">
 
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 mb-6">
+                <div className="text-center mb-16 max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-5xl font-bold text-gmrt-blue mb-6">
                         {dict?.impact?.title || "Malaysia erfahren, mehr erreichen"}
                     </h2>
+                    {dict?.impact?.subtitle && (
+                        <p className="text-slate-600 text-xl font-light leading-relaxed">
+                            {dict.impact.subtitle}
+                        </p>
+                    )}
                 </div>
 
                 <div className="flex flex-col lg:flex-row h-auto lg:h-[600px] gap-2 lg:gap-1">
@@ -36,35 +42,35 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                     lg:h-full
                                     ${isActive
                                         ? 'lg:flex-[3.5] h-[500px]'
-                                        : 'lg:flex-1 h-24 lg:h-full' // Mobile: collapsed height needs to be reasonable. h-20 was small.
+                                        : 'lg:flex-1 h-24 lg:h-full'
                                     }
                                     rounded-2xl lg:rounded-none lg:first:rounded-l-2xl lg:last:rounded-r-2xl
-                                    bg-slate-900 border-b border-slate-800 lg:border-0
+                                    bg-slate-100 border-b border-white lg:border-0 lg:border-l lg:border-white
                                 `}
                             >
-                                {/* Background Image - Dimmed when inactive */}
+                                {/* Background Image */}
                                 <Image
                                     src={item.image}
                                     alt={item.title}
                                     fill
-                                    className={`object-cover transition-all duration-700 ${isActive ? 'scale-100 opacity-60' : 'scale-110 opacity-30 grayscale'}`}
+                                    className={`object-cover transition-all duration-700 ${isActive ? 'scale-100 grayscale-0 opacity-100' : 'scale-110 grayscale opacity-80'}`}
                                 />
 
-                                {/* Overlay Gradient */}
-                                <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-80'}`} />
+                                {/* Light Mode Overlay - White gradient for readability of dark text */}
+                                <div className={`absolute inset-0 bg-gradient-to-t from-white via-white/70 to-transparent transition-opacity duration-500 ${isActive ? 'opacity-95' : 'opacity-80'}`} />
 
-                                {/* Content Wrapper - Fixed width container to prevent text reflow during width transition */}
+                                {/* Content Wrapper */}
                                 <div className={`absolute inset-0 flex flex-col justify-end p-6 md:p-10 transition-all duration-500`}>
 
-                                    {/* Number / Icon */}
+                                    {/* Icon */}
                                     <div className={`absolute top-6 right-6 transition-all duration-500 ${isActive ? 'rotate-45 opacity-100' : 'rotate-0 opacity-50'}`}>
-                                        <Plus className="text-white" />
+                                        <Plus className="text-gmrt-blue" />
                                     </div>
 
-                                    {/* Text Container with fixed minimum width to stabilize layout */}
+                                    {/* Text Container */}
                                     <div className={`transform transition-all duration-500 ${isActive ? 'translate-y-0' : 'translate-y-4'}`}>
-                                        <div className="w-[80vw] md:w-[600px]"> {/* Prevents text wrap jitter */}
-                                            <h3 className={`text-xl md:text-3xl font-bold text-white mb-4 whitespace-nowrap ${!isActive && 'lg:rotate-[-90deg] lg:origin-bottom-left lg:absolute lg:bottom-10 lg:left-6 lg:mb-0 lg:whitespace-nowrap'}`}>
+                                        <div className="w-[80vw] md:w-[600px]">
+                                            <h3 className={`text-xl md:text-3xl font-bold text-gmrt-blue mb-4 whitespace-nowrap ${!isActive && 'lg:rotate-[-90deg] lg:origin-bottom-left lg:absolute lg:bottom-10 lg:left-6 lg:mb-0 lg:whitespace-nowrap'}`}>
                                                 {item.title}
                                             </h3>
 
@@ -72,7 +78,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                                 overflow-hidden transition-all duration-700 ease-in-out
                                                 ${isActive ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}
                                             `}>
-                                                <p className="text-slate-300 text-sm md:text-lg leading-relaxed max-w-xl whitespace-normal">
+                                                <p className="text-slate-600 text-sm md:text-lg leading-relaxed max-w-xl whitespace-normal">
                                                     {item.description}
                                                 </p>
                                             </div>

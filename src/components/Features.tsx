@@ -57,8 +57,6 @@ export const Features: React.FC<FeaturesProps> = ({ dict }) => {
                 </div>
 
             </div>
-
-        </div>
-        </section >
+        </section>
     );
 };

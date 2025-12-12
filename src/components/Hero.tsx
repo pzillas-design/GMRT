@@ -31,13 +31,13 @@ export const Hero: React.FC<HeroProps> = ({ dict, lang = 'de' }) => {
                 <div className="absolute inset-0 bg-black/30"></div>
             </div>
 
-            <div className="relative z-10 w-full pt-10">
+            <div className="relative z-10 w-full pt-32 md:pt-40">
                 <Container size="xl">
                     <div className="max-w-5xl">
                         <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
                             {t.title}
                         </h1>
-                        <p className="text-2xl text-white font-light leading-snug mb-10 max-w-3xl">
+                        <p className="text-2xl text-white font-light leading-snug mb-8 max-w-3xl">
                             {t.subtitle}
                         </p>
 

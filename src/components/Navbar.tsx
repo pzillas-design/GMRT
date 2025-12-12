@@ -69,7 +69,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                     {/* Logo */}
                     <div className="flex-shrink-0">
                         <Link href={`/${lang}`} className="flex items-center gap-3 group">
-                            <GmrtLogo className="h-14 md:h-20 w-auto transition-transform duration-300 group-hover:scale-105 text-gmrt-salmon" />
+                            <GmrtLogo className="h-11 md:h-16 w-auto transition-transform duration-300 group-hover:scale-105 text-gmrt-salmon" />
                             <span className={`font-display font-medium text-2xl md:text-3xl tracking-wide mt-1 ${isDarkText ? 'text-gmrt-blue' : 'text-white'}`}>
                                 GMRT
                             </span>

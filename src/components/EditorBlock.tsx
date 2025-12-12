@@ -119,7 +119,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                         {!block.content && (
                             <div className="flex flex-col gap-4">
                                 <div className="flex gap-2">
-                                    <label className="flex-grow cursor-pointer bg-white hover:bg-slate-50 border border-slate-200 hover:border-gmrt-blue text-slate-500 hover:text-gmrt-blue h-32 transition-all flex flex-col items-center justify-center gap-2 text-sm font-medium rounded-none">
+                                    <label className="flex-grow cursor-pointer bg-slate-50/20 hover:bg-slate-50 border-2 border-dashed border-slate-200 hover:border-gmrt-blue text-slate-400 hover:text-gmrt-blue h-32 transition-all flex flex-col items-center justify-center gap-2 text-sm font-medium rounded-md">
                                         <Upload size={24} />
                                         <span>
                                             {block.type === 'image' ? "Bild hochladen" : block.type === 'video' ? "Video hochladen" : "PDF hochladen"}

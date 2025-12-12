@@ -9,46 +9,52 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
     const items = dict?.impact?.items || [];
 
     return (
-        <section className="py-24 bg-slate-50">
-            <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-                <div className="text-center mb-16 max-w-3xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gmrt-blue mb-4">
+        <section className="w-full bg-white">
+            <div className="w-full">
+                <div className="px-6 md:px-12 py-16 text-center max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-5xl font-bold text-gmrt-blue mb-6">
                         {dict?.impact?.title || "Malaysia erfahren, mehr erreichen"}
                     </h2>
+                    <p className="text-xl text-slate-500 font-light leading-relaxed">
+                        {dict?.impact?.subtitle}
+                    </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full">
                     {items.map((item: any, index: number) => (
                         <div
                             key={index}
-                            className="group relative h-[400px] overflow-hidden rounded-xl bg-slate-900 shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                            className="group relative h-[400px] md:h-[500px] w-full overflow-hidden bg-slate-900 cursor-pointer"
                         >
                             {/* Image Background */}
-                            <div className="absolute inset-0">
-                                <Image
-                                    src={item.image}
-                                    alt={item.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                                {/* Gradient Overlay - darker on hover */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
-                            </div>
+                            <Image
+                                src={item.image}
+                                alt={item.title}
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                                className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+                            />
 
-                            {/* Content */}
-                            <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end h-full transition-all duration-500">
-                                {/* Title - moves up on hover */}
-                                <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
-                                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-gmrt-salmon transition-colors">
+                            {/* Default Overlay (Gradient) - Always visible but subtle */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 transition-opacity duration-500" />
+
+                            {/* Hover Overlay - Darker for text readability */}
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[2px]" />
+
+                            {/* Content Container */}
+                            <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                                {/* Title Area */}
+                                <div className="transform transition-transform duration-500 group-hover:-translate-y-4">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">
                                         {item.title}
                                     </h3>
-                                    {/* Line separator */}
-                                    <div className="w-12 h-1 bg-gmrt-salmon mb-4 transition-all duration-500 group-hover:w-full opacity-80" />
+                                    {/* Animated Underline */}
+                                    <div className="w-12 h-1 bg-gmrt-salmon transition-all duration-500 group-hover:w-24 group-hover:bg-white" />
                                 </div>
 
-                                {/* Description - revealed on hover */}
-                                <div className="overflow-hidden transition-all duration-500 max-h-0 opacity-0 group-hover:max-h-[300px] group-hover:opacity-100">
-                                    <p className="text-slate-200 text-sm leading-relaxed pb-2">
+                                {/* Hidden Description Area */}
+                                <div className="overflow-hidden max-h-0 opacity-0 group-hover:max-h-[300px] group-hover:opacity-100 transition-all duration-700 ease-in-out delay-75">
+                                    <p className="text-white/90 text-base md:text-lg leading-relaxed pt-4 font-light drop-shadow-md">
                                         {item.description}
                                     </p>
                                 </div>

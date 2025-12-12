@@ -36,44 +36,46 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
         }
     };
     return (
-        <div className="group/block relative flex gap-2 hover:bg-slate-50 p-2 rounded-none transition-all border border-transparent hover:border-slate-200">
-            {/* Arrow Navigation & Delete - Visible on Hover Only */}
-            <div className="flex flex-col gap-2 pt-1 opacity-0 group-hover/block:opacity-100 transition-opacity absolute -left-16 top-0 h-full justify-center">
+        <div className="group/block relative p-6 rounded-xl bg-slate-50/80 hover:bg-slate-100 transition-all duration-300 border border-transparent hover:shadow-sm">
+
+            {/* Integrated Action Toolbar (Top Right) */}
+            <div className="absolute right-3 top-3 flex items-center gap-1 opacity-0 group-hover/block:opacity-100 transition-all duration-200 z-20 bg-white/80 backdrop-blur-sm p-1 rounded-lg border border-slate-200/50 shadow-sm translate-y-2 group-hover/block:translate-y-0">
                 <button
                     type="button"
                     onClick={() => onMove(index, 'up')}
                     disabled={isFirst}
-                    title="Nach oben verschieben"
-                    className="p-2 bg-white border border-slate-200 shadow-sm text-slate-400 hover:text-gmrt-blue hover:border-gmrt-blue hover:bg-slate-50 disabled:opacity-0 transition-all rounded-none transform hover:scale-110 active:scale-95"
+                    title="Nach oben"
+                    className="p-1.5 hover:bg-white text-slate-400 hover:text-slate-900 rounded-md disabled:opacity-30 transition-colors"
                 >
-                    <ArrowUp size={20} />
+                    <ArrowUp size={16} />
                 </button>
                 <button
                     type="button"
                     onClick={() => onMove(index, 'down')}
                     disabled={isLast}
-                    title="Nach unten verschieben"
-                    className="p-2 bg-white border border-slate-200 shadow-sm text-slate-400 hover:text-gmrt-blue hover:border-gmrt-blue hover:bg-slate-50 disabled:opacity-0 transition-all rounded-none transform hover:scale-110 active:scale-95"
+                    title="Nach unten"
+                    className="p-1.5 hover:bg-white text-slate-400 hover:text-slate-900 rounded-md disabled:opacity-30 transition-colors"
                 >
-                    <ArrowDown size={20} />
+                    <ArrowDown size={16} />
                 </button>
+                <div className="w-px h-4 bg-slate-200 mx-1"></div>
                 <button
                     type="button"
                     onClick={() => onRemove(block.id)}
-                    title="Block löschen"
-                    className="p-2 bg-white border border-slate-200 shadow-sm text-slate-400 hover:text-red-500 hover:border-red-200 hover:bg-red-50 transition-colors mt-2 rounded-none transform hover:scale-110 active:scale-95"
+                    title="Löschen"
+                    className="p-1.5 hover:bg-red-50 text-slate-400 hover:text-red-500 rounded-md transition-colors"
                 >
-                    <Trash2 size={20} />
+                    <Trash2 size={16} />
                 </button>
             </div>
 
-            <div className="flex-grow w-full relative">
+            <div className="w-full relative">
                 {block.type === 'headline' && (
                     <input
                         type="text"
                         value={block.content}
                         onChange={(e) => onUpdate(block.id, { content: e.target.value })}
-                        className="w-full text-2xl font-bold px-0 py-1 bg-transparent border-none focus:ring-0 outline-none placeholder:text-slate-300 placeholder:font-normal text-slate-900"
+                        className="w-full text-3xl font-extrabold px-0 py-2 bg-transparent border-none focus:ring-0 outline-none placeholder:text-slate-300 placeholder:font-bold text-slate-900"
                         placeholder="Überschrift..."
                     />
                 )}
@@ -81,7 +83,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                     <textarea
                         value={block.content}
                         onChange={(e) => onUpdate(block.id, { content: e.target.value })}
-                        className="w-full min-h-[50px] px-0 py-2 bg-transparent border-none focus:ring-0 outline-none resize-none text-slate-700 text-lg leading-relaxed placeholder:text-slate-300 placeholder:font-normal overflow-hidden"
+                        className="w-full min-h-[50px] px-0 py-2 bg-transparent border-none focus:ring-0 outline-none resize-none text-slate-600 text-lg leading-relaxed placeholder:text-slate-300 font-medium tracking-wide overflow-hidden"
                         placeholder="Schreiben Sie etwas..."
                         rows={1}
                         style={{ fieldSizing: "content" } as any}
@@ -93,9 +95,9 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                     />
                 )}
                 {(block.type === 'image' || block.type === 'video' || block.type === 'pdf') && (
-                    <div className="space-y-4 py-2 relative">
+                    <div className="space-y-4 pt-2 relative">
                         {isUploading && (
-                            <div className="absolute inset-0 z-20 bg-white/80 flex flex-col items-center justify-center backdrop-blur-sm border border-slate-100 rounded-md">
+                            <div className="absolute inset-0 z-20 bg-white/90 flex flex-col items-center justify-center backdrop-blur-sm rounded-xl border border-slate-100">
                                 <div className="w-8 h-8 border-4 border-gmrt-blue border-t-transparent rounded-full animate-spin mb-2"></div>
                                 <span className="text-xs font-bold text-slate-500 animate-pulse">Wird hochgeladen...</span>
                             </div>
@@ -103,8 +105,8 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
 
                         {/* Preview Area */}
                         {block.type === 'image' && block.content && (
-                            <div className="relative w-full overflow-hidden border border-slate-100 shadow-sm group/image bg-white">
-                                <img src={block.content} alt="Preview" className="w-full h-auto max-h-[500px] object-contain bg-slate-50" />
+                            <div className="relative w-full overflow-hidden rounded-lg bg-white shadow-sm border border-slate-100 group/image">
+                                <img src={block.content} alt="Preview" className="w-full h-auto max-h-[600px] object-contain bg-slate-50/50" />
                                 <label className="absolute inset-0 bg-black/0 group-hover/image:bg-black/10 transition-colors cursor-pointer flex items-center justify-center">
                                     <input
                                         type="file"
@@ -112,20 +114,22 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                                         accept="image/*"
                                         onChange={(e) => e.target.files?.[0] && handleUpload(e.target.files[0])}
                                     />
-                                    <span className="opacity-0 group-hover/image:opacity-100 bg-white text-slate-900 border border-slate-200 font-bold px-4 py-2 shadow-sm text-sm rounded-none hover:bg-slate-50">Bild ändern</span>
+                                    <span className="opacity-0 group-hover/image:opacity-100 bg-white text-slate-900 font-bold px-6 py-3 rounded-lg shadow-lg transform scale-95 group-hover/image:scale-100 transition-all">
+                                        Bild ändern
+                                    </span>
                                 </label>
                             </div>
                         )}
 
                         {block.type === 'video' && block.content && (
-                            <div className="relative w-full overflow-hidden border border-slate-100 shadow-sm group/video bg-black">
+                            <div className="relative w-full overflow-hidden rounded-lg bg-black shadow-sm border border-slate-200 group/video">
                                 <video src={block.content} controls className="w-full h-auto max-h-[500px]" />
-                                <div className="absolute top-2 right-2 opacity-0 group-hover/video:opacity-100 transition-opacity">
+                                <div className="absolute top-4 right-4 opacity-0 group-hover/video:opacity-100 transition-opacity">
                                     <button
                                         type="button"
                                         onClick={() => onUpdate(block.id, { content: '' })}
-                                        className="bg-white/90 text-slate-700 p-2 rounded-sm shadow-sm hover:bg-red-50 hover:text-red-600"
-                                        title="Video entfernen"
+                                        className="bg-white/90 text-slate-700 p-2 rounded-lg shadow-md hover:bg-red-50 hover:text-red-600 border border-slate-200"
+                                        title="Entfernen"
                                     >
                                         <Trash2 size={16} />
                                     </button>
@@ -134,38 +138,43 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                         )}
 
                         {block.type === 'pdf' && block.content && (
-                            <div className="relative w-full border border-slate-200 bg-slate-50 p-4 flex items-center gap-4 group/pdf rounded-md">
-                                <div className="bg-white p-3 border border-slate-100 rounded-md shadow-sm">
+                            <div className="relative w-full bg-white p-4 flex items-center gap-5 rounded-lg border border-slate-200 shadow-sm group/pdf">
+                                <div className="bg-red-50 p-4 rounded-lg border border-red-100">
                                     <FileText size={32} className="text-red-500" />
                                 </div>
                                 <div className="flex-grow overflow-hidden">
-                                    <a href={block.content} target="_blank" rel="noopener noreferrer" className="font-bold text-slate-700 hover:text-gmrt-blue hover:underline truncate block text-sm">
+                                    <h4 className="font-bold text-slate-900 text-sm mb-1">Dokument</h4>
+                                    <a href={block.content} target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-gmrt-blue hover:underline truncate block text-sm font-mono">
                                         {block.content.split('/').pop() || 'Dokument.pdf'}
                                     </a>
-                                    <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">PDF Dokument</span>
                                 </div>
                                 <button
                                     type="button"
                                     onClick={() => onUpdate(block.id, { content: '' })}
-                                    className="text-slate-400 hover:text-red-500 p-2 hover:bg-red-50 rounded-md transition-colors"
+                                    className="text-slate-300 hover:text-red-500 p-2 hover:bg-red-50 rounded-lg transition-colors"
                                     title="PDF entfernen"
                                 >
-                                    <Trash2 size={18} />
+                                    <Trash2 size={20} />
                                 </button>
                             </div>
                         )}
 
-                        {/* Upload State (if empty) */}
+                        {/* Upload State (White Card) */}
                         {!block.content && (
-                            <div className="flex flex-col gap-4">
-                                <div className="flex gap-2">
-                                    <label className="flex-grow cursor-pointer bg-slate-50/20 hover:bg-slate-50 border-2 border-dashed border-slate-200 hover:border-gmrt-blue text-slate-400 hover:text-gmrt-blue h-32 transition-all flex flex-col items-center justify-center gap-2 text-sm font-medium rounded-md group">
-                                        <div className="p-3 bg-white rounded-full shadow-sm group-hover:scale-110 transition-transform">
-                                            <Upload size={24} />
+                            <div className="bg-white rounded-xl border border-slate-200 p-8 shadow-sm hover:border-gmrt-blue/30 hover:shadow-md transition-all group/upload">
+                                <div className="flex flex-col gap-6">
+                                    <label className="flex-grow cursor-pointer flex flex-col items-center justify-center gap-4 text-center">
+                                        <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-gmrt-blue group-hover/upload:scale-110 transition-transform duration-300">
+                                            <Upload size={32} strokeWidth={1.5} />
                                         </div>
-                                        <span className="font-semibold">
-                                            {block.type === 'image' ? "Bild hochladen" : block.type === 'video' ? "Video hochladen" : "PDF hochladen"}
-                                        </span>
+                                        <div className="space-y-1">
+                                            <span className="block font-bold text-slate-900">
+                                                {block.type === 'image' ? "Bild auswählen" : block.type === 'video' ? "Video auswählen" : "PDF auswählen"}
+                                            </span>
+                                            <span className="block text-xs text-slate-400 font-medium uppercase tracking-wider">
+                                                oder hierher ziehen
+                                            </span>
+                                        </div>
                                         <input
                                             type="file"
                                             className="hidden"
@@ -173,75 +182,70 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                                             onChange={(e) => e.target.files?.[0] && handleUpload(e.target.files[0])}
                                         />
                                     </label>
-                                </div>
 
-                                {/* Video Link Option */}
-                                {block.type === 'video' && (
-                                    <div className="flex items-center gap-3">
-                                        <div className="h-px bg-slate-200 flex-grow"></div>
-                                        <span className="text-xs font-bold text-slate-400 uppercase">ODER LINK</span>
-                                        <div className="h-px bg-slate-200 flex-grow"></div>
-                                    </div>
-                                )}
-                                {block.type === 'video' && (
-                                    <div className="flex gap-2">
-                                        <div className="relative flex-grow">
-                                            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-                                                <LinkIcon size={16} />
-                                            </div>
-                                            <input
-                                                type="text"
-                                                placeholder="YouTube, Vimeo oder Video-URL einfügen..."
-                                                className="w-full pl-10 pr-4 py-2 border border-slate-200 bg-slate-50 focus:bg-white focus:border-gmrt-blue outline-none transition-colors text-sm"
-                                                onBlur={(e) => {
-                                                    if (e.target.value.trim()) {
-                                                        onUpdate(block.id, { content: e.target.value.trim() });
-                                                    }
-                                                }}
-                                                onKeyDown={(e) => {
-                                                    if (e.key === 'Enter') {
-                                                        e.preventDefault();
-                                                        if (e.currentTarget.value.trim()) {
-                                                            onUpdate(block.id, { content: e.currentTarget.value.trim() });
+                                    {/* Video Link Option */}
+                                    {block.type === 'video' && (
+                                        <div className="border-t border-slate-100 pt-6 mt-2">
+                                            <div className="relative">
+                                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                                                    <LinkIcon size={18} />
+                                                </div>
+                                                <input
+                                                    type="text"
+                                                    placeholder="YouTube / Vimeo Link einfügen..."
+                                                    className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:border-gmrt-blue outline-none transition-all text-sm font-medium"
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === 'Enter') {
+                                                            e.preventDefault();
+                                                            if (e.currentTarget.value.trim()) {
+                                                                onUpdate(block.id, { content: e.currentTarget.value.trim() });
+                                                            }
                                                         }
-                                                    }
-                                                }}
-                                            />
+                                                    }}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
+                                    )}
+                                </div>
                             </div>
                         )}
 
-
-                        <input
-                            type="text"
-                            value={block.caption || ''}
-                            onChange={(e) => onUpdate(block.id, { caption: e.target.value })}
-                            className="w-full bg-transparent border-b border-transparent focus:border-slate-300 outline-none text-xs text-center text-slate-500 placeholder:text-slate-300"
-                            placeholder={block.type === 'pdf' ? "Titel des PDFs" : "Bildunterschrift"}
-                        />
-                    </div>
-                )}
-                {block.type === 'link' && (
-                    <div className="space-y-2 p-2 bg-slate-50 border border-slate-100 rounded-none">
-                        <div className="flex items-center gap-2">
-                            <LinkIcon size={16} className="text-slate-400" />
+                        {/* Caption */}
+                        <div className="flex justify-center mt-2">
                             <input
                                 type="text"
                                 value={block.caption || ''}
                                 onChange={(e) => onUpdate(block.id, { caption: e.target.value })}
-                                className="font-bold text-gmrt-blue bg-transparent border-b border-transparent focus:border-gmrt-blue outline-none"
-                                placeholder="Link Button Text"
+                                className="bg-transparent border-b border-transparent focus:border-slate-300 outline-none text-xs text-center text-slate-400 font-medium placeholder:text-slate-300/50 w-2/3 transition-colors pb-1"
+                                placeholder={block.type === 'pdf' ? "PDF Bezeichnung (optional)" : "Bildunterschrift (optional)"}
                             />
                         </div>
-                        <input
-                            type="text"
-                            value={block.content}
-                            onChange={(e) => onUpdate(block.id, { content: e.target.value })}
-                            className="w-full px-3 py-1 text-xs font-mono text-slate-500 bg-transparent outline-none"
-                            placeholder="https://..."
-                        />
+                    </div>
+                )}
+                {block.type === 'link' && (
+                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                            <div className="bg-slate-100 p-2 rounded-lg text-slate-500">
+                                <LinkIcon size={20} />
+                            </div>
+                            <input
+                                type="text"
+                                value={block.caption || ''}
+                                onChange={(e) => onUpdate(block.id, { caption: e.target.value })}
+                                className="flex-grow font-bold text-gmrt-blue bg-transparent border-none outline-none text-lg placeholder:text-slate-300"
+                                placeholder="Button Text"
+                            />
+                        </div>
+                        <div className="flex items-center gap-2 pl-[52px]">
+                            <span className="text-slate-400 text-xs font-mono">URL:</span>
+                            <input
+                                type="text"
+                                value={block.content}
+                                onChange={(e) => onUpdate(block.id, { content: e.target.value })}
+                                className="flex-grow text-sm font-mono text-slate-600 bg-slate-50 px-2 py-1 rounded border border-slate-100 focus:border-gmrt-blue outline-none transition-colors"
+                                placeholder="https://..."
+                            />
+                        </div>
                     </div>
                 )}
             </div>

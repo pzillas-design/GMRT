@@ -36,7 +36,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
         }
     };
     return (
-        <div className="group/block relative p-6 rounded-xl bg-slate-50/80 hover:bg-slate-100 transition-all duration-300 border border-transparent hover:shadow-sm">
+        <div className="group/block relative p-6 rounded-xl bg-slate-100/70 hover:bg-slate-100 transition-all duration-300 border border-transparent hover:shadow-sm">
 
             {/* Integrated Action Toolbar (Top Right) */}
             <div className="absolute right-3 top-3 flex items-center gap-1 opacity-0 group-hover/block:opacity-100 transition-all duration-200 z-20 bg-white/80 backdrop-blur-sm p-1 rounded-lg border border-slate-200/50 shadow-sm translate-y-2 group-hover/block:translate-y-0">

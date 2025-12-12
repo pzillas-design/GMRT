@@ -531,13 +531,13 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                     <div className="mt-8 flex flex-col items-start gap-4 w-full pb-12">
                         <span className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">{t.insert}</span>
                         <div className="grid grid-cols-6 w-full gap-4">
-                            <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
-                                <Type size={24} />
-                                <span className="text-sm font-medium">{t.text}</span>
-                            </button>
                             <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
                                 <Heading size={24} />
                                 <span className="text-sm font-medium">{t.headline}</span>
+                            </button>
+                            <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
+                                <Type size={24} />
+                                <span className="text-sm font-medium">{t.text}</span>
                             </button>
                             <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
                                 <ImageIcon size={24} />

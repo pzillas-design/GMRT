@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, User, LogOut } from 'lucide-react';
 import Link from 'next/link';
@@ -8,6 +6,7 @@ import { Container } from '@/components/ui/Container';
 import { GmrtLogo } from '@/components/GmrtLogo';
 import { useAuth } from '@/context/AuthContext';
 import { ConfirmationModal } from '@/components/ui/Modal';
+import { LoginModal } from '@/components/auth/LoginModal';
 
 interface NavbarProps {
     lang: 'de' | 'en';
@@ -21,6 +20,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
     const router = useRouter();
     const { isAuthenticated, logout } = useAuth();
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -55,6 +55,12 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         router.refresh();
     };
 
+    const handleLoginSuccess = () => {
+        setIsLoginModalOpen(false);
+        router.push(`/${lang}/news`);
+        router.refresh();
+    };
+
     const getNavStyle = (path: string): 'light' | 'dark' | 'solid' => {
         if (path === `/${lang}`) return 'light';
         if (path === `/${lang}/news`) return 'dark';
@@ -82,6 +88,12 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                     message={lang === 'de' ? 'Möchten Sie sich wirklich abmelden?' : 'Are you sure you want to log out?'}
                     confirmText={lang === 'de' ? 'Abmelden' : 'Log out'}
                     cancelText={lang === 'de' ? 'Abbrechen' : 'Cancel'}
+                />
+
+                <LoginModal
+                    isOpen={isLoginModalOpen}
+                    onClose={() => setIsLoginModalOpen(false)}
+                    onSuccess={handleLoginSuccess}
                 />
 
                 <div className="flex justify-between items-center">
@@ -135,13 +147,13 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                                 <LogOut size={24} />
                             </button>
                         ) : (
-                            <Link
-                                href={`/${lang}/login`}
+                            <button
+                                onClick={() => setIsLoginModalOpen(true)}
                                 className="hover:text-gmrt-salmon transition-colors"
                                 title={lang === 'de' ? 'Anmelden' : 'Login'}
                             >
                                 <User size={24} />
-                            </Link>
+                            </button>
                         )}
                     </div>
 

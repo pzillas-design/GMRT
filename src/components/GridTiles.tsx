@@ -46,6 +46,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                     }
                                     rounded-2xl lg:rounded-none lg:first:rounded-l-2xl lg:last:rounded-r-2xl
                                     bg-slate-100 border-b border-white lg:border-0 lg:border-l lg:border-white
+                                    group
                                 `}
                             >
                                 {/* Background Image */}
@@ -53,11 +54,16 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                     src={item.image}
                                     alt={item.title}
                                     fill
-                                    className={`object-cover transition-all duration-700 ${isActive ? 'scale-100 grayscale-0 opacity-100' : 'scale-110 grayscale opacity-80'}`}
+                                    className={`object-cover transition-all duration-700 ${isActive ? 'scale-100' : 'scale-110'}`}
                                 />
 
-                                {/* Light Mode Overlay - White gradient for readability of dark text */}
-                                <div className={`absolute inset-0 bg-gradient-to-t from-white via-white/70 to-transparent transition-opacity duration-500 ${isActive ? 'opacity-95' : 'opacity-80'}`} />
+                                {/* Overlay: Solid white when active (readability), subtle change when inactive */}
+                                <div className={`absolute inset-0 transition-all duration-500 
+                                    ${isActive
+                                        ? 'bg-white/90'
+                                        : 'bg-white/10 group-hover:bg-white/30'
+                                    }`}
+                                />
 
                                 {/* Content Wrapper */}
                                 <div className={`absolute inset-0 flex flex-col justify-end p-6 md:p-10 transition-all duration-500`}>

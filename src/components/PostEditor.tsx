@@ -10,6 +10,22 @@ import { useToast } from '@/components/ui/Toast';
 import { ConfirmationModal } from '@/components/ui/Modal';
 import { AnimatePresence, motion } from 'framer-motion';
 
+interface InsertButtonProps {
+    onClick: () => void;
+    icon: React.ElementType;
+    label: string;
+}
+
+const InsertButton = ({ onClick, icon: Icon, label }: InsertButtonProps) => (
+    <button type="button" onClick={onClick} className="group/btn relative p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors w-8 h-8 flex items-center justify-center">
+        <Icon size={16} />
+        <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50 shadow-sm">
+            {label}
+        </span>
+        <span className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-800 rotate-45 opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none z-40"></span>
+    </button>
+);
+
 interface PostEditorProps {
     initialData?: {
         title: string;
@@ -41,7 +57,11 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
     const [month, setMonth] = useState(initialData?.eventDate ? (initialDate.getMonth() + 1).toString() : '');
     const [year, setYear] = useState(initialData?.eventDate ? initialDate.getFullYear().toString() : '');
 
-    const [blocks, setBlocks] = useState<ContentBlock[]>(initialData?.contentBlocks || []);
+    const [blocks, setBlocks] = useState<ContentBlock[]>(
+        (initialData?.contentBlocks && initialData.contentBlocks.length > 0)
+            ? initialData.contentBlocks
+            : [{ id: crypto.randomUUID(), type: 'text', content: '' }]
+    );
     const [isSaving, setIsSaving] = useState(false);
 
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -65,34 +85,37 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
     // -- Helpers & Handlers --
 
     const locationImages: Record<string, string> = {
-        'Düsseldorf': '/images/duesseldorf.png',
-        'Frankfurt': '/images/frankfurt.png',
-        'München': '/images/muenchen.png',
-        'Wien': '/images/wien.png',
-        'Zürich': '/images/zurich.png',
-        'Hannover': '/images/hannover.png',
-        'Bremen': '/images/bremen.png',
-        'Ruhrgebiet': '/images/ruhrgebiet.png',
-        'Berlin': '/images/berlin.png',
+        'Düsseldorf': '/images/duesseldorf.jpg',
+        'Frankfurt': '/images/frankfurt.jpg',
+        'München': '/images/muenchen.jpg',
+        'Wien': '/images/wien.jpg',
+        'Zürich': '/images/zurich.jpg',
+        'Hannover': '/images/hannover.jpg',
+        'Bremen': '/images/bremen.jpg',
+        'Ruhrgebiet': '/images/ruhrgebiet.jpg',
+        'Berlin': '/images/berlin.jpg',
         // Fallbacks
-        'Hamburg': '/images/default-blog.png',
-        'Stuttgart': '/images/default-blog.png',
+        'Hamburg': '/images/default-blog.jpg',
+        'Stuttgart': '/images/default-blog.jpg',
     };
 
     const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
-        setLocation(value);
-        if (value === 'Neu...') {
+        if (value === 'custom_new_entry') {
             setIsCustomLocation(true);
-        } else {
-            setIsCustomLocation(false);
-            setCustomLocation('');
-            // Set default image logic
-            const newDefault = locationImages[value];
-            const isCurrentDefault = !coverImage || Object.values(locationImages).includes(coverImage);
-            if (newDefault && isCurrentDefault) {
-                setCoverImage(newDefault);
-            }
+            return;
+        }
+
+        setLocation(value);
+        setIsCustomLocation(false);
+        setCustomLocation('');
+
+        // Set default image logic
+        const newDefault = locationImages[value];
+        const isCurrentDefault = !coverImage || Object.values(locationImages).includes(coverImage);
+
+        if (newDefault && isCurrentDefault) {
+            setCoverImage(newDefault);
         }
     };
 
@@ -441,13 +464,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                             <div className="relative">
                                                 <select
                                                     value={location}
-                                                    onChange={(e) => {
-                                                        if (e.target.value === 'custom_new_entry') {
-                                                            setIsCustomLocation(true);
-                                                        } else {
-                                                            setLocation(e.target.value);
-                                                        }
-                                                    }}
+                                                    onChange={handleLocationChange}
                                                     className="w-full bg-slate-50 hover:bg-slate-100 focus:bg-white border-none p-3 font-bold text-slate-900 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl cursor-pointer appearance-none transition-all"
                                                 >
                                                     {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
@@ -471,12 +488,12 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                         <div className="absolute top-1/2 left-4 right-4 h-px bg-gmrt-blue/0 group-hover/top-insert:bg-gmrt-blue/20 transition-colors duration-300 pointer-events-none"></div>
                                         <div className="flex items-center gap-1 bg-white border border-slate-100 shadow-lg p-1.5 px-3 rounded-xl scale-0 opacity-0 group-hover/top-insert:scale-100 group-hover/top-insert:opacity-100 transition-all duration-200 relative z-30">
                                             <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider mr-2 select-none border-r border-slate-100 pr-2">{t.insert}</span>
-                                            <button type="button" onClick={() => addBlock('text', -1)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><Type size={16} /></button>
-                                            <button type="button" onClick={() => addBlock('headline', -1)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><Heading size={16} /></button>
-                                            <button type="button" onClick={() => addBlock('image', -1)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><ImageIcon size={16} /></button>
-                                            <button type="button" onClick={() => addBlock('video', -1)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><Video size={16} /></button>
-                                            <button type="button" onClick={() => addBlock('pdf', -1)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><FileText size={16} /></button>
-                                            <button type="button" onClick={() => addBlock('link', -1)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><LinkIcon size={16} /></button>
+                                            <InsertButton onClick={() => addBlock('headline', -1)} icon={Heading} label={t.headline} />
+                                            <InsertButton onClick={() => addBlock('text', -1)} icon={Type} label={t.text} />
+                                            <InsertButton onClick={() => addBlock('image', -1)} icon={ImageIcon} label={t.image} />
+                                            <InsertButton onClick={() => addBlock('video', -1)} icon={Video} label={t.video} />
+                                            <InsertButton onClick={() => addBlock('pdf', -1)} icon={FileText} label={t.pdf} />
+                                            <InsertButton onClick={() => addBlock('link', -1)} icon={LinkIcon} label={t.link} />
                                         </div>
                                     </div>
                                 )}
@@ -512,12 +529,12 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                                 <div className="absolute top-1/2 left-8 right-8 h-0.5 bg-gmrt-blue/10 pointer-events-none rounded-full"></div>
                                                 <div className="flex items-center gap-1 bg-white border border-slate-100 shadow-xl p-1.5 px-3 rounded-xl scale-95 hover:scale-100 transition-transform relative z-30">
                                                     <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider mr-2 select-none border-r border-slate-100 pr-2">{t.insert}</span>
-                                                    <button type="button" onClick={() => addBlock('text', index)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><Type size={16} /></button>
-                                                    <button type="button" onClick={() => addBlock('headline', index)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><Heading size={16} /></button>
-                                                    <button type="button" onClick={() => addBlock('image', index)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><ImageIcon size={16} /></button>
-                                                    <button type="button" onClick={() => addBlock('video', index)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><Video size={16} /></button>
-                                                    <button type="button" onClick={() => addBlock('pdf', index)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><FileText size={16} /></button>
-                                                    <button type="button" onClick={() => addBlock('link', index)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><LinkIcon size={16} /></button>
+                                                    <InsertButton onClick={() => addBlock('headline', index)} icon={Heading} label={t.headline} />
+                                                    <InsertButton onClick={() => addBlock('text', index)} icon={Type} label={t.text} />
+                                                    <InsertButton onClick={() => addBlock('image', index)} icon={ImageIcon} label={t.image} />
+                                                    <InsertButton onClick={() => addBlock('video', index)} icon={Video} label={t.video} />
+                                                    <InsertButton onClick={() => addBlock('pdf', index)} icon={FileText} label={t.pdf} />
+                                                    <InsertButton onClick={() => addBlock('link', index)} icon={LinkIcon} label={t.link} />
                                                 </div>
                                             </div>
                                         </motion.div>

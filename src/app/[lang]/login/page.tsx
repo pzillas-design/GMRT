@@ -47,9 +47,21 @@ export default function LoginPage() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
+                    <div className="space-y-4">
+                        {/* Hidden username field to help password managers */}
+                        <input
+                            type="text"
+                            name="username"
+                            autoComplete="username"
+                            value="admin"
+                            readOnly
+                            className="hidden"
+                        />
                         <input
                             type="password"
+                            name="password"
+                            id="password"
+                            autoComplete="current-password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Passwort eingeben"

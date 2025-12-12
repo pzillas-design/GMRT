@@ -36,6 +36,8 @@ export async function POST(request: Request) {
         let finalBuffer = buffer;
 
         // Image Compression (using sharp)
+        let contentType = file.type;
+
         if (file.type.startsWith('image/')) {
             try {
                 const sharp = require('sharp'); // Dynamic require to avoid build issues if optional
@@ -47,6 +49,7 @@ export async function POST(request: Request) {
 
                 // Change extension to webp
                 filename = filename.replace(/\.[^.]+$/, '') + '.webp';
+                contentType = 'image/webp';
             } catch (error) {
                 console.error('Image compression failed, saving original:', error);
             }
@@ -56,7 +59,6 @@ export async function POST(request: Request) {
         if (process.env.BLOB_READ_WRITE_TOKEN) {
             try {
                 const { put } = await import('@vercel/blob');
-                const contentType = file.type.startsWith('image/') ? 'image/webp' : file.type;
 
                 const blob = await put(filename, finalBuffer, {
                     access: 'public',

@@ -97,12 +97,14 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
                     <div className="text-center py-24 bg-slate-50 border border-slate-200">
 
                         <p className="text-xl text-slate-500 mb-8">{dict.news.no_events}</p>
-                        <Link
-                            href={`/${lang}/create`}
-                            className="inline-flex bg-gmrt-salmon text-white px-8 py-4 hover:bg-gmrt-logo transition-all font-bold uppercase tracking-wider"
-                        >
-                            {dict.news.create_first}
-                        </Link>
+                        {isAdmin && (
+                            <Link
+                                href={`/${lang}/create`}
+                                className="inline-flex bg-gmrt-salmon text-white px-8 py-4 hover:bg-gmrt-logo transition-all font-bold uppercase tracking-wider"
+                            >
+                                {dict.news.create_first}
+                            </Link>
+                        )}
                     </div>
                 </div>
             ) : (
@@ -116,7 +118,7 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
                             </h2>
                             <div className="flex flex-col gap-12">
                                 {upcomingPosts.map((post: any) => (
-                                    <UpcomingEventCard key={post.id} post={post} lang={lang} />
+                                    <UpcomingEventCard key={post.id} post={post} lang={lang} isAdmin={isAdmin} />
                                 ))}
                             </div>
                         </div>
@@ -137,7 +139,7 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
                                     </h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                         {pastPosts.map((post: any) => (
-                                            <EventCard key={post.id} post={post} lang={lang} />
+                                            <EventCard key={post.id} post={post} lang={lang} isAdmin={isAdmin} />
                                         ))}
                                     </div>
 

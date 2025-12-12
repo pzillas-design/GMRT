@@ -114,7 +114,8 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                                         accept="image/*"
                                         onChange={(e) => e.target.files?.[0] && handleUpload(e.target.files[0])}
                                     />
-                                    <span className="opacity-0 group-hover/image:opacity-100 bg-white text-slate-900 font-bold px-6 py-3 rounded-lg shadow-lg transform scale-95 group-hover/image:scale-100 transition-all">
+                                    <span className="opacity-0 group-hover/image:opacity-100 bg-white text-slate-900 font-bold px-6 py-3 rounded-lg shadow-lg transform scale-95 group-hover/image:scale-100 transition-all flex items-center gap-2">
+                                        <Upload size={18} />
                                         Bild ändern
                                     </span>
                                 </label>

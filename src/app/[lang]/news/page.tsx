@@ -82,7 +82,7 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
                     {isAdmin && (
                         <Link
                             href={`/${lang}/create`}
-                            className="w-auto px-6 py-2.5 bg-gmrt-blue text-white hover:bg-gmrt-salmon hover:border-gmrt-salmon transition-all flex items-center justify-center border border-gmrt-blue ml-2 font-bold uppercase tracking-wide text-sm gap-2"
+                            className="w-auto px-6 py-2.5 bg-gmrt-salmon text-white from-gmrt-salmon to-gmrt-logo bg-gradient-to-r hover:opacity-90 shadow-sm transition-all flex items-center justify-center rounded-lg ml-2 font-bold uppercase tracking-wide text-sm gap-2"
                             title={dict.news.create_button}
                         >
                             <Plus size={18} />

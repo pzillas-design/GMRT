@@ -526,8 +526,8 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
 
                                             {/* Hover Insertion (Between) */}
                                             <div className={`absolute -bottom-8 left-0 right-0 z-20 h-16 flex justify-center items-center opacity-0 group-hover/wrapper:opacity-100 hover:opacity-100 transition-opacity`}>
-                                                <div className="absolute top-1/2 left-8 right-8 h-0.5 bg-gmrt-blue/10 pointer-events-none rounded-full"></div>
-                                                <div className="flex items-center gap-1 bg-white border border-slate-100 shadow-xl p-1.5 px-3 rounded-xl scale-95 hover:scale-100 transition-transform relative z-30">
+                                                <div className="absolute top-1/2 left-1/3 right-1/3 h-0.5 bg-gmrt-blue/10 pointer-events-none rounded-full"></div>
+                                                <div className="flex items-center gap-1 bg-white border border-slate-100 shadow-xl p-1.5 px-6 rounded-full scale-95 hover:scale-100 transition-transform relative z-30">
                                                     <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider mr-2 select-none border-r border-slate-100 pr-2">{t.insert}</span>
                                                     <InsertButton onClick={() => addBlock('headline', index)} icon={Heading} label={t.headline} />
                                                     <InsertButton onClick={() => addBlock('text', index)} icon={Type} label={t.text} />

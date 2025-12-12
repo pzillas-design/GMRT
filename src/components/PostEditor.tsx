@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Image as ImageIcon, Type, Video, FileText, Link as LinkIcon, Heading, Trash2, Wand2 } from 'lucide-react';
+import { ArrowLeft, ArrowDown, Image as ImageIcon, Type, Video, FileText, Link as LinkIcon, Heading, Trash2, Wand2 } from 'lucide-react';
 import { ContentBlock, ContentBlockType } from '@/types';
 import { EditorBlock } from './EditorBlock';
 import { Button } from '@/components/ui/Button';
@@ -556,8 +556,8 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                 </div>
                             </div>
                         </div> {/* Closes Content Blocks Container from line 467 */}
-                    </div > {/* Closes Card from line 334 */}
-                </form >
-            </div >
-        </div > {/* Closes min-h-screen from top */ }
+                    </div> {/* Closes Card from line 334 */}
+                </form>
+            </div>
+        </div> {/* Closes min-h-screen from top */ }
 }

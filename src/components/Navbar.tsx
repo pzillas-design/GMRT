@@ -173,7 +173,6 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                             );
                         })}
                         <button onClick={() => { toggleLanguage(); setIsOpen(false); }} className="text-xl py-3 font-medium text-slate-600 hover:text-gmrt-blue flex items-center gap-4 mt-2 border-t border-slate-100 pt-4">
-                            <span>Sprache / Language:</span>
                             <div className="flex bg-slate-100 rounded-lg p-1">
                                 <span className={`px-3 py-1 rounded-md ${lang === 'de' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>DE</span>
                                 <span className={`px-3 py-1 rounded-md ${lang === 'en' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>EN</span>

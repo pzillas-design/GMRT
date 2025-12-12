@@ -9,7 +9,7 @@ interface PageHeroProps {
 
 export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, imageSrc }) => {
     return (
-        <div className="relative h-[500px] w-full flex items-center">
+        <div className="relative h-[600px] w-full flex items-center">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -22,7 +22,7 @@ export const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, imageSrc })
                 <div className="absolute inset-0 bg-black/40"></div>
             </div>
 
-            <div className="relative z-10 w-full">
+            <div className="relative z-10 w-full pt-24">
                 <Container size="xl">
                     <div className="max-w-4xl">
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">

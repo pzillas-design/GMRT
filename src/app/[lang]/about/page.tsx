@@ -19,7 +19,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
             <PageHero
                 title={dict.about.hero.title}
                 subtitle={dict.about.hero.subtitle}
-                imageSrc="/images/frankfurt.jpg"
+                imageSrc="https://images.unsplash.com/photo-1594950474627-f49c063b4b45?q=80&w=2000&auto=format&fit=crop"
             />
 
             {/* 1. Mission Section (White) */}

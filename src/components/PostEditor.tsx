@@ -335,10 +335,10 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                 <form onSubmit={handleSubmit} className="relative">
 
                     {/* Main Content */}
-                    <div id="content-blocks-container" className="bg-white min-h-[50vh] rounded-none shadow-sm border border-slate-200 overflow-visible relative">
+                    <div id="content-blocks-container" className="bg-white min-h-[50vh] rounded-2xl shadow-sm border border-slate-100 overflow-visible relative">
 
                         {/* Cover Image */}
-                        <div className="relative w-full bg-slate-50 border-b border-slate-100 group">
+                        <div className="relative w-full bg-slate-50 border-b border-slate-100 group rounded-t-2xl overflow-hidden">
                             <input
                                 type="file"
                                 ref={fileInputRef}
@@ -364,7 +364,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                         <button
                                             type="button"
                                             onClick={() => fileInputRef.current?.click()}
-                                            className="bg-white text-slate-700 px-4 py-2 rounded-sm shadow-sm font-bold text-sm hover:bg-gmrt-blue hover:text-white transition-colors flex items-center gap-2"
+                                            className="bg-white text-slate-700 px-4 py-2 rounded-lg shadow-sm font-bold text-sm hover:bg-gmrt-blue hover:text-white transition-colors flex items-center gap-2"
                                         >
                                             <Wand2 size={16} />
                                             {lang === 'de' ? 'Bild ändern' : 'Change Image'}
@@ -373,13 +373,13 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                     <button
                                         type="button"
                                         onClick={() => setCoverImage('')}
-                                        className="absolute top-4 right-4 bg-white/90 p-2 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white text-slate-500 hover:text-red-500 rounded-none border border-slate-200"
+                                        className="absolute top-4 right-4 bg-white/90 p-2 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white text-slate-500 hover:text-red-500 rounded-lg border border-slate-200"
                                     >
                                         <Trash2 size={16} />
                                     </button>
                                 </div>
                             ) : (
-                                <label className="flex flex-col items-center justify-center aspect-[21/9] w-full text-slate-400 cursor-pointer hover:bg-slate-100 transition-colors gap-3 border-2 border-transparent hover:border-dashed hover:border-slate-300" onClick={() => fileInputRef.current?.click()}>
+                                <label className="flex flex-col items-center justify-center aspect-[21/9] w-full text-slate-400 cursor-pointer hover:bg-slate-100 transition-colors gap-3 border-2 border-transparent hover:border-slate-200" onClick={() => fileInputRef.current?.click()}>
                                     <ImageIcon size={32} />
                                     <span className="font-medium text-lg">{t.coverImage}</span>
                                 </label>
@@ -390,12 +390,12 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                             {/* Metadata */}
                             <div className="space-y-8">
                                 <div>
-                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">{t.title}</label>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 pl-1">{t.title}</label>
                                     <input
                                         type="text"
                                         value={title}
                                         onChange={(e) => setTitle(e.target.value)}
-                                        className="w-full text-4xl font-extrabold text-slate-900 placeholder:text-slate-400 placeholder:font-normal border border-slate-400 focus:border-black focus:ring-0 p-5 bg-slate-50/30 hover:bg-slate-50 focus:bg-white rounded-none leading-tight transition-colors"
+                                        className="w-full text-4xl font-extrabold text-slate-900 placeholder:text-slate-300 placeholder:font-bold bg-slate-50 border-none hover:bg-slate-100 focus:bg-white focus:ring-2 focus:ring-gmrt-blue/10 p-4 rounded-xl leading-tight transition-all outline-none"
                                         placeholder={lang === 'de' ? 'Titel des Beitrags' : 'Post Title'}
                                         required
                                     />
@@ -403,28 +403,28 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div>
-                                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Datum</label>
-                                        <div className="flex gap-4">
+                                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 pl-1">Datum</label>
+                                        <div className="flex gap-3">
                                             <div className="flex-1">
-                                                <input type="number" value={day} onChange={(e) => setDay(e.target.value)} placeholder="DD" className="w-full border border-slate-400 bg-slate-50/50 p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={day} onChange={(e) => setDay(e.target.value)} placeholder="DD" className="w-full bg-slate-50 hover:bg-slate-100 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                             <div className="flex-1">
-                                                <input type="number" value={month} onChange={(e) => setMonth(e.target.value)} placeholder="MM" className="w-full border border-slate-400 bg-slate-50/50 p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={month} onChange={(e) => setMonth(e.target.value)} placeholder="MM" className="w-full bg-slate-50 hover:bg-slate-100 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                             <div className="flex-[1.5]">
-                                                <input type="number" value={year} onChange={(e) => setYear(e.target.value)} placeholder="YYYY" className="w-full border border-slate-400 bg-slate-50/50 p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={year} onChange={(e) => setYear(e.target.value)} placeholder="YYYY" className="w-full bg-slate-50 hover:bg-slate-100 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">{t.location}</label>
+                                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 pl-1">{t.location}</label>
                                         {isCustomLocation ? (
                                             <div className="relative">
                                                 <input
                                                     type="text"
                                                     value={customLocation}
                                                     onChange={(e) => setCustomLocation(e.target.value)}
-                                                    className="w-full border border-slate-400 bg-slate-50/50 p-3 pr-10 font-medium text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none"
+                                                    className="w-full bg-slate-50 hover:bg-slate-100 focus:bg-white border-none p-3 pr-10 font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all"
                                                     placeholder={lang === 'de' ? "Kategorie eingeben" : "Enter category"}
                                                     autoFocus
                                                 />
@@ -438,20 +438,27 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                                 </button>
                                             </div>
                                         ) : (
-                                            <select
-                                                value={location}
-                                                onChange={(e) => {
-                                                    if (e.target.value === 'custom_new_entry') {
-                                                        setIsCustomLocation(true);
-                                                    } else {
-                                                        setLocation(e.target.value);
-                                                    }
-                                                }}
-                                                className="w-full border border-slate-400 bg-slate-50/50 p-3 font-medium text-slate-900 focus:border-black outline-none rounded-none cursor-pointer"
-                                            >
-                                                {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
-                                                <option value="custom_new_entry">{lang === 'de' ? '+ Neu...' : '+ New...'}</option>
-                                            </select>
+                                            <div className="relative">
+                                                <select
+                                                    value={location}
+                                                    onChange={(e) => {
+                                                        if (e.target.value === 'custom_new_entry') {
+                                                            setIsCustomLocation(true);
+                                                        } else {
+                                                            setLocation(e.target.value);
+                                                        }
+                                                    }}
+                                                    className="w-full bg-slate-50 hover:bg-slate-100 focus:bg-white border-none p-3 font-bold text-slate-900 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl cursor-pointer appearance-none transition-all"
+                                                >
+                                                    {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
+                                                    <option value="custom_new_entry">{lang === 'de' ? '+ Neu...' : '+ New...'}</option>
+                                                </select>
+                                                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                </div>
+                                            </div>
                                         )}
                                     </div>
                                 </div>
@@ -461,15 +468,15 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                             <div className="space-y-4">
                                 {blocks.length > 0 && (
                                     <div className="h-4 group/top-insert relative z-30 flex justify-center items-center hover:h-16 transition-all duration-200 -mb-4">
-                                        <div className="absolute top-1/2 left-4 right-4 h-px bg-gmrt-blue/10 opacity-0 group-hover/top-insert:opacity-100 transition-opacity pointer-events-none"></div>
-                                        <div className="flex items-center gap-1 bg-white border border-slate-200 shadow-md p-1 px-4 rounded-none scale-0 opacity-0 group-hover/top-insert:scale-100 group-hover/top-insert:opacity-100 transition-all duration-200 relative z-30">
-                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-2 select-none border-r border-slate-200 pr-2">{t.insert}</span>
-                                            <button type="button" onClick={() => addBlock('text', -1)} className="p-2 hover:bg-slate-50 text-slate-500 hover:text-gmrt-blue"><Type size={14} /></button>
-                                            <button type="button" onClick={() => addBlock('headline', -1)} className="p-2 hover:bg-slate-50 text-slate-500 hover:text-gmrt-blue"><Heading size={14} /></button>
-                                            <button type="button" onClick={() => addBlock('image', -1)} className="p-2 hover:bg-slate-50 text-slate-500 hover:text-gmrt-blue"><ImageIcon size={14} /></button>
-                                            <button type="button" onClick={() => addBlock('video', -1)} className="p-2 hover:bg-slate-50 text-slate-500 hover:text-gmrt-blue"><Video size={14} /></button>
-                                            <button type="button" onClick={() => addBlock('pdf', -1)} className="p-2 hover:bg-slate-50 text-slate-500 hover:text-gmrt-blue"><FileText size={14} /></button>
-                                            <button type="button" onClick={() => addBlock('link', -1)} className="p-2 hover:bg-slate-50 text-slate-500 hover:text-gmrt-blue"><LinkIcon size={14} /></button>
+                                        <div className="absolute top-1/2 left-4 right-4 h-px bg-gmrt-blue/0 group-hover/top-insert:bg-gmrt-blue/20 transition-colors duration-300 pointer-events-none"></div>
+                                        <div className="flex items-center gap-1 bg-white border border-slate-100 shadow-lg p-1.5 px-3 rounded-xl scale-0 opacity-0 group-hover/top-insert:scale-100 group-hover/top-insert:opacity-100 transition-all duration-200 relative z-30">
+                                            <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider mr-2 select-none border-r border-slate-100 pr-2">{t.insert}</span>
+                                            <button type="button" onClick={() => addBlock('text', -1)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><Type size={16} /></button>
+                                            <button type="button" onClick={() => addBlock('headline', -1)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><Heading size={16} /></button>
+                                            <button type="button" onClick={() => addBlock('image', -1)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><ImageIcon size={16} /></button>
+                                            <button type="button" onClick={() => addBlock('video', -1)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><Video size={16} /></button>
+                                            <button type="button" onClick={() => addBlock('pdf', -1)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><FileText size={16} /></button>
+                                            <button type="button" onClick={() => addBlock('link', -1)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><LinkIcon size={16} /></button>
                                         </div>
                                     </div>
                                 )}
@@ -487,7 +494,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                             onMouseEnter={() => setHoveredBlockIndex(index)}
                                             onMouseLeave={() => setHoveredBlockIndex(null)}
                                         >
-                                            <div className="py-6">
+                                            <div className="py-2">
                                                 <EditorBlock
                                                     block={block}
                                                     index={index}
@@ -502,15 +509,15 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
 
                                             {/* Hover Insertion (Between) */}
                                             <div className={`absolute -bottom-8 left-0 right-0 z-20 h-16 flex justify-center items-center opacity-0 group-hover/wrapper:opacity-100 hover:opacity-100 transition-opacity`}>
-                                                <div className="absolute top-1/2 left-4 right-4 h-px bg-gmrt-blue/10 pointer-events-none"></div>
-                                                <div className="flex items-center gap-1 bg-white border border-slate-200 shadow-md p-1 px-4 rounded-none scale-95 hover:scale-100 transition-transform relative z-30">
-                                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-2 select-none border-r border-slate-200 pr-2">{t.insert}</span>
-                                                    <button type="button" onClick={() => addBlock('text', index)} className="p-2 hover:bg-slate-50 text-slate-500 hover:text-gmrt-blue"><Type size={14} /></button>
-                                                    <button type="button" onClick={() => addBlock('headline', index)} className="p-2 hover:bg-slate-50 text-slate-500 hover:text-gmrt-blue"><Heading size={14} /></button>
-                                                    <button type="button" onClick={() => addBlock('image', index)} className="p-2 hover:bg-slate-50 text-slate-500 hover:text-gmrt-blue"><ImageIcon size={14} /></button>
-                                                    <button type="button" onClick={() => addBlock('video', index)} className="p-2 hover:bg-slate-50 text-slate-500 hover:text-gmrt-blue"><Video size={14} /></button>
-                                                    <button type="button" onClick={() => addBlock('pdf', index)} className="p-2 hover:bg-slate-50 text-slate-500 hover:text-gmrt-blue"><FileText size={14} /></button>
-                                                    <button type="button" onClick={() => addBlock('link', index)} className="p-2 hover:bg-slate-50 text-slate-500 hover:text-gmrt-blue"><LinkIcon size={14} /></button>
+                                                <div className="absolute top-1/2 left-8 right-8 h-0.5 bg-gmrt-blue/10 pointer-events-none rounded-full"></div>
+                                                <div className="flex items-center gap-1 bg-white border border-slate-100 shadow-xl p-1.5 px-3 rounded-xl scale-95 hover:scale-100 transition-transform relative z-30">
+                                                    <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider mr-2 select-none border-r border-slate-100 pr-2">{t.insert}</span>
+                                                    <button type="button" onClick={() => addBlock('text', index)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><Type size={16} /></button>
+                                                    <button type="button" onClick={() => addBlock('headline', index)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><Heading size={16} /></button>
+                                                    <button type="button" onClick={() => addBlock('image', index)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><ImageIcon size={16} /></button>
+                                                    <button type="button" onClick={() => addBlock('video', index)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><Video size={16} /></button>
+                                                    <button type="button" onClick={() => addBlock('pdf', index)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><FileText size={16} /></button>
+                                                    <button type="button" onClick={() => addBlock('link', index)} className="p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors"><LinkIcon size={16} /></button>
                                                 </div>
                                             </div>
                                         </motion.div>
@@ -521,32 +528,32 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                     </div>
 
                     {/* PERMANENT BOTTOM TOOLBAR */}
-                    <div className="mt-8 flex flex-col items-start gap-3 w-full pb-12">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.insert}</span>
-                        <div className="grid grid-cols-6 w-full gap-2">
-                            <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                    <div className="mt-8 flex flex-col items-start gap-4 w-full pb-12">
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">{t.insert}</span>
+                        <div className="grid grid-cols-6 w-full gap-4">
+                            <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
                                 <Type size={24} />
-                                <span className="text-sm font-normal">{t.text}</span>
+                                <span className="text-sm font-medium">{t.text}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                            <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
                                 <Heading size={24} />
-                                <span className="text-sm font-normal">{t.headline}</span>
+                                <span className="text-sm font-medium">{t.headline}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                            <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
                                 <ImageIcon size={24} />
-                                <span className="text-sm font-normal">{t.image}</span>
+                                <span className="text-sm font-medium">{t.image}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                            <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
                                 <Video size={24} />
-                                <span className="text-sm font-normal">{t.video}</span>
+                                <span className="text-sm font-medium">{t.video}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                            <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
                                 <FileText size={24} />
-                                <span className="text-sm font-normal">{t.pdf}</span>
+                                <span className="text-sm font-medium">{t.pdf}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                            <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
                                 <LinkIcon size={24} />
-                                <span className="text-sm font-normal">{t.link}</span>
+                                <span className="text-sm font-medium">{t.link}</span>
                             </button>
                         </div>
                     </div>

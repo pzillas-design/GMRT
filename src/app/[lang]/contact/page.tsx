@@ -10,7 +10,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
     const dict: any = await getDictionary(lang as 'de' | 'en');
 
     return (
-        <div className="bg-white pb-20">
+        <div className="bg-white pb-20 min-h-screen">
             <PageHero
                 title={dict.contact.title}
                 subtitle={dict.contact.subtitle}

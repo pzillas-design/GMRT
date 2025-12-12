@@ -17,7 +17,7 @@ export function EventCard({ post, lang = 'de' }: EventCardProps) {
     const dateLocale = lang === 'en' ? 'en-US' : 'de-DE';
 
     return (
-        <Link href={`/${lang}/posts/${post.id}`} className="group cursor-pointer block flex flex-col h-full bg-white border border-slate-100 transition-all hover:border-gmrt-logo/20">
+        <Link href={`/${lang}/posts/${post.id}`} className="group cursor-pointer block flex flex-col h-full bg-slate-50 transition-all duration-300 hover:bg-slate-100 active:bg-slate-200">
             <div className="aspect-video w-full overflow-hidden bg-slate-100 relative">
                 <Image
                     src={getPostImage(post.location)}

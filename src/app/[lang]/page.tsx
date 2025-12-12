@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { BlogCarousel } from '@/components/BlogCarousel';
 import { ArrowRight } from 'lucide-react';
 import { getPostImage } from '@/lib/blog-utils';
-import { InfoAccordion } from '@/components/InfoAccordion';
+
 import { UpcomingEventCard } from '@/components/UpcomingEventCard';
 import { Hero } from '@/components/Hero';
 import { Features } from '@/components/Features';
@@ -68,7 +68,6 @@ export default async function Home({ params, searchParams }: { params: Promise<{
         {/* Impact / Tiles Section - Moved to bottom */}
         <GridTiles dict={dict.homepage} />
       </div>
-      <InfoAccordion />
     </>
   );
 }

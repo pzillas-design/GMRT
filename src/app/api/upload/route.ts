@@ -57,8 +57,8 @@ export async function POST(request: Request) {
 
                 return NextResponse.json({ url: blob.url });
             } catch (err) {
-                console.error('Vercel Blob upload failed:', err);
-                throw new Error('Cloud upload failed');
+                console.error('Vercel Blob upload failed, falling back to local:', err);
+                // Do NOT throw, allow fallback to local storage below
             }
         }
         // -----------------------------------------------

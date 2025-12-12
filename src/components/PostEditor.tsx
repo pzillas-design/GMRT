@@ -254,7 +254,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
             saving: 'Speichert...',
             title: 'Titel',
             coverImage: 'Titelbild hinzufügen',
-            location: 'Kategorie / Tag',
+            location: 'Kategorie',
             delete: 'Löschen',
         },
         en: {
@@ -270,7 +270,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
             saving: 'Saving...',
             title: 'Title',
             coverImage: 'Add Cover Image',
-            location: 'Category / Tag',
+            location: 'Category',
             delete: 'Delete',
         }
     }[lang as 'de' | 'en'] || {
@@ -491,28 +491,28 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                     {/* PERMANENT BOTTOM TOOLBAR */}
                     <div className="mt-8 flex flex-col items-start gap-3 w-full pb-12">
                         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.insert}</span>
-                        <div className="grid grid-cols-6 w-full bg-white border border-slate-200 shadow-sm p-0 rounded-none divide-x divide-slate-100">
-                            <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-2 py-4 hover:bg-slate-50 text-slate-600 hover:text-gmrt-blue transition-colors">
+                        <div className="grid grid-cols-6 w-full gap-2">
+                            <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-2 py-4 bg-gmrt-salmon text-white hover:bg-gmrt-salmon/90 transition-colors rounded-md shadow-sm from-gmrt-salmon to-gmrt-salmon/90">
                                 <Type size={20} />
                                 <span className="text-[10px] font-bold uppercase">{t.text}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-2 py-4 hover:bg-slate-50 text-slate-600 hover:text-gmrt-blue transition-colors">
+                            <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-2 py-4 bg-gmrt-salmon text-white hover:bg-gmrt-salmon/90 transition-colors rounded-md shadow-sm">
                                 <Heading size={20} />
                                 <span className="text-[10px] font-bold uppercase">{t.headline}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-2 py-4 hover:bg-slate-50 text-slate-600 hover:text-gmrt-blue transition-colors">
+                            <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-2 py-4 bg-gmrt-salmon text-white hover:bg-gmrt-salmon/90 transition-colors rounded-md shadow-sm">
                                 <ImageIcon size={20} />
                                 <span className="text-[10px] font-bold uppercase">{t.image}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-2 py-4 hover:bg-slate-50 text-slate-600 hover:text-gmrt-blue transition-colors">
+                            <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-2 py-4 bg-gmrt-salmon text-white hover:bg-gmrt-salmon/90 transition-colors rounded-md shadow-sm">
                                 <Video size={20} />
                                 <span className="text-[10px] font-bold uppercase">{t.video}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-2 py-4 hover:bg-slate-50 text-slate-600 hover:text-gmrt-blue transition-colors">
+                            <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-2 py-4 bg-gmrt-salmon text-white hover:bg-gmrt-salmon/90 transition-colors rounded-md shadow-sm">
                                 <FileText size={20} />
                                 <span className="text-[10px] font-bold uppercase">{t.pdf}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-2 py-4 hover:bg-slate-50 text-slate-600 hover:text-gmrt-blue transition-colors">
+                            <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-2 py-4 bg-gmrt-salmon text-white hover:bg-gmrt-salmon/90 transition-colors rounded-md shadow-sm">
                                 <LinkIcon size={20} />
                                 <span className="text-[10px] font-bold uppercase">{t.link}</span>
                             </button>

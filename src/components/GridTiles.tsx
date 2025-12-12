@@ -15,22 +15,24 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
     return (
 
 
-        <section className="py-24 bg-slate-950 text-white overflow-hidden">
-            {/* Dark background for premium look */}
-            <div className="max-w-[1600px] mx-auto px-4">
+    return (
+        <section className="py-24 bg-gmrt-blue text-white overflow-hidden">
+            {/* Dark background (Footer Blue) */}
 
-                <div className="text-center mb-16 max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                        {dict?.impact?.title || "Malaysia erfahren, mehr erreichen"}
-                    </h2>
-                    {dict?.impact?.subtitle && (
-                        <p className="text-slate-400 text-xl font-light leading-relaxed">
-                            {dict.impact.subtitle}
-                        </p>
-                    )}
-                </div>
+            <div className="max-w-[1600px] mx-auto px-4 mb-16 text-center">
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                    {dict?.impact?.title || "Malaysia erfahren, mehr erreichen"}
+                </h2>
+                {dict?.impact?.subtitle && (
+                    <p className="text-slate-300 text-xl font-light leading-relaxed">
+                        {dict.impact.subtitle}
+                    </p>
+                )}
+            </div>
 
-                <div className="flex flex-col lg:flex-row h-auto lg:h-[600px] gap-2 lg:gap-1">
+            {/* Full Width Grid - No Gaps, No Borders, Edge-to-Edge */}
+            <div className="w-full h-auto lg:h-[600px]">
+                <div className="flex flex-col lg:flex-row h-full w-full gap-0">
                     {items.map((item: any, index: number) => {
                         const isActive = activeIndex === index;
 
@@ -45,8 +47,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                         ? 'lg:flex-[3.5] h-[350px]'
                                         : 'lg:flex-1 h-24 lg:h-full'
                                     }
-                                    rounded-2xl lg:rounded-none lg:first:rounded-l-2xl lg:last:rounded-r-2xl
-                                    bg-slate-900 border-b border-slate-800 lg:border-0 lg:border-l lg:border-slate-800
+                                    bg-gmrt-blue
                                     group
                                 `}
                             >

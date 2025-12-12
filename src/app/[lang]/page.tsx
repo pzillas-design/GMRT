@@ -9,6 +9,7 @@ import { Hero } from '@/components/Hero';
 import { Features } from '@/components/Features';
 import { GridTiles } from '@/components/GridTiles';
 import { getDictionary } from '@/get-dictionary';
+import { Button } from '@/components/ui/Button';
 
 export const dynamic = 'force-dynamic';
 
@@ -46,19 +47,22 @@ export default async function Home({ params, searchParams }: { params: Promise<{
         {upcomingPosts.length > 0 && (
           <section className="py-24 bg-slate-50">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-              <div className="flex justify-between items-end mb-12">
+              <div className="mb-12 text-center md:text-left">
                 <h2 className="text-3xl md:text-4xl font-bold text-gmrt-blue">
                   {dict.homepage.upcoming.title}
                 </h2>
-                <Link href={`/${lang}/news`} className="text-gmrt-salmon font-semibold hover:text-gmrt-blue transition-colors flex items-center gap-2">
-                  {dict.homepage.past.read_more /* reusing read_more or similar */} <ArrowRight size={20} />
-                </Link>
               </div>
 
-              <div className="flex flex-col gap-12">
+              <div className="flex flex-col gap-12 mb-12">
                 {upcomingPosts.map((post: any) => (
                   <UpcomingEventCard key={post.id} post={post} />
                 ))}
+              </div>
+
+              <div className="flex justify-center md:justify-start">
+                <Button href={`/${lang}/news`} variant="primary" size="lg" icon={<ArrowRight size={20} />}>
+                  {dict.homepage.past.read_more}
+                </Button>
               </div>
             </div>
           </section>

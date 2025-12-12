@@ -55,33 +55,12 @@ export const Features: React.FC<FeaturesProps> = ({ dict }) => {
                         </div>
                     ))}
                 </div>
-
-                {/* Separator */}
-                <div className="w-full h-px bg-slate-200 my-24"></div>
-
-                {/* Content Section - 50/50 Layout */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-gmrt-blue mb-8 leading-tight">
-                            {dict?.expertise?.title || 'Synergien für den Erfolg in ASEAN'}
-                        </h2>
-                        <p className="text-slate-600 text-lg font-light leading-relaxed mb-6">
-                            {dict?.expertise?.lead || 'Ehrenamtlich und privat organisiert schaffen unsere Chapter Initiators, Sprecher und Teilnehmenden auf lokaler Ebene wertvolle Synergien für den Austausch zwischen Deutschland und der ASEAN-Region.'}
-                        </p>
-                        <p className="text-slate-600 text-lg font-light leading-relaxed">
-                            {dict?.expertise?.text || 'Ob Expatriates, Unternehmer, Investoren, Wissenschaftler oder Regierungsvertreter – unsere Community lebt von der Vielfalt ihrer Perspektiven.'}
-                        </p>
-                    </div>
-                    <div className="relative h-[600px] bg-slate-100">
-                        <img
-                            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop"
-                            alt="GMRT Meeting"
-                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                        />
-                    </div>
-                </div>
-
             </div>
         </section>
+    );
+};
+
+            </div >
+        </section >
     );
 };

@@ -18,7 +18,7 @@ export function UpcomingEventCard({ post, lang = 'de' }: UpcomingEventCardProps)
     const dateLocale = lang === 'en' ? 'en-US' : 'de-DE';
 
     return (
-        <Link href={`/${lang}/posts/${post.id}`} className="group cursor-pointer block bg-white border border-slate-100 transition-all duration-300 flex flex-col md:flex-row min-h-[400px] hover:border-gmrt-logo/20">
+        <Link href={`/${lang}/posts/${post.id}`} className="group cursor-pointer block bg-slate-50 transition-all duration-300 flex flex-col md:flex-row min-h-[400px] hover:bg-slate-100 active:bg-slate-200">
             <div className="md:w-5/12 relative overflow-hidden">
                 <div className="absolute inset-0 bg-slate-200">
                     <Image

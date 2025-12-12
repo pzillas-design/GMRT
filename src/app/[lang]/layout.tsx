@@ -27,6 +27,8 @@ export async function generateStaticParams() {
 
 import { ToastProvider } from '@/components/ui/Toast';
 
+import { AuthProvider } from '@/context/AuthContext';
+
 export default async function RootLayout({
     children,
     params
@@ -45,11 +47,13 @@ export default async function RootLayout({
                 className={`${inter.variable} ${lexend.variable} antialiased min-h-screen flex flex-col bg-slate-50`}
             >
                 <ToastProvider>
-                    <Navbar lang={lang as 'de' | 'en'} dict={dict.navigation} />
-                    <main className="flex-grow">
-                        {children}
-                    </main>
-                    <Footer dict={dict.footer} navDict={dict.navigation} lang={lang as string} />
+                    <AuthProvider>
+                        <Navbar lang={lang as 'de' | 'en'} dict={dict.navigation} />
+                        <main className="flex-grow">
+                            {children}
+                        </main>
+                        <Footer dict={dict.footer} navDict={dict.navigation} lang={lang as string} />
+                    </AuthProvider>
                 </ToastProvider>
             </body>
         </html>

@@ -25,13 +25,18 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
             {/* 1. Mission Section (White) */}
             <section className="py-24 bg-white">
                 <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-                    <div className="prose prose-lg prose-slate max-w-4xl mx-auto">
-                        <p className="lead text-2xl md:text-3xl text-[#0E2A47] font-light mb-8 leading-relaxed">
+                    <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-start">
+                        {/* Left: Headline */}
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0E2A47] leading-tight">
                             {dict.about.mission.lead}
-                        </p>
-                        <p className="text-xl text-slate-600 leading-relaxed">
-                            {dict.about.mission.text}
-                        </p>
+                        </h2>
+
+                        {/* Right: Copy */}
+                        <div className="prose prose-lg prose-slate text-slate-600">
+                            <p className="text-lg md:text-xl leading-relaxed">
+                                {dict.about.mission.text}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>

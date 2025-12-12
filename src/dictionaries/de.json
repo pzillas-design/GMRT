@@ -77,7 +77,72 @@
             ]
         },
         "team": {
-            "title": "Gründer & Initiatoren"
+            "title": "Das Team",
+            "members": [
+                {
+                    "name": "Jai Shankar",
+                    "role": "Gründer",
+                    "image": "/uploads/team/jai-shankar.jpg",
+                    "bio": "Trade Commissioner (MATRADE) von 2012 bis 2016 in Frankfurt. Er schuf zusammen mit Herrn Paramsothy Thamotharampillai-Göbel eine wichtige Plattform für Deutsche und Malaysier, um Ideen und Informationen auszutauschen, die zu einem stärkeren bilateralen Handel beitragen.",
+                    "email": "frankfurt@gmrt.de"
+                },
+                {
+                    "name": "Paramsothy Thamotharampillai-Göbel",
+                    "role": "Gründer & GMRT Frankfurt",
+                    "image": "/uploads/team/paramsothy.jpg",
+                    "bio": "Gebürtiger Malaysier und in England ausgebildeter Ingenieur. Er hat in 27 Ländern für führende Automobilhersteller gearbeitet und lebt seit über 25 Jahren in Deutschland. Als interkultureller Experte für Indien, Sri Lanka und ASEAN bietet er Coaching und 'Cultural Due Diligence' für internationale Zusammenarbeit.",
+                    "email": "frankfurt@gmrt.de"
+                },
+                {
+                    "name": "Prof. Dr. Andreas Stoffers",
+                    "role": "GMRT München",
+                    "image": "/uploads/team/andreas-stoffers.jpg",
+                    "bio": "Über 20 Jahre Managementerfahrung bei der Deutschen Bank, inklusive Führungspositionen in Südostasien. Als Geschäftsführer der ASEAN Business Partners GmbH und Professor für Internationales Management in München ist er ein anerkannter Experte für die ASEAN-Region.",
+                    "email": "muenchen@gmrt.de"
+                },
+                {
+                    "name": "Roland Mauß",
+                    "role": "GMRT Düsseldorf",
+                    "image": "/uploads/team/roland-mauss.jpg",
+                    "bio": "Seit 1997 CFO der Oryx Stainless AG, einem der weltweit führenden Edelstahlschrotthändler. Zuvor bei Ernst & Young. Er engagiert sich u.a. in der Wirtschaftsprüferkammer und beim VDI. Die Oryx Gruppe ist ein Top-Partner internationaler Edelstahlhersteller mit Standorten in Europa und Asien.",
+                    "email": "duesseldorf@gmrt.de"
+                },
+                {
+                    "name": "Ludwig Graf Westarp",
+                    "role": "GMRT Berlin",
+                    "image": "/uploads/team/ludwig-graf-westarp.jpg",
+                    "bio": "Gründer von SKARO VIETNAM mit Fokus auf Internationalisierung und interkulturelles Management. Er leitete Einheiten mit bis zu 2.000 Mitarbeitenden und war u.a. für EKONID und die Hanns-Seidel-Stiftung tätig. Besondere Expertise in der ASEAN-Region.",
+                    "email": "berlin@gmrt.de"
+                },
+                {
+                    "name": "Christian Wachtmeister",
+                    "role": "GMRT München",
+                    "image": "/uploads/team/christian-wachtmeister.jpg",
+                    "bio": "Leitete über 15 Jahre das Asien-Geschäft eines Technologieunternehmens mit Stationen in Malaysia und China. Seit 2019 führt er die Beratung ConLian, unterstützt europäische Firmen beim Markteintritt in Südostasien und fördert überregionale Partnerschaften.",
+                    "email": "muenchen@gmrt.de"
+                },
+                {
+                    "name": "Christof Grabner",
+                    "role": "GMRT Wien",
+                    "image": "/uploads/team/christof-grabner.jpg",
+                    "bio": "Investmentbanker, M&A-Berater und CEO von GRA:FIN. Über 30 Jahre internationale Erfahrung bei ausländischen Direktinvestitionen, besonders in Asien und CEE. Zuvor in leitenden Positionen bei der Raiffeisen Bank International sowie in Singapur und Hongkong.",
+                    "email": "wien@gmrt.de"
+                },
+                {
+                    "name": "Hanns-Robert Mayer",
+                    "role": "GMRT Stuttgart",
+                    "image": "/uploads/team/hanns-robert-mayer.jpg",
+                    "bio": "Gründer und GF der Kontaktwerk GmbH, die den Mittelstand mit Industrie-Partnern vernetzt. Er verfügt über langjährige Erfahrung in Unternehmerverbänden und leitende Positionen im Maschinenbau, inklusive Auslandsaufenthalten in Japan und Singapur.",
+                    "email": "stuttgart@gmrt.de"
+                },
+                {
+                    "name": "Michael Fisahn-Reinhard",
+                    "role": "GMRT Hamburg",
+                    "image": "/uploads/team/michael-fisahn-reinhard.jpg",
+                    "bio": "Internationaler Unternehmer in Vertrieb und Marketing sowie Gründer von global-sales-help.com. Mit 25 Jahren Erfahrung in Marktentwicklung und Turnaround-Management war er in leitenden Positionen in den USA, Europa und Lateinamerika.",
+                    "email": "hamburg@gmrt.de"
+                }
+            ]
         }
     },
     "contact": {

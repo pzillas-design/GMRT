@@ -77,7 +77,72 @@
             ]
         },
         "team": {
-            "title": "Founders & Initiators"
+            "title": "The Team",
+            "members": [
+                {
+                    "name": "Jai Shankar",
+                    "role": "Founder",
+                    "image": "/uploads/team/jai-shankar.jpg",
+                    "bio": "Trade Commissioner (MATRADE) from 2012 to 2016 in Frankfurt. Together with Mr. Paramsothy Thamotharampillai-Göbel, he created an important platform for Germans and Malaysians to interchange ideas and information, fostering stronger bilateral trade.",
+                    "email": "frankfurt@gmrt.de"
+                },
+                {
+                    "name": "Paramsothy Thamotharampillai-Göbel",
+                    "role": "Founder & GMRT Frankfurt",
+                    "image": "/uploads/team/paramsothy.jpg",
+                    "bio": "Born in Malaysia and educated as an engineer in England, he has worked in 27 countries for leading automotive manufacturers. Living in Germany for over 25 years, he is an intercultural expert for India, Sri Lanka, and ASEAN, offering coaching and 'Cultural Due Diligence'.",
+                    "email": "frankfurt@gmrt.de"
+                },
+                {
+                    "name": "Prof. Dr. Andreas Stoffers",
+                    "role": "GMRT Munich",
+                    "image": "/uploads/team/andreas-stoffers.jpg",
+                    "bio": "Over 20 years of management experience at Deutsche Bank, including executive roles in Southeast Asia. As Managing Director of ASEAN Business Partners GmbH and Professor of International Management in Munich, he is a recognized expert on the ASEAN region.",
+                    "email": "muenchen@gmrt.de"
+                },
+                {
+                    "name": "Roland Mauß",
+                    "role": "GMRT Dusseldorf",
+                    "image": "/uploads/team/roland-mauss.jpg",
+                    "bio": "CFO of Oryx Stainless AG since 1997, a leading global stainless steel scrap trader. Previously at Ernst & Young. Active in the Chamber of Public Accountants and VDI. The Oryx Group is a top partner for international stainless steel producers with sites in Europe and Asia.",
+                    "email": "duesseldorf@gmrt.de"
+                },
+                {
+                    "name": "Ludwig Graf Westarp",
+                    "role": "GMRT Berlin",
+                    "image": "/uploads/team/ludwig-graf-westarp.jpg",
+                    "bio": "Founder of SKARO VIETNAM with a focus on internationalization and intercultural management. He led units with up to 2,000 employees and worked for EKONID and the Hanns Seidel Foundation. Special expertise in the ASEAN region.",
+                    "email": "berlin@gmrt.de"
+                },
+                {
+                    "name": "Christian Wachtmeister",
+                    "role": "GMRT Munich",
+                    "image": "/uploads/team/christian-wachtmeister.jpg",
+                    "bio": "Led the Asian operations of a tech company for over 15 years with deep experience in Malaysia and China. Since 2019, he leads ConLian consultancy, helping European firms enter Southeast Asian markets and facilitating cross-regional partnerships.",
+                    "email": "muenchen@gmrt.de"
+                },
+                {
+                    "name": "Christof Grabner",
+                    "role": "GMRT Vienna",
+                    "image": "/uploads/team/christof-grabner.jpg",
+                    "bio": "Investment banker, M&A advisor, and CEO of GRA:FIN. Over 30 years of international experience in FDI and M&A, particularly in Asia and CEE. Previously held senior roles at Raiffeisen Bank International and managed companies in Singapore and Hong Kong.",
+                    "email": "wien@gmrt.de"
+                },
+                {
+                    "name": "Hanns-Robert Mayer",
+                    "role": "GMRT Stuttgart",
+                    "image": "/uploads/team/hanns-robert-mayer.jpg",
+                    "bio": "Founder and CEO of Kontaktwerk GmbH, connecting SMEs with industrial partners. He has an international network, years of experience in business associations, and executive roles in mechanical engineering, including stays in Japan and Singapore.",
+                    "email": "stuttgart@gmrt.de"
+                },
+                {
+                    "name": "Michael Fisahn-Reinhard",
+                    "role": "GMRT Hamburg",
+                    "image": "/uploads/team/michael-fisahn-reinhard.jpg",
+                    "bio": "International sales and marketing entrepreneur and founder of global-sales-help.com. With 25 years of experience in market development and turnaround management, he has held senior positions in the USA, Europe, and Latin America.",
+                    "email": "hamburg@gmrt.de"
+                }
+            ]
         }
     },
     "contact": {

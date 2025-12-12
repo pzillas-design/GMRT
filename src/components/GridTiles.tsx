@@ -41,7 +41,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                     relative overflow-hidden cursor-pointer transition-all duration-500 ease-out
                                     lg:h-full
                                     ${isActive
-                                        ? 'lg:flex-[3.5] h-[500px]'
+                                        ? 'lg:flex-[3.5] h-[350px]'
                                         : 'lg:flex-1 h-24 lg:h-full'
                                     }
                                     rounded-2xl lg:rounded-none lg:first:rounded-l-2xl lg:last:rounded-r-2xl

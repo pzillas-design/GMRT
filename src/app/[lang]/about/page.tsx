@@ -48,7 +48,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
                         <h3 className="text-2xl md:text-3xl font-bold text-[#0E2A47] mb-12 text-center">
                             {dict.about.principles.title}
                         </h3>
-                        <div className="grid gap-6 md:grid-cols-2">
+                        <div className="grid gap-6 md:grid-cols-3">
                             {dict.about.principles.items.map((item: any, index: number) => (
                                 <div key={index} className="flex gap-4 bg-white p-6 rounded-xl shadow-sm border border-slate-100">
                                     <span className="text-gmrt-salmon font-bold text-xl">•</span>
@@ -73,11 +73,11 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
                         {dict.about.team.members?.map((member: any, index: number) => (
                             <div key={index} className="group">
-                                <div className="overflow-hidden rounded-2xl mb-6 bg-slate-100 shadow-sm">
+                                <div className="overflow-hidden rounded-2xl mb-6 bg-slate-100 shadow-sm relative aspect-video">
                                     <img
                                         src={member.image}
                                         alt={member.name}
-                                        className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
                                 </div>
                                 <div className="text-left">

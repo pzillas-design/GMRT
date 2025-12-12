@@ -61,7 +61,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                 <div className={`absolute inset-0 transition-all duration-500 
                                     ${isActive
                                         ? 'bg-white/90'
-                                        : 'bg-white/10 group-hover:bg-white/30'
+                                        : 'bg-white/70 group-hover:bg-white/80'
                                     }`}
                                 />
 

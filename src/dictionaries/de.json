@@ -51,39 +51,47 @@
         },
         "impact": {
             "title": "Malaysia erfahren, mehr erreichen",
-            "subtitle": "Nutzen Sie unser Netzwerk für Ihren Erfolg",
+            "subtitle": "",
             "items": [
                 {
                     "title": "Investition",
-                    "description": "Chancen für Investitionen zwischen Malaysia, Deutschland und Österreich."
+                    "description": "Malaysia Deutschland / Österreich",
+                    "image": "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
                     "title": "Visionen",
-                    "description": "Geniale Business-Ideen kennenlernen und Impulse setzen."
+                    "description": "Geniale Business-Ideen kennenlernen",
+                    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
                     "title": "Personal",
-                    "description": "Zugang zu deutschen und österreichischen Fachkräften in Malaysia."
+                    "description": "Deutsche / österreichische Mitarbeiter in Malaysia",
+                    "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
                     "title": "Handel",
-                    "description": "Handelsbeziehungen zwischen Malaysia, Deutschland und Österreich stärken."
+                    "description": "Malaysia Deutschland / Österreich",
+                    "image": "https://images.unsplash.com/photo-1494412651409-ae510d01156e?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
                     "title": "Institutionen",
-                    "description": "Vernetzung mit IHKs und Industrieverbänden."
+                    "description": "IHK, Industrieverbände",
+                    "image": "https://images.unsplash.com/photo-1486406140526-9183d1e23e37?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
                     "title": "Forschung",
-                    "description": "Austausch über aktuellen Forschungsbedarf und Kooperationen."
+                    "description": "Forschungsbedarf",
+                    "image": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
-                    "title": "ASEAN Community",
-                    "description": "Malaysia als Ihr Tor zur ASEAN Wirtschaftsgemeinschaft."
+                    "title": "ASEAN Wirtschaftsgemeinschaft",
+                    "description": "Malaysia your entry into ASEAN",
+                    "image": "https://images.unsplash.com/photo-1552422535-c4581dadc6f5?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
-                    "title": "Behörden",
-                    "description": "First-hand Wissen von malaysischen Handelsorganisationen und Regierungsvertretern."
+                    "title": "Behörde & Regierungsvertreter",
+                    "description": "First-hand Wissen von malaysischen Handelsorganisationen",
+                    "image": "https://images.unsplash.com/photo-1555848962-6e79363ec58f?q=80&w=1600&auto=format&fit=crop"
                 }
             ]
         }

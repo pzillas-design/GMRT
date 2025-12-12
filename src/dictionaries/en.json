@@ -51,39 +51,47 @@
         },
         "impact": {
             "title": "Experience Malaysia, Achieve More",
-            "subtitle": "Leverage our network for your success",
+            "subtitle": "",
             "items": [
                 {
                     "title": "Investment",
-                    "description": "Investment opportunities between Malaysia, Germany, and Austria."
+                    "description": "Malaysia Germany / Austria",
+                    "image": "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
                     "title": "Visions",
-                    "description": "Discover brilliant business ideas and set new impulses."
+                    "description": "Discover brilliant business ideas",
+                    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
                     "title": "Personnel",
-                    "description": "Access to German and Austrian professionals in Malaysia."
+                    "description": "German / Austrian employees in Malaysia",
+                    "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
                     "title": "Trade",
-                    "description": "Strengthen trade relations between Malaysia, Germany, and Austria."
+                    "description": "Malaysia Germany / Austria",
+                    "image": "https://images.unsplash.com/photo-1494412651409-ae510d01156e?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
                     "title": "Institutions",
-                    "description": "Networking with Chambers of Commerce and industry associations."
+                    "description": "Chambers of Commerce, Industry Associations",
+                    "image": "https://images.unsplash.com/photo-1486406140526-9183d1e23e37?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
                     "title": "Research",
-                    "description": "Exchange on current research needs and cooperations."
+                    "description": "Research needs",
+                    "image": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
-                    "title": "ASEAN Community",
-                    "description": "Malaysia as your gateway to the ASEAN Economic Community."
+                    "title": "ASEAN Economic Community",
+                    "description": "Malaysia your entry into ASEAN",
+                    "image": "https://images.unsplash.com/photo-1552422535-c4581dadc6f5?q=80&w=1600&auto=format&fit=crop"
                 },
                 {
                     "title": "Authorities",
-                    "description": "First-hand knowledge from Malaysian trade organizations and government representatives."
+                    "description": "First-hand knowledge from Malaysian trade organizations",
+                    "image": "https://images.unsplash.com/photo-1555848962-6e79363ec58f?q=80&w=1600&auto=format&fit=crop"
                 }
             ]
         }

@@ -5,14 +5,15 @@ import { Button } from '@/components/ui/Button';
 
 interface HeroProps {
     dict?: any;
+    lang?: string;
 }
 
-export const Hero: React.FC<HeroProps> = ({ dict }) => {
-    // Fallback dict
+export const Hero: React.FC<HeroProps> = ({ dict, lang = 'de' }) => {
+    // Fallback if dict is not provided (though it should be)
     const t = dict?.hero || {
         title: "German Malaysian Round Table",
         subtitle: "Wir bringen Menschen, Ideen und Institutionen aus Deutschland und Malaysia zusammen.",
-        cta: "Mehr erfahren"
+        cta: "News"
     };
 
     return (
@@ -41,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ dict }) => {
                         </p>
 
                         <Button
-                            href="#about"
+                            href={`/${lang}/news`}
                             variant="primary"
                             size="lg"
                             className="bg-gmrt-salmon hover:bg-white hover:text-gmrt-blue border-none text-white px-10 py-4 h-auto text-lg"

@@ -33,7 +33,7 @@ export default async function Home({ params, searchParams }: { params: Promise<{
     <>
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <Hero dict={dict.homepage} />
+        <Hero dict={dict.homepage} lang={lang} />
 
         {/* Features Section */}
         <Features dict={dict.homepage} />

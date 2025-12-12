@@ -38,51 +38,52 @@ export const Features: React.FC<FeaturesProps> = ({ dict }) => {
     ];
 
     return (
-        <section id="about" className="py-24 bg-white">
-            <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-
-                {/* Simple Blocks Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12">
-                    {featureList.map((feature, index) => (
-                        <div key={index} className="flex flex-col items-start text-left">
-                            <div className="mb-6">
-                                {feature.icon}
+        <>
+            <section id="about" className="py-24 bg-slate-50">
+                <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+                    {/* Simple Blocks Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12">
+                        {featureList.map((feature, index) => (
+                            <div key={index} className="flex flex-col items-start text-left">
+                                <div className="mb-6">
+                                    {feature.icon}
+                                </div>
+                                <h3 className="text-2xl font-bold text-gmrt-blue mb-4">{feature.title}</h3>
+                                <p className="text-slate-600 text-lg font-light leading-relaxed">
+                                    {feature.description}
+                                </p>
                             </div>
-                            <h3 className="text-2xl font-bold text-gmrt-blue mb-4">{feature.title}</h3>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-24 bg-white">
+                <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+                    {/* Content Section - 50/50 Layout */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-gmrt-blue mb-8 leading-tight">
+                                {dict?.expertise?.title || 'Synergien für den Erfolg in ASEAN'}
+                            </h2>
+                            <p className="text-slate-600 text-lg font-light leading-relaxed mb-6">
+                                {dict?.expertise?.lead || 'Ehrenamtlich und privat organisiert schaffen unsere Chapter Initiators, Sprecher und Teilnehmenden auf lokaler Ebene wertvolle Synergien für den Austausch zwischen Deutschland und der ASEAN-Region.'}
+                            </p>
                             <p className="text-slate-600 text-lg font-light leading-relaxed">
-                                {feature.description}
+                                {dict?.expertise?.text || 'Ob Expatriates, Unternehmer, Investoren, Wissenschaftler oder Regierungsvertreter – unsere Community lebt von der Vielfalt ihrer Perspektiven.'}
                             </p>
                         </div>
-                    ))}
-                </div>
-
-                {/* Separator */}
-                <div className="w-full h-px bg-slate-200 my-24"></div>
-
-                {/* Content Section - 50/50 Layout */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-gmrt-blue mb-8 leading-tight">
-                            {dict?.expertise?.title || 'Synergien für den Erfolg in ASEAN'}
-                        </h2>
-                        <p className="text-slate-600 text-lg font-light leading-relaxed mb-6">
-                            {dict?.expertise?.lead || 'Ehrenamtlich und privat organisiert schaffen unsere Chapter Initiators, Sprecher und Teilnehmenden auf lokaler Ebene wertvolle Synergien für den Austausch zwischen Deutschland und der ASEAN-Region.'}
-                        </p>
-                        <p className="text-slate-600 text-lg font-light leading-relaxed">
-                            {dict?.expertise?.text || 'Ob Expatriates, Unternehmer, Investoren, Wissenschaftler oder Regierungsvertreter – unsere Community lebt von der Vielfalt ihrer Perspektiven.'}
-                        </p>
-                    </div>
-                    {/* Image - Height adjusted for mobile (300px) vs Desktop (600px) */}
-                    <div className="relative h-[300px] md:h-[600px] bg-slate-100 rounded-lg overflow-hidden">
-                        <img
-                            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop"
-                            alt="GMRT Meeting"
-                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                        />
+                        {/* Image - Height adjusted for mobile (300px) vs Desktop (600px) */}
+                        <div className="relative h-[300px] md:h-[600px] bg-slate-100 rounded-lg overflow-hidden">
+                            <img
+                                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop"
+                                alt="GMRT Meeting"
+                                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                            />
+                        </div>
                     </div>
                 </div>
-
-            </div>
-        </section>
+            </section>
+        </>
     );
 };

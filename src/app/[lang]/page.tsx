@@ -40,9 +40,6 @@ export default async function Home({ params, searchParams }: { params: Promise<{
         {/* Features Section */}
         <Features dict={dict.homepage} />
 
-        {/* Impact / Tiles Section */}
-        <GridTiles dict={dict.homepage} />
-
         {/* Upcoming Events Section (Replaces Carousel) */}
         {upcomingPosts.length > 0 && (
           <section className="py-24 bg-slate-50">
@@ -67,6 +64,9 @@ export default async function Home({ params, searchParams }: { params: Promise<{
             </div>
           </section>
         )}
+
+        {/* Impact / Tiles Section - Moved to bottom */}
+        <GridTiles dict={dict.homepage} />
       </div>
       <InfoAccordion />
     </>

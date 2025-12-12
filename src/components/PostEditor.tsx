@@ -523,43 +523,41 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                     </motion.div>
                                 ))}
                             </AnimatePresence>
-                        </div>
-                    </div>
-            </div>
 
-            {/* PERMANENT BOTTOM TOOLBAR */}
-            <div className="mt-8 flex flex-col items-start gap-3 w-full pb-12">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.insert}</span>
-                <div className="grid grid-cols-6 w-full gap-2">
-                    <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
-                        <Type size={24} />
-                        <span className="text-sm font-normal">{t.text}</span>
-                    </button>
-                    <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
-                        <Heading size={24} />
-                        <span className="text-sm font-normal">{t.headline}</span>
-                    </button>
-                    <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
-                        <ImageIcon size={24} />
-                        <span className="text-sm font-normal">{t.image}</span>
-                    </button>
-                    <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
-                        <Video size={24} />
-                        <span className="text-sm font-normal">{t.video}</span>
-                    </button>
-                    <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
-                        <FileText size={24} />
-                        <span className="text-sm font-normal">{t.pdf}</span>
-                    </button>
-                    <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
-                        <LinkIcon size={24} />
-                        <span className="text-sm font-normal">{t.link}</span>
-                    </button>
-                </div>
-            </div>
-        </div> {/* Closes Content Blocks Container from line 467 */ }
-                </div > {/* Closes Card from line 334 */ }
-            </form >
-        </div >
-    </div > {/* Closes min-h-screen from top */ }
+
+                            {/* PERMANENT BOTTOM TOOLBAR */}
+                            <div className="mt-8 flex flex-col items-start gap-3 w-full pb-12">
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.insert}</span>
+                                <div className="grid grid-cols-6 w-full gap-2">
+                                    <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                                        <Type size={24} />
+                                        <span className="text-sm font-normal">{t.text}</span>
+                                    </button>
+                                    <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                                        <Heading size={24} />
+                                        <span className="text-sm font-normal">{t.headline}</span>
+                                    </button>
+                                    <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                                        <ImageIcon size={24} />
+                                        <span className="text-sm font-normal">{t.image}</span>
+                                    </button>
+                                    <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                                        <Video size={24} />
+                                        <span className="text-sm font-normal">{t.video}</span>
+                                    </button>
+                                    <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                                        <FileText size={24} />
+                                        <span className="text-sm font-normal">{t.pdf}</span>
+                                    </button>
+                                    <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                                        <LinkIcon size={24} />
+                                        <span className="text-sm font-normal">{t.link}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div> {/* Closes Content Blocks Container from line 467 */}
+                    </div > {/* Closes Card from line 334 */}
+                </form >
+            </div >
+        </div > {/* Closes min-h-screen from top */ }
 }

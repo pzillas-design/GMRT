@@ -518,40 +518,36 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                             </AnimatePresence>
                         </div>
                     </div>
-            </div>
 
-            {/* PERMANENT BOTTOM TOOLBAR */}
-            <div className="mt-8 flex flex-col items-start gap-3 w-full pb-12">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.insert}</span>
-                <div className="grid grid-cols-6 w-full gap-2">
-                    <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
-                        <Type size={24} />
-                        <span className="text-sm font-normal">{t.text}</span>
-                    </button>
-                    <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
-                        <Heading size={24} />
-                        <span className="text-sm font-normal">{t.headline}</span>
-                    </button>
-                    <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
-                        <ImageIcon size={24} />
-                        <span className="text-sm font-normal">{t.image}</span>
-                    </button>
-                    <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
-                        <Video size={24} />
-                        <span className="text-sm font-normal">{t.video}</span>
-                    </button>
-                    <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
-                        <FileText size={24} />
-                        <span className="text-sm font-normal">{t.pdf}</span>
-                    </button>
-                    <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
-                        <LinkIcon size={24} />
-                        <span className="text-sm font-normal">{t.link}</span>
-                    </button>
-                </div>
+                    {/* Floating Toolbar (Zen Mode) */}
+                    <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-40 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                        <div className="flex items-center gap-1 bg-slate-900/90 backdrop-blur-md text-slate-200 p-1.5 rounded-full shadow-2xl ring-1 ring-white/10">
+                            <span className="px-3 text-[10px] font-bold tracking-widest text-slate-500 uppercase select-none">{t.insert}</span>
+                            <div className="w-px h-4 bg-white/10 mx-1"></div>
+
+                            <button type="button" onClick={() => addBlock('text')} className="p-2.5 rounded-full hover:bg-white/10 hover:text-white hover:scale-110 transition-all" title={t.text}>
+                                <Type size={20} />
+                            </button>
+                            <button type="button" onClick={() => addBlock('headline')} className="p-2.5 rounded-full hover:bg-white/10 hover:text-white hover:scale-110 transition-all" title={t.headline}>
+                                <Heading size={20} />
+                            </button>
+                            <button type="button" onClick={() => addBlock('image')} className="p-2.5 rounded-full hover:bg-white/10 hover:text-white hover:scale-110 transition-all" title={t.image}>
+                                <ImageIcon size={20} />
+                            </button>
+                            <button type="button" onClick={() => addBlock('video')} className="p-2.5 rounded-full hover:bg-white/10 hover:text-white hover:scale-110 transition-all" title={t.video}>
+                                <Video size={20} />
+                            </button>
+                            <button type="button" onClick={() => addBlock('pdf')} className="p-2.5 rounded-full hover:bg-white/10 hover:text-white hover:scale-110 transition-all" title={t.pdf}>
+                                <FileText size={20} />
+                            </button>
+                            <button type="button" onClick={() => addBlock('link')} className="p-2.5 rounded-full hover:bg-white/10 hover:text-white hover:scale-110 transition-all" title={t.link}>
+                                <LinkIcon size={20} />
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
             </div>
-        </form>
-            </div >
-        </div >
+        </div>
     );
 }

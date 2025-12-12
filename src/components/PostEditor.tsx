@@ -494,27 +494,27 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                         <div className="grid grid-cols-6 w-full gap-2">
                             <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-2 py-4 bg-gmrt-salmon text-white hover:bg-gmrt-salmon/90 transition-colors rounded-md shadow-sm from-gmrt-salmon to-gmrt-salmon/90">
                                 <Type size={20} />
-                                <span className="text-[10px] font-bold uppercase">{t.text}</span>
+                                <span className="text-sm font-normal">{t.text}</span>
                             </button>
                             <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-2 py-4 bg-gmrt-salmon text-white hover:bg-gmrt-salmon/90 transition-colors rounded-md shadow-sm">
                                 <Heading size={20} />
-                                <span className="text-[10px] font-bold uppercase">{t.headline}</span>
+                                <span className="text-sm font-normal">{t.headline}</span>
                             </button>
                             <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-2 py-4 bg-gmrt-salmon text-white hover:bg-gmrt-salmon/90 transition-colors rounded-md shadow-sm">
                                 <ImageIcon size={20} />
-                                <span className="text-[10px] font-bold uppercase">{t.image}</span>
+                                <span className="text-sm font-normal">{t.image}</span>
                             </button>
                             <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-2 py-4 bg-gmrt-salmon text-white hover:bg-gmrt-salmon/90 transition-colors rounded-md shadow-sm">
                                 <Video size={20} />
-                                <span className="text-[10px] font-bold uppercase">{t.video}</span>
+                                <span className="text-sm font-normal">{t.video}</span>
                             </button>
                             <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-2 py-4 bg-gmrt-salmon text-white hover:bg-gmrt-salmon/90 transition-colors rounded-md shadow-sm">
                                 <FileText size={20} />
-                                <span className="text-[10px] font-bold uppercase">{t.pdf}</span>
+                                <span className="text-sm font-normal">{t.pdf}</span>
                             </button>
                             <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-2 py-4 bg-gmrt-salmon text-white hover:bg-gmrt-salmon/90 transition-colors rounded-md shadow-sm">
                                 <LinkIcon size={20} />
-                                <span className="text-[10px] font-bold uppercase">{t.link}</span>
+                                <span className="text-sm font-normal">{t.link}</span>
                             </button>
                         </div>
                     </div>

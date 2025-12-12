@@ -15,63 +15,77 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
     const dict: any = await getDictionary(lang as 'de' | 'en');
 
     return (
-        <div className="bg-white pb-20 text-slate-900">
+        <div className="bg-white text-slate-900">
             <PageHero
                 title={dict.about.hero.title}
                 subtitle={dict.about.hero.subtitle}
                 imageSrc="/images/frankfurt.jpg"
             />
 
-            {/* Main Content */}
-            <section className="py-20">
+            {/* 1. Mission Section (White) */}
+            <section className="py-24 bg-white">
                 <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-                    {/* Mission Text */}
-                    <div className="prose prose-lg prose-slate max-w-4xl mx-auto mb-20">
-                        <p className="lead text-2xl text-[#0E2A47] font-light mb-8 leading-relaxed">
+                    <div className="prose prose-lg prose-slate max-w-4xl mx-auto text-center">
+                        <p className="lead text-2xl md:text-3xl text-[#0E2A47] font-light mb-8 leading-relaxed">
                             {dict.about.mission.lead}
                         </p>
-                        <p className="mb-10 text-slate-700">
+                        <p className="text-xl text-slate-600 leading-relaxed">
                             {dict.about.mission.text}
                         </p>
+                    </div>
+                </div>
+            </section>
 
-                        {/* Key Principles / Important Points */}
-                        <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100 not-prose">
-                            <h3 className="text-xl font-bold text-[#0E2A47] mb-4">{dict.about.principles.title}</h3>
-                            <ul className="space-y-4 text-lg text-slate-700">
-                                {dict.about.principles.items.map((item: any, index: number) => (
-                                    <li key={index} className="flex gap-3">
-                                        <span className="text-gmrt-salmon font-bold">•</span>
-                                        <span>
-                                            <strong>{item.bold}</strong> {item.text}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
+            {/* 2. Principles Section (Slate-50) */}
+            <section className="py-24 bg-slate-50 border-y border-slate-100">
+                <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+                    <div className="max-w-4xl mx-auto">
+                        <h3 className="text-2xl md:text-3xl font-bold text-[#0E2A47] mb-12 text-center">
+                            {dict.about.principles.title}
+                        </h3>
+                        <div className="grid gap-6 md:grid-cols-2">
+                            {dict.about.principles.items.map((item: any, index: number) => (
+                                <div key={index} className="flex gap-4 bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                                    <span className="text-gmrt-salmon font-bold text-xl">•</span>
+                                    <span className="text-lg text-slate-700 leading-relaxed">
+                                        <strong>{item.bold}</strong> {item.text}
+                                    </span>
+                                </div>
+                            ))}
                         </div>
                     </div>
+                </div>
+            </section>
 
-                    <h2 className="text-3xl font-bold text-[#0E2A47] mb-12 text-center">{dict.about.team.title}</h2>
+            {/* 3. Team Section (White) */}
+            <section className="py-24 bg-white">
+                <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#0E2A47] mb-16 text-center">
+                        {dict.about.team.title}
+                    </h2>
 
-                    {/* Team Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                    {/* Team Grid - Increased gap */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
                         {dict.about.team.members?.map((member: any, index: number) => (
                             <div key={index} className="group">
-                                <div className="overflow-hidden rounded-2xl mb-4 bg-slate-100 relative aspect-[4/3]">
-                                    {/* Use next/image if available, otherwise img. The dict has paths. */}
+                                <div className="overflow-hidden rounded-2xl mb-6 bg-slate-100 relative aspect-[3/4] shadow-sm">
                                     <img
                                         src={member.image}
                                         alt={member.name}
-                                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
                                 </div>
-                                <h3 className="text-xl font-bold text-[#0E2A47]">{member.name}</h3>
-                                <p className="text-sm text-gmrt-salmon font-semibold uppercase tracking-wide mb-2">{member.role}</p>
-                                <p className="text-sm text-slate-600 leading-relaxed min-h-[80px]">
-                                    {member.bio}
-                                </p>
-                                <div className="mt-4">
-                                    <ObfuscatedMail email={member.email} className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-gmrt-salmon hover:text-white rounded-full text-sm font-medium transition-colors text-slate-600">
-                                        <Mail size={16} />
+                                <div className="text-center">
+                                    <h3 className="text-2xl font-bold text-[#0E2A47] mb-1">{member.name}</h3>
+                                    <p className="text-gmrt-salmon font-bold uppercase tracking-wider text-sm mb-4">{member.role}</p>
+                                    <p className="text-slate-600 leading-relaxed mb-6 max-w-sm mx-auto">
+                                        {member.bio}
+                                    </p>
+                                    <ObfuscatedMail
+                                        email={member.email}
+                                        className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 hover:bg-gmrt-salmon hover:text-white rounded-lg text-sm font-bold transition-all duration-200 text-slate-600 uppercase tracking-wide"
+                                    >
+                                        <Mail size={18} />
                                         <span>E-Mail</span>
                                     </ObfuscatedMail>
                                 </div>

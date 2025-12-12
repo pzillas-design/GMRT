@@ -56,19 +56,20 @@ export async function POST(request: Request) {
         }
 
         // --- NEW: Cloud Storage (Vercel Blob) Check ---
-        if (process.env.BLOB_READ_WRITE_TOKEN) {
+        if (process.env.BLOB_READ_WRITE_TOKEN && process.env.BLOB_READ_WRITE_TOKEN.trim() !== '') {
             try {
                 const { put } = await import('@vercel/blob');
 
                 const blob = await put(filename, finalBuffer, {
                     access: 'public',
-                    contentType
+                    contentType,
+                    token: process.env.BLOB_READ_WRITE_TOKEN
                 });
 
                 return NextResponse.json({ url: blob.url });
             } catch (err) {
-                console.error('Vercel Blob upload failed, falling back to local:', err);
-                // Do NOT throw, allow fallback to local storage below
+                console.error('Vercel Blob upload failed (falling back to local):', err);
+                // Swallow error to allow local fallback
             }
         }
         // -----------------------------------------------

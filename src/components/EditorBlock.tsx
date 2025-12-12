@@ -36,7 +36,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
         }
     };
     return (
-        <div className="group/block relative p-6 rounded-xl bg-slate-100/70 hover:bg-slate-100 transition-all duration-300 border border-transparent hover:shadow-sm">
+        <div className="group/block relative p-6 rounded-xl bg-slate-50 hover:bg-slate-100 transition-all duration-300 border border-transparent hover:shadow-sm">
 
             {/* Integrated Action Toolbar (Top Right) */}
             <div className="absolute right-3 top-3 flex items-center gap-1 opacity-0 group-hover/block:opacity-100 transition-all duration-200 z-20 bg-white/80 backdrop-blur-sm p-1 rounded-lg border border-slate-200/50 shadow-sm translate-y-2 group-hover/block:translate-y-0">
@@ -210,14 +210,13 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                             </div>
                         )}
 
-                        {/* Caption */}
-                        <div className="flex justify-center mt-2">
+                        <div className="mt-3 w-full">
                             <input
                                 type="text"
                                 value={block.caption || ''}
                                 onChange={(e) => onUpdate(block.id, { caption: e.target.value })}
-                                className="bg-transparent border-b border-transparent focus:border-slate-300 outline-none text-xs text-center text-slate-400 font-medium placeholder:text-slate-300/50 w-2/3 transition-colors pb-1"
-                                placeholder={block.type === 'pdf' ? "PDF Bezeichnung (optional)" : "Bildunterschrift (optional)"}
+                                className="w-full bg-transparent border-b border-slate-200 focus:border-gmrt-blue outline-none text-sm text-left text-slate-700 font-medium placeholder:text-slate-400 transition-colors pb-2"
+                                placeholder={block.type === 'pdf' ? "PDF Bezeichnung (optional)" : "Bildunterschrift hinzufügen (optional)..."}
                             />
                         </div>
                     </div>

@@ -1,8 +1,9 @@
+```
 'use client';
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { Plus } from 'lucide-react';
 
 interface GridTilesProps {
     dict: any;
@@ -10,117 +11,81 @@ interface GridTilesProps {
 
 export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
     const items = dict?.impact?.items || [];
-    const [activeIndex, setActiveIndex] = useState<number>(0);
+    const [activeIndex, setActiveIndex] = useState<number | null>(0); // Default open first one
 
     return (
-        <section className="py-24 bg-white overflow-hidden">
-            <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-
-                {/* Section Header */}
-                <div className="mb-16 md:mb-24 max-w-3xl">
-                    <h2 className="text-4xl md:text-6xl font-bold text-gmrt-blue mb-6 leading-tight">
+        <section className="py-24 bg-slate-950 text-white overflow-hidden"> 
+            {/* Dark background for contrast/fresh look */}
+            <div className="max-w-[1600px] mx-auto px-4">
+                
+                <div className="text-center mb-12">
+                     <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 mb-6">
                         {dict?.impact?.title || "Malaysia erfahren, mehr erreichen"}
                     </h2>
-                    <p className="text-xl text-slate-500 font-light leading-relaxed">
-                        {dict?.impact?.subtitle}
-                    </p>
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 relative">
-
-                    {/* Left Column: Interactive List */}
-                    <div className="lg:w-5/12 flex flex-col gap-2">
-                        {items.map((item: any, index: number) => {
-                            const isActive = activeIndex === index;
-                            return (
-                                <div
-                                    key={index}
-                                    onMouseEnter={() => setActiveIndex(index)}
-                                    onClick={() => setActiveIndex(index)} // For touch hybrid handling
-                                    className={`
-                                        group relative p-6 cursor-pointer rounded-xl transition-all duration-500 border-l-4
-                                        ${isActive
-                                            ? 'bg-slate-50 border-gmrt-salmon shadow-sm'
-                                            : 'bg-transparent border-transparent hover:bg-slate-50'
-                                        }
-                                    `}
-                                >
-                                    <div className="flex items-center justify-between mb-2">
-                                        <h3 className={`text-xl md:text-2xl font-bold transition-colors ${isActive ? 'text-gmrt-blue' : 'text-slate-400 group-hover:text-slate-600'}`}>
-                                            {item.title}
-                                        </h3>
-                                        {isActive && <ArrowRight className="text-gmrt-salmon animate-pulse" size={24} />}
-                                    </div>
-
-                                    <div className={`
-                                        overflow-hidden transition-all duration-500 ease-in-out
-                                        ${isActive ? 'max-h-[200px] opacity-100 mt-2' : 'max-h-0 opacity-0'}
-                                    `}>
-                                        <p className="text-slate-600 leading-relaxed">
-                                            {item.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-
-                    {/* Right Column: Dynamic Image (Sticky) - hidden on mobile, shown on lg */}
-                    <div className="hidden lg:block lg:w-7/12 relative">
-                        <div className="sticky top-32 h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl bg-slate-100">
-                            {items.map((item: any, index: number) => (
-                                <div
-                                    key={index}
-                                    className={`absolute inset-0 transition-all duration-700 ease-in-out transform
-                                        ${activeIndex === index ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}
-                                    `}
-                                >
-                                    <Image
-                                        src={item.image}
-                                        alt={item.title}
-                                        fill
-                                        className="object-cover"
-                                        priority={index === 0}
-                                        sizes="(max-width: 1200px) 50vw, 800px"
-                                    />
-                                    {/* Subtle Gradient Overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
-
-                                    {/* Floating Label */}
-                                    <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-lg shadow-lg">
-                                        <p className="text-gmrt-blue font-bold tracking-widest uppercase text-sm">
-                                            {item.title}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Mobile Only: Horizontal Scroll Cards */}
-                    <div className="lg:hidden w-full flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 -mx-6 px-6 no-scrollbar">
-                        {items.map((item: any, index: number) => (
-                            <div
+                <div className="flex flex-col lg:flex-row h-auto lg:h-[600px] gap-2 lg:gap-1">
+                    {items.map((item: any, index: number) => {
+                        const isActive = activeIndex === index;
+                        
+                        return (
+                            <div 
                                 key={index}
-                                className="snap-center shrink-0 w-[85vw] h-[400px] relative rounded-2xl overflow-hidden shadow-lg"
+                                onMouseEnter={() => setActiveIndex(index)}
+                                onClick={() => setActiveIndex(isActive ? null : index)}
+                                className={`
+                                    relative overflow - hidden cursor - pointer transition - all duration - 700 ease - [cubic - bezier(0.25, 1, 0.5, 1)]
+lg: h - full
+                                    ${
+    isActive
+        ? 'lg:flex-[3.5] h-[500px]' // Wide on desktop, Tall on mobile
+        : 'lg:flex-1 h-20'           // Narrow on desktop, Short on mobile
+}
+rounded - 2xl lg: rounded - none lg: first: rounded - l - 2xl lg: last: rounded - r - 2xl
+bg - slate - 900 border - b border - slate - 800 lg: border - 0
+    `}
                             >
+                                {/* Background Image - Dimmed when inactive */}
                                 <Image
                                     src={item.image}
                                     alt={item.title}
                                     fill
-                                    className="object-cover"
+                                    className={`object - cover transition - all duration - 700 ${ isActive ? 'scale-100 opacity-60' : 'scale-110 opacity-30 grayscale' } `}
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                                <div className="absolute bottom-0 p-6">
-                                    <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
-                                    <p className="text-slate-200 text-sm leading-relaxed">{item.description}</p>
+                                
+                                {/* Overlay Gradient */}
+                                <div className={`absolute inset - 0 bg - gradient - to - t from - black / 90 via - black / 40 to - transparent transition - opacity duration - 500 ${ isActive ? 'opacity-100' : 'opacity-80' } `} />
+
+                                {/* Content Wrapper */}
+                                <div className={`absolute inset - 0 flex flex - col justify - end p - 6 md: p - 10 transition - all duration - 500`}>
+                                    
+                                    {/* Number / Icon */}
+                                    <div className={`absolute top - 6 right - 6 transition - all duration - 500 ${ isActive ? 'rotate-45 opacity-100' : 'rotate-0 opacity-50' } `}>
+                                        <Plus className="text-white" />
+                                    </div>
+
+                                    {/* Text Content */}
+                                    <div className={`transform transition - all duration - 500 ${ isActive ? 'translate-y-0' : 'translate-y-4' } `}>
+                                        <h3 className={`text - xl md: text - 3xl font - bold text - white mb - 4 whitespace - nowrap ${ !isActive && 'lg:rotate-[-90deg] lg:origin-bottom-left lg:absolute lg:bottom-10 lg:left-6 lg:mb-0 lg:whitespace-nowrap' } `}>
+                                             {item.title}
+                                        </h3>
+                                        
+                                        <div className={`
+overflow - hidden transition - all duration - 700 ease -in -out
+                                            ${ isActive ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0' }
+`}>
+                                            <p className="text-slate-300 text-sm md:text-lg leading-relaxed max-w-xl">
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        ))}
-                    </div>
-
+                        );
+                    })}
                 </div>
             </div>
         </section>
     );
 };
+```

@@ -69,7 +69,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                     <textarea
                         value={block.content}
                         onChange={(e) => onUpdate(block.id, { content: e.target.value })}
-                        className="w-full min-h-[80px] px-2 py-1 bg-transparent border-none focus:ring-0 resize-y text-slate-700 text-lg leading-relaxed placeholder:text-slate-400 placeholder:font-normal"
+                        className="w-full min-h-[120px] p-4 bg-slate-50/30 border border-slate-200 focus:border-slate-300 focus:ring-0 resize-y text-slate-700 text-lg leading-relaxed placeholder:text-slate-400 placeholder:font-normal transition-colors"
                         placeholder="Schreiben Sie etwas..."
                         rows={3}
                         style={{ fieldSizing: "content" } as any} // Future CSS property, fallback to rows

@@ -386,7 +386,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                         type="text"
                                         value={title}
                                         onChange={(e) => setTitle(e.target.value)}
-                                        className="w-full text-4xl font-extrabold text-slate-900 placeholder:text-slate-400 placeholder:font-normal border border-slate-300 focus:border-black focus:ring-0 p-5 bg-slate-50/30 hover:bg-slate-50 focus:bg-white rounded-none leading-tight transition-colors"
+                                        className="w-full text-4xl font-extrabold text-slate-900 placeholder:text-slate-400 placeholder:font-normal border border-slate-400 focus:border-black focus:ring-0 p-5 bg-slate-50/30 hover:bg-slate-50 focus:bg-white rounded-none leading-tight transition-colors"
                                         placeholder={lang === 'de' ? 'Titel des Beitrags' : 'Post Title'}
                                         required
                                     />
@@ -397,20 +397,20 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Datum</label>
                                         <div className="flex gap-4">
                                             <div className="flex-1">
-                                                <input type="number" value={day} onChange={(e) => setDay(e.target.value)} placeholder="DD" className="w-full border border-slate-300 bg-slate-50/50 p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={day} onChange={(e) => setDay(e.target.value)} placeholder="DD" className="w-full border border-slate-400 bg-slate-50/50 p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                             <div className="flex-1">
-                                                <input type="number" value={month} onChange={(e) => setMonth(e.target.value)} placeholder="MM" className="w-full border border-slate-300 bg-slate-50/50 p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={month} onChange={(e) => setMonth(e.target.value)} placeholder="MM" className="w-full border border-slate-400 bg-slate-50/50 p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                             <div className="flex-[1.5]">
-                                                <input type="number" value={year} onChange={(e) => setYear(e.target.value)} placeholder="YYYY" className="w-full border border-slate-300 bg-slate-50/50 p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={year} onChange={(e) => setYear(e.target.value)} placeholder="YYYY" className="w-full border border-slate-400 bg-slate-50/50 p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                         </div>
                                     </div>
                                     <div>
                                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">{t.location}</label>
                                         {isCustomLocation ? (
-                                            <input type="text" value={customLocation} onChange={(e) => setCustomLocation(e.target.value)} className="w-full border border-slate-300 bg-slate-50/50 p-3 font-medium text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none" placeholder={lang === 'de' ? "Kategorie eingeben" : "Enter category"} autoFocus />
+                                            <input type="text" value={customLocation} onChange={(e) => setCustomLocation(e.target.value)} className="w-full border border-slate-400 bg-slate-50/50 p-3 font-medium text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none" placeholder={lang === 'de' ? "Kategorie eingeben" : "Enter category"} autoFocus />
                                         ) : (
                                             <select
                                                 value={location}
@@ -421,7 +421,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                                         setLocation(e.target.value);
                                                     }
                                                 }}
-                                                className="w-full border border-slate-300 bg-slate-50/50 p-3 font-medium text-slate-900 focus:border-black outline-none rounded-none cursor-pointer"
+                                                className="w-full border border-slate-400 bg-slate-50/50 p-3 font-medium text-slate-900 focus:border-black outline-none rounded-none cursor-pointer"
                                             >
                                                 {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
                                                 <option value="custom_new_entry">{lang === 'de' ? '+ Neu...' : '+ New...'}</option>
@@ -430,8 +430,6 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                     </div>
                                 </div>
                             </div>
-
-                            <hr className="border-slate-100 my-8 w-full" />
 
                             {/* Blocks */}
                             <div className="space-y-4">

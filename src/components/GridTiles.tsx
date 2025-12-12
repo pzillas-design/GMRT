@@ -69,8 +69,8 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
 
                                     {/* Text Container */}
                                     <div className={`transform transition-all duration-500 ${isActive ? 'translate-y-0' : 'translate-y-4'}`}>
-                                        <div className="w-[80vw] md:w-[600px]">
-                                            <h3 className={`text-xl md:text-3xl font-bold text-gmrt-blue mb-4 whitespace-nowrap ${!isActive && 'lg:rotate-[-90deg] lg:origin-bottom-left lg:absolute lg:bottom-10 lg:left-6 lg:mb-0 lg:whitespace-nowrap'}`}>
+                                        <div className="w-full pr-4 md:pr-16">
+                                            <h3 className={`text-xl md:text-3xl font-bold text-gmrt-blue mb-4 ${isActive ? 'whitespace-normal' : 'whitespace-nowrap'} ${!isActive && 'lg:rotate-[-90deg] lg:origin-bottom-left lg:absolute lg:bottom-10 lg:left-6 lg:mb-0'}`}>
                                                 {item.title}
                                             </h3>
 

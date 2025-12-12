@@ -33,9 +33,10 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                 key={index}
                                 onClick={() => setActiveMobileIndex(index)}
                                 className={`
-                                    group relative w-full overflow-hidden cursor-pointer transition-all duration-500 ease-in-out
+                                    group relative w-full overflow-hidden cursor-pointer bg-slate-100
+                                    transition-[height] duration-500 ease-in-out
                                     lg:h-[500px] 
-                                    ${isMobileActive ? 'h-[450px]' : 'h-24'}
+                                    ${isMobileActive ? 'h-[500px]' : 'h-24'}
                                 `}
                             >
                                 {/* Image Background */}
@@ -47,30 +48,31 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                     className="object-cover transition-transform duration-700 lg:group-hover:scale-105"
                                 />
 
-                                {/* Overlay: Light/White Gradient */}
-                                {/* Desktop: Show on hover. Mobile: Show if active. */}
+                                {/* 
+                                    Overlay Logic:
+                                    - Desktop Default: Transparent (Gradient at bottom for text)
+                                    - Desktop Hover: White 95%
+                                    - Mobile Inactive: Transparent (Gradient at bottom)
+                                    - Mobile Active: White 95%
+                                */}
                                 <div className={`
-                                    absolute inset-0 bg-gradient-to-t from-white/95 via-white/80 to-transparent
-                                    transition-opacity duration-300
+                                    absolute inset-0 bg-white/95 transition-opacity duration-300
                                     lg:opacity-0 lg:group-hover:opacity-100
                                     ${isMobileActive ? 'opacity-100' : 'opacity-0'}
                                 `} />
 
-                                {/* Mobile Inactive Title Overlay (Dark text on image? No, needs visibility) 
-                                    Actually, for the "inactive" mobile state (h-24), we need a label that is readable.
-                                    Let's add a consistent subtle dark gradient for base visibility if inactive, 
-                                    which fades out when the white overlay fades in.
-                                */}
+                                {/* Dark Gradient for Inactive State Visibility */}
                                 <div className={`
-                                    absolute inset-0 bg-black/40 lg:hidden transition-opacity duration-300
-                                    ${isMobileActive ? 'opacity-0' : 'opacity-60'}
+                                    absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 to-transparent transition-opacity duration-300 pointer-events-none
+                                    lg:opacity-100 lg:group-hover:opacity-0
+                                    ${isMobileActive ? 'opacity-0' : 'opacity-100'}
                                 `} />
 
                                 {/* Content Container */}
-                                <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end h-full">
+                                <div className="absolute inset-0 p-8 flex flex-col justify-end">
 
-                                    {/* Header Row (Title + Chevron) */}
-                                    <div className="flex items-center justify-between w-full mb-2 transform transition-transform duration-300 lg:translate-y-8 lg:group-hover:translate-y-0">
+                                    {/* Header Row */}
+                                    <div className="flex items-center justify-between w-full mb-2 z-10">
                                         <h3 className={`
                                             text-2xl font-bold transition-colors duration-300
                                             lg:text-white lg:group-hover:text-gmrt-blue
@@ -89,16 +91,16 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                         />
                                     </div>
 
-                                    {/* Description */}
+                                    {/* Description (desktop hover / mobile active) */}
                                     <div className={`
-                                        overflow-hidden transition-all duration-500 ease-out
+                                        overflow-hidden transition-all duration-500 ease-out z-10
                                         lg:max-h-0 lg:group-hover:max-h-[300px] lg:opacity-0 lg:group-hover:opacity-100
-                                        ${isMobileActive ? 'max-h-[300px] opacity-100 py-2' : 'max-h-0 opacity-0'}
+                                        ${isMobileActive ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}
                                     `}>
+                                        <div className="w-12 h-1 bg-gmrt-salmon mb-4" />
                                         <p className="text-slate-600 leading-relaxed font-normal">
                                             {item.description}
                                         </p>
-                                        <div className="mt-4 h-1 w-12 bg-gmrt-salmon" />
                                     </div>
                                 </div>
                             </div>

@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, User, UserCheck } from 'lucide-react';
+import { Menu, X, User, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Container } from '@/components/ui/Container';
 import { GmrtLogo } from '@/components/GmrtLogo';
 import { useAuth } from '@/context/AuthContext';
+import { ConfirmationModal } from '@/components/ui/Modal';
 
 interface NavbarProps {
     lang: 'de' | 'en';
@@ -18,7 +19,8 @@ export default function Navbar({ lang, dict }: NavbarProps) {
     const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, logout } = useAuth();
+    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -47,6 +49,12 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         router.push(newPath || `/${newLang}`);
     };
 
+    const handleLogout = async () => {
+        await logout();
+        setIsLogoutModalOpen(false);
+        router.refresh();
+    };
+
     const getNavStyle = (path: string): 'light' | 'dark' | 'solid' => {
         if (path === `/${lang}`) return 'light';
         if (path === `/${lang}/news`) return 'dark';
@@ -66,6 +74,16 @@ export default function Navbar({ lang, dict }: NavbarProps) {
     return (
         <nav className={`fixed w-full z-50 transition-colors duration-500 py-4 md:py-6 ${showBackground ? 'bg-white/95 shadow-md' : 'bg-transparent'}`}>
             <Container size="xl">
+                <ConfirmationModal
+                    isOpen={isLogoutModalOpen}
+                    onClose={() => setIsLogoutModalOpen(false)}
+                    onConfirm={handleLogout}
+                    title={lang === 'de' ? 'Abmelden?' : 'Log out?'}
+                    message={lang === 'de' ? 'Möchten Sie sich wirklich abmelden?' : 'Are you sure you want to log out?'}
+                    confirmText={lang === 'de' ? 'Abmelden' : 'Log out'}
+                    cancelText={lang === 'de' ? 'Abbrechen' : 'Cancel'}
+                />
+
                 <div className="flex justify-between items-center">
 
                     {/* Logo */}
@@ -102,19 +120,29 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
                     {/* Icons / Actions */}
                     <div className={`hidden md:flex items-center space-x-6 ${isDarkText ? 'text-slate-600' : 'text-white/90'}`}>
-                        <button onClick={toggleLanguage} className={`cursor-pointer text-base font-medium flex items-center gap-1 hover:text-gmrt-salmon transition-colors border-r border-current pr-4 mr-4`}>
+                        <button onClick={toggleLanguage} className={`cursor-pointer text-base font-medium flex items-center gap-1 hover:text-gmrt-salmon transition-colors`}>
                             <span className={lang === 'de' ? 'font-bold' : 'opacity-70'}>DE</span>
                             <span className="opacity-50">|</span>
                             <span className={lang === 'en' ? 'font-bold' : 'opacity-70'}>EN</span>
                         </button>
 
-                        <Link
-                            href={`/${lang}/login`}
-                            className={`hover:text-gmrt-salmon transition-colors ${isAuthenticated ? 'text-gmrt-salmon' : ''}`}
-                            title={isAuthenticated ? (lang === 'de' ? 'Angemeldet' : 'Logged in') : (lang === 'de' ? 'Anmelden' : 'Login')}
-                        >
-                            {isAuthenticated ? <UserCheck size={24} /> : <User size={24} />}
-                        </Link>
+                        {isAuthenticated ? (
+                            <button
+                                onClick={() => setIsLogoutModalOpen(true)}
+                                className="hover:text-gmrt-salmon transition-colors text-gmrt-salmon"
+                                title={lang === 'de' ? 'Abmelden' : 'Log out'}
+                            >
+                                <LogOut size={24} />
+                            </button>
+                        ) : (
+                            <Link
+                                href={`/${lang}/login`}
+                                className="hover:text-gmrt-salmon transition-colors"
+                                title={lang === 'de' ? 'Anmelden' : 'Login'}
+                            >
+                                <User size={24} />
+                            </Link>
+                        )}
                     </div>
 
                     {/* Mobile Menu Button */}

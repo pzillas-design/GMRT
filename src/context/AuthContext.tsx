@@ -6,12 +6,14 @@ interface AuthContextType {
     isAuthenticated: boolean;
     loading: boolean;
     checkAuth: () => Promise<boolean>;
+    logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
     isAuthenticated: false,
     loading: true,
     checkAuth: async () => false,
+    logout: async () => { },
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -43,8 +45,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         checkAuth();
     }, []);
 
+    const logout = async () => {
+        try {
+            await fetch('/api/auth/logout', { method: 'POST' });
+            setIsAuthenticated(false);
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
+    };
+
     return (
-        <AuthContext.Provider value={{ isAuthenticated, loading, checkAuth }}>
+        <AuthContext.Provider value={{ isAuthenticated, loading, checkAuth, logout }}>
             {children}
         </AuthContext.Provider>
     );

@@ -34,7 +34,7 @@ export function UpcomingEventCard({ post, lang = 'de' }: UpcomingEventCardProps)
                 <div className="mb-6 flex items-center gap-4">
                     <p className="text-sm font-bold text-gmrt-salmon uppercase tracking-wide flex items-center gap-2">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                        {new Date(post.eventDate).toLocaleDateString(dateLocale, { day: '2-digit', month: 'long', year: 'numeric' })}
+                        {new Date(post.eventDate).toLocaleDateString(dateLocale, { day: '2-digit', month: '2-digit', year: 'numeric' })}
                     </p>
                     <span className="bg-gmrt-blue/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-gmrt-blue rounded-sm">
                         {post.location || 'Event'}

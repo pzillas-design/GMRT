@@ -166,8 +166,9 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
         try {
             const url = await handleFileUpload(file);
             updateBlock(blockId, { content: url });
-        } catch (error) {
-            toastError("Upload failed");
+        } catch (error: any) {
+            console.error('Block upload error:', error);
+            toastError(error.message || "Upload failed");
         }
     }
 
@@ -350,7 +351,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                             .then(url => setCoverImage(url))
                                             .catch((err) => {
                                                 console.error(err);
-                                                toastError(lang === 'de' ? 'Bild-Upload fehlgeschlagen' : 'Image upload failed');
+                                                toastError(err.message || (lang === 'de' ? 'Bild-Upload fehlgeschlagen' : 'Image upload failed'));
                                             });
                                     }
                                 }}

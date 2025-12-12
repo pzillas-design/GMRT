@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Globe2, Briefcase, Newspaper, MapPin } from 'lucide-react';
+import { Users, Globe2, Briefcase, Newspaper, MapPin, Info } from 'lucide-react';
 import Image from 'next/image';
 
 interface FeaturesProps {
@@ -23,7 +23,7 @@ export const Features: React.FC<FeaturesProps> = ({ dict }) => {
         {
             title: dict?.features?.network?.title || 'Über uns',
             description: dict?.features?.network?.description || '...',
-            icon: <Users size={32} className="text-gmrt-blue" />
+            icon: <Info size={32} className="text-gmrt-blue" />
         },
         {
             title: dict?.features?.events?.title || 'Neuigkeiten',

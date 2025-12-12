@@ -61,7 +61,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                         type="text"
                         value={block.content}
                         onChange={(e) => onUpdate(block.id, { content: e.target.value })}
-                        className="w-full text-2xl font-bold px-2 py-1 bg-transparent border-none focus:ring-0 placeholder:text-slate-400 placeholder:font-normal"
+                        className="w-full text-2xl font-bold px-0 py-1 bg-transparent border-none focus:ring-0 outline-none placeholder:text-slate-300 placeholder:font-normal text-slate-900"
                         placeholder="Überschrift..."
                     />
                 )}
@@ -69,12 +69,11 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                     <textarea
                         value={block.content}
                         onChange={(e) => onUpdate(block.id, { content: e.target.value })}
-                        className="w-full min-h-[120px] p-4 bg-slate-50/30 border border-slate-200 focus:border-slate-300 focus:ring-0 resize-y text-slate-700 text-lg leading-relaxed placeholder:text-slate-400 placeholder:font-normal transition-colors"
+                        className="w-full min-h-[50px] px-0 py-2 bg-transparent border-none focus:ring-0 outline-none resize-none text-slate-700 text-lg leading-relaxed placeholder:text-slate-300 placeholder:font-normal overflow-hidden"
                         placeholder="Schreiben Sie etwas..."
-                        rows={3}
-                        style={{ fieldSizing: "content" } as any} // Future CSS property, fallback to rows
+                        rows={1}
+                        style={{ fieldSizing: "content" } as any}
                         onInput={(e) => {
-                            // Auto-resize
                             const target = e.target as HTMLTextAreaElement;
                             target.style.height = 'auto';
                             target.style.height = target.scrollHeight + 'px';

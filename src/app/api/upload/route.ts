@@ -4,10 +4,16 @@ import { join } from 'path';
 import { cookies } from 'next/headers';
 
 export async function POST(request: Request) {
+    console.log('API /api/upload received request');
+
     // Security check
     const cookieStore = await cookies();
     const authToken = cookieStore.get('gmrt_auth_token');
+
+    console.log('Auth check - Token exists:', !!authToken, 'Value:', authToken?.value);
+
     if (!authToken || authToken.value !== 'authenticated') {
+        console.error('Unauthorized upload attempt');
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

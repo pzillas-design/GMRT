@@ -58,7 +58,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
         if (initialData?.location && !locations.includes(initialData.location)) {
             setIsCustomLocation(true);
             setCustomLocation(initialData.location);
-            setLocation('Neu...');
+            setLocation('custom_new_entry');
         }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -141,15 +141,23 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
     };
 
     const handleFileUpload = async (file: File): Promise<string> => {
+        console.log('Starting upload for file:', file.name, 'Size:', file.size, 'Type:', file.type);
         const formData = new FormData();
         formData.append('file', file);
         try {
             const res = await fetch('/api/upload', { method: 'POST', body: formData });
-            if (!res.ok) throw new Error('Upload failed');
+
+            if (!res.ok) {
+                const errorText = await res.text();
+                console.error('Upload failed with status:', res.status, 'Response:', errorText);
+                throw new Error('Upload failed: ' + errorText);
+            }
+
             const data = await res.json();
+            console.log('Upload successful, URL:', data.url);
             return data.url;
         } catch (error) {
-            console.error('Upload error:', error);
+            console.error('Upload error in catch block:', error);
             throw error;
         }
     };

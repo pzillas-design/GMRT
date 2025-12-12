@@ -48,6 +48,44 @@
             "title": "Synergien für den Erfolg in ASEAN",
             "lead": "Ehrenamtlich und privat organisiert schaffen unsere Chapter Initiators, Sprecher und Teilnehmenden auf lokaler Ebene wertvolle Synergien für den Austausch zwischen Deutschland und der ASEAN-Region.",
             "text": "Ob Expatriates, Unternehmer, Investoren, Wissenschaftler oder Regierungsvertreter – unsere Community lebt von der Vielfalt ihrer Perspektiven."
+        },
+        "impact": {
+            "title": "Malaysia erfahren, mehr erreichen",
+            "subtitle": "Nutzen Sie unser Netzwerk für Ihren Erfolg",
+            "items": [
+                {
+                    "title": "Investition",
+                    "description": "Chancen für Investitionen zwischen Malaysia, Deutschland und Österreich."
+                },
+                {
+                    "title": "Visionen",
+                    "description": "Geniale Business-Ideen kennenlernen und Impulse setzen."
+                },
+                {
+                    "title": "Personal",
+                    "description": "Zugang zu deutschen und österreichischen Fachkräften in Malaysia."
+                },
+                {
+                    "title": "Handel",
+                    "description": "Handelsbeziehungen zwischen Malaysia, Deutschland und Österreich stärken."
+                },
+                {
+                    "title": "Institutionen",
+                    "description": "Vernetzung mit IHKs und Industrieverbänden."
+                },
+                {
+                    "title": "Forschung",
+                    "description": "Austausch über aktuellen Forschungsbedarf und Kooperationen."
+                },
+                {
+                    "title": "ASEAN Community",
+                    "description": "Malaysia als Ihr Tor zur ASEAN Wirtschaftsgemeinschaft."
+                },
+                {
+                    "title": "Behörden",
+                    "description": "First-hand Wissen von malaysischen Handelsorganisationen und Regierungsvertretern."
+                }
+            ]
         }
     },
     "about": {

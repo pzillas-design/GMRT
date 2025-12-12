@@ -48,6 +48,44 @@
             "title": "Synergies for Success in ASEAN",
             "lead": "Organized on a voluntary and private basis, our Chapter Initiators, speakers, and participants create valuable synergies at the local level for exchange between Germany and the ASEAN region.",
             "text": "Whether expatriates, entrepreneurs, investors, scientists, or government representatives – our community thrives on the diversity of its perspectives."
+        },
+        "impact": {
+            "title": "Experience Malaysia, Achieve More",
+            "subtitle": "Leverage our network for your success",
+            "items": [
+                {
+                    "title": "Investment",
+                    "description": "Investment opportunities between Malaysia, Germany, and Austria."
+                },
+                {
+                    "title": "Visions",
+                    "description": "Discover brilliant business ideas and set new impulses."
+                },
+                {
+                    "title": "Personnel",
+                    "description": "Access to German and Austrian professionals in Malaysia."
+                },
+                {
+                    "title": "Trade",
+                    "description": "Strengthen trade relations between Malaysia, Germany, and Austria."
+                },
+                {
+                    "title": "Institutions",
+                    "description": "Networking with Chambers of Commerce and industry associations."
+                },
+                {
+                    "title": "Research",
+                    "description": "Exchange on current research needs and cooperations."
+                },
+                {
+                    "title": "ASEAN Community",
+                    "description": "Malaysia as your gateway to the ASEAN Economic Community."
+                },
+                {
+                    "title": "Authorities",
+                    "description": "First-hand knowledge from Malaysian trade organizations and government representatives."
+                }
+            ]
         }
     },
     "about": {

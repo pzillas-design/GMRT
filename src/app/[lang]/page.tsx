@@ -7,6 +7,7 @@ import { InfoAccordion } from '@/components/InfoAccordion';
 import { UpcomingEventCard } from '@/components/UpcomingEventCard';
 import { Hero } from '@/components/Hero';
 import { Features } from '@/components/Features';
+import { GridTiles } from '@/components/GridTiles';
 import { getDictionary } from '@/get-dictionary';
 
 export const dynamic = 'force-dynamic';
@@ -37,6 +38,9 @@ export default async function Home({ params, searchParams }: { params: Promise<{
 
         {/* Features Section */}
         <Features dict={dict.homepage} />
+
+        {/* Impact / Tiles Section */}
+        <GridTiles dict={dict.homepage} />
 
         {/* Upcoming Events Section (Replaces Carousel) */}
         {upcomingPosts.length > 0 && (

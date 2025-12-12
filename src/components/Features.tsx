@@ -59,8 +59,3 @@ export const Features: React.FC<FeaturesProps> = ({ dict }) => {
         </section>
     );
 };
-
-            </div >
-        </section >
-    );
-};

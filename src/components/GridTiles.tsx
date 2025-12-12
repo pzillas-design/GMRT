@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 
 interface GridTilesProps {
     dict: any;
@@ -10,13 +10,15 @@ interface GridTilesProps {
 
 export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
     const items = dict?.impact?.items || [];
-    const [activeMobileIndex, setActiveMobileIndex] = useState<number>(0);
+    const [activeIndex, setActiveIndex] = useState<number>(0);
 
     return (
-        <section className="w-full bg-white">
-            <div className="w-full">
-                <div className="px-6 md:px-12 py-16 text-center max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gmrt-blue mb-6">
+        <section className="py-24 bg-white overflow-hidden">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+
+                {/* Section Header */}
+                <div className="mb-16 md:mb-24 max-w-3xl">
+                    <h2 className="text-4xl md:text-6xl font-bold text-gmrt-blue mb-6 leading-tight">
                         {dict?.impact?.title || "Malaysia erfahren, mehr erreichen"}
                     </h2>
                     <p className="text-xl text-slate-500 font-light leading-relaxed">
@@ -24,88 +26,99 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-4 w-full">
-                    {items.map((item: any, index: number) => {
-                        const isMobileActive = activeMobileIndex === index;
+                <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 relative">
 
-                        return (
-                            <div
-                                key={index}
-                                onClick={() => setActiveMobileIndex(index)}
-                                className={`
-                                    group relative w-full overflow-hidden cursor-pointer bg-slate-100
-                                    transition-[height] duration-500 ease-in-out
-                                    lg:h-[500px] 
-                                    ${isMobileActive ? 'h-[500px]' : 'h-24'}
-                                `}
-                            >
-                                {/* Image Background */}
-                                <Image
-                                    src={item.image}
-                                    alt={item.title}
-                                    fill
-                                    sizes="(max-width: 1024px) 100vw, 25vw"
-                                    className="object-cover transition-transform duration-700 lg:group-hover:scale-105"
-                                />
-
-                                {/* 
-                                    Overlay Logic:
-                                    - Desktop Default: Transparent (Gradient at bottom for text)
-                                    - Desktop Hover: White 95%
-                                    - Mobile Inactive: Transparent (Gradient at bottom)
-                                    - Mobile Active: White 95%
-                                */}
-                                <div className={`
-                                    absolute inset-0 bg-white/95 transition-opacity duration-300
-                                    lg:opacity-0 lg:group-hover:opacity-100
-                                    ${isMobileActive ? 'opacity-100' : 'opacity-0'}
-                                `} />
-
-                                {/* Dark Gradient for Inactive State Visibility */}
-                                <div className={`
-                                    absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 to-transparent transition-opacity duration-300 pointer-events-none
-                                    lg:opacity-100 lg:group-hover:opacity-0
-                                    ${isMobileActive ? 'opacity-0' : 'opacity-100'}
-                                `} />
-
-                                {/* Content Container */}
-                                <div className="absolute inset-0 p-8 flex flex-col justify-end">
-
-                                    {/* Header Row */}
-                                    <div className="flex items-center justify-between w-full mb-2 z-10">
-                                        <h3 className={`
-                                            text-2xl font-bold transition-colors duration-300
-                                            lg:text-white lg:group-hover:text-gmrt-blue
-                                            ${isMobileActive ? 'text-gmrt-blue' : 'text-white'}
-                                        `}>
+                    {/* Left Column: Interactive List */}
+                    <div className="lg:w-5/12 flex flex-col gap-2">
+                        {items.map((item: any, index: number) => {
+                            const isActive = activeIndex === index;
+                            return (
+                                <div
+                                    key={index}
+                                    onMouseEnter={() => setActiveIndex(index)}
+                                    onClick={() => setActiveIndex(index)} // For touch hybrid handling
+                                    className={`
+                                        group relative p-6 cursor-pointer rounded-xl transition-all duration-500 border-l-4
+                                        ${isActive
+                                            ? 'bg-slate-50 border-gmrt-salmon shadow-sm'
+                                            : 'bg-transparent border-transparent hover:bg-slate-50'
+                                        }
+                                    `}
+                                >
+                                    <div className="flex items-center justify-between mb-2">
+                                        <h3 className={`text-xl md:text-2xl font-bold transition-colors ${isActive ? 'text-gmrt-blue' : 'text-slate-400 group-hover:text-slate-600'}`}>
                                             {item.title}
                                         </h3>
-
-                                        <ChevronDown
-                                            size={24}
-                                            className={`
-                                                transition-all duration-300
-                                                lg:text-gmrt-blue lg:opacity-0 lg:group-hover:opacity-100
-                                                ${isMobileActive ? 'rotate-180 text-gmrt-blue' : 'text-white'}
-                                            `}
-                                        />
+                                        {isActive && <ArrowRight className="text-gmrt-salmon animate-pulse" size={24} />}
                                     </div>
 
-                                    {/* Description (desktop hover / mobile active) */}
                                     <div className={`
-                                        overflow-hidden transition-all duration-500 ease-out z-10
-                                        lg:max-h-0 lg:group-hover:max-h-[300px] lg:opacity-0 lg:group-hover:opacity-100
-                                        ${isMobileActive ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}
+                                        overflow-hidden transition-all duration-500 ease-in-out
+                                        ${isActive ? 'max-h-[200px] opacity-100 mt-2' : 'max-h-0 opacity-0'}
                                     `}>
-                                        <div className="w-12 h-1 bg-gmrt-salmon mb-4" />
-                                        <p className="text-slate-600 leading-relaxed font-normal">
+                                        <p className="text-slate-600 leading-relaxed">
                                             {item.description}
                                         </p>
                                     </div>
                                 </div>
+                            );
+                        })}
+                    </div>
+
+                    {/* Right Column: Dynamic Image (Sticky) - hidden on mobile, shown on lg */}
+                    <div className="hidden lg:block lg:w-7/12 relative">
+                        <div className="sticky top-32 h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl bg-slate-100">
+                            {items.map((item: any, index: number) => (
+                                <div
+                                    key={index}
+                                    className={`absolute inset-0 transition-all duration-700 ease-in-out transform
+                                        ${activeIndex === index ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}
+                                    `}
+                                >
+                                    <Image
+                                        src={item.image}
+                                        alt={item.title}
+                                        fill
+                                        className="object-cover"
+                                        priority={index === 0}
+                                        sizes="(max-width: 1200px) 50vw, 800px"
+                                    />
+                                    {/* Subtle Gradient Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
+
+                                    {/* Floating Label */}
+                                    <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-lg shadow-lg">
+                                        <p className="text-gmrt-blue font-bold tracking-widest uppercase text-sm">
+                                            {item.title}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Mobile Only: Horizontal Scroll Cards */}
+                    <div className="lg:hidden w-full flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 -mx-6 px-6 no-scrollbar">
+                        {items.map((item: any, index: number) => (
+                            <div
+                                key={index}
+                                className="snap-center shrink-0 w-[85vw] h-[400px] relative rounded-2xl overflow-hidden shadow-lg"
+                            >
+                                <Image
+                                    src={item.image}
+                                    alt={item.title}
+                                    fill
+                                    className="object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                                <div className="absolute bottom-0 p-6">
+                                    <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
+                                    <p className="text-slate-200 text-sm leading-relaxed">{item.description}</p>
+                                </div>
                             </div>
-                        );
-                    })}
+                        ))}
+                    </div>
+
                 </div>
             </div>
         </section>

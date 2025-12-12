@@ -557,8 +557,9 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                     </button>
                 </div>
             </div>
-        </form >
-            </div >
+        </div> {/* Closes Content Blocks Container from line 467 */ }
+                </div > {/* Closes Card from line 334 */ }
+            </form >
         </div >
-    );
+    </div > {/* Closes min-h-screen from top */ }
 }

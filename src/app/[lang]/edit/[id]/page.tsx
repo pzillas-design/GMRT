@@ -1,9 +1,18 @@
 import { PostEditor } from '@/components/PostEditor';
 import { prisma } from '@/lib/prisma';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 
 export default async function EditPostPage({ params }: { params: Promise<{ id: string, lang: string }> }) {
     const { id, lang } = await params;
+
+    const cookieStore = await cookies();
+    const token = cookieStore.get('gmrt_auth_token');
+
+    if (!token || token.value !== 'authenticated') {
+        redirect(`/${lang}/login`);
+    }
+
     const post = await prisma.post.findUnique({
         where: { id: parseInt(id) },
     });

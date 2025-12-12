@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User, UserCheck } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Container } from '@/components/ui/Container';
 import { GmrtLogo } from '@/components/GmrtLogo';
+import { useAuth } from '@/context/AuthContext';
 
 interface NavbarProps {
     lang: 'de' | 'en';
@@ -17,6 +18,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
     const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
+    const { isAuthenticated } = useAuth();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -100,11 +102,19 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
                     {/* Icons / Actions */}
                     <div className={`hidden md:flex items-center space-x-6 ${isDarkText ? 'text-slate-600' : 'text-white/90'}`}>
-                        <button onClick={toggleLanguage} className={`cursor-pointer text-base font-medium flex items-center gap-1 hover:text-gmrt-salmon transition-colors`}>
+                        <button onClick={toggleLanguage} className={`cursor-pointer text-base font-medium flex items-center gap-1 hover:text-gmrt-salmon transition-colors border-r border-current pr-4 mr-4`}>
                             <span className={lang === 'de' ? 'font-bold' : 'opacity-70'}>DE</span>
                             <span className="opacity-50">|</span>
                             <span className={lang === 'en' ? 'font-bold' : 'opacity-70'}>EN</span>
                         </button>
+
+                        <Link
+                            href={`/${lang}/login`}
+                            className={`hover:text-gmrt-salmon transition-colors ${isAuthenticated ? 'text-gmrt-salmon' : ''}`}
+                            title={isAuthenticated ? (lang === 'de' ? 'Angemeldet' : 'Logged in') : (lang === 'de' ? 'Anmelden' : 'Login')}
+                        >
+                            {isAuthenticated ? <UserCheck size={24} /> : <User size={24} />}
+                        </Link>
                     </div>
 
                     {/* Mobile Menu Button */}

@@ -7,6 +7,7 @@ import { EventCard } from '@/components/EventCard';
 import { SimpleHeader } from '@/components/headers/SimpleHeader';
 import { LoadMore } from '@/components/LoadMore';
 import { getDictionary } from '@/get-dictionary';
+import { cookies } from 'next/headers';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,6 +17,9 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
     const { location } = await searchParams;
     const locationFilter = location;
     const where = locationFilter && locationFilter !== 'Alle' ? { location: locationFilter } : {};
+
+    const cookieStore = await cookies();
+    const isAdmin = cookieStore.get('gmrt_auth_token')?.value === 'authenticated';
 
     const now = new Date();
     now.setHours(0, 0, 0, 0);
@@ -75,13 +79,16 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
                         </Link>
                     ))}
 
-                    <Link
-                        href={`/${lang}/create`}
-                        className="w-10 h-10 bg-white text-slate-400 hover:bg-gmrt-salmon hover:text-white transition-all flex items-center justify-center border border-slate-200 hover:border-gmrt-salmon ml-2"
-                        title={dict.news.create_button}
-                    >
-                        <Plus size={20} />
-                    </Link>
+                    {isAdmin && (
+                        <Link
+                            href={`/${lang}/create`}
+                            className="w-auto px-6 py-2.5 bg-gmrt-blue text-white hover:bg-gmrt-salmon hover:border-gmrt-salmon transition-all flex items-center justify-center border border-gmrt-blue ml-2 font-bold uppercase tracking-wide text-sm gap-2"
+                            title={dict.news.create_button}
+                        >
+                            <Plus size={18} />
+                            <span>{lang === 'de' ? 'Post erstellen' : 'Create Post'}</span>
+                        </Link>
+                    )}
                 </div>
             </SimpleHeader >
 

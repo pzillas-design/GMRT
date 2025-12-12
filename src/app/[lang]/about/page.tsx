@@ -73,11 +73,11 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
                         {dict.about.team.members?.map((member: any, index: number) => (
                             <div key={index} className="group">
-                                <div className="overflow-hidden rounded-2xl mb-6 bg-slate-100 shadow-sm relative aspect-video">
+                                <div className="overflow-hidden rounded-2xl mb-6 bg-slate-100 shadow-sm">
                                     <img
                                         src={member.image}
                                         alt={member.name}
-                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
                                     />
                                 </div>
                                 <div className="text-left">

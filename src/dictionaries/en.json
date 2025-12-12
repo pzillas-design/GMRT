@@ -32,16 +32,16 @@
         },
         "features": {
             "network": {
-                "title": "Network",
-                "description": "Connect with experts and companies in the German-Malaysian context."
+                "title": "About GMRT",
+                "description": "We actively promote exchange between Germany and Malaysia. Our goal: to strengthen trade and investment and secure a competitive edge for companies in the ASEAN region."
             },
             "events": {
-                "title": "Events & Economy",
-                "description": "Regular events on current economic topics and cultural exchange."
+                "title": "Knowledge & Exchange",
+                "description": "Exchange on market trends, regulations, and business ideas. We share practical know-how to specifically foster economic cooperation between Germany and ASEAN."
             },
             "updates": {
-                "title": "Updates",
-                "description": "Stay informed about latest developments and opportunities."
+                "title": "Our Locations",
+                "description": "Present in Berlin, Dusseldorf, Frankfurt, Hamburg, Munich, Stuttgart, and Vienna. Regular events with experts provide valuable insights into trade relations."
             }
         },
         "expertise": {

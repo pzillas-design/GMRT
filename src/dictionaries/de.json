@@ -32,16 +32,16 @@
         },
         "features": {
             "network": {
-                "title": "Netzwerk",
-                "description": "Verbinden Sie sich mit Experten und Unternehmen im deutsch-malaysischen Kontext."
+                "title": "Über den GMRT",
+                "description": "Wir fördern den aktiven Austausch zwischen Deutschland und Malaysia. Unser Ziel: Handel und Investitionen stärken und Unternehmen einen Wettbewerbsvorsprung in der ASEAN-Region sichern."
             },
             "events": {
-                "title": "Events & Wirtschaft",
-                "description": "Regelmäßige Veranstaltungen zu aktuellen Wirtschaftsthemen und kulturellem Austausch."
+                "title": "Wissen & Austausch",
+                "description": "Austausch zu Markttrends, Regularien und Geschäftsideen. Wir teilen praxisnahes Know-how, um wirtschaftliche Kooperationen zwischen Deutschland und ASEAN gezielt zu fördern."
             },
             "updates": {
-                "title": "Updates",
-                "description": "Bleiben Sie informiert über die neuesten Entwicklungen und Möglichkeiten."
+                "title": "Unsere Standorte",
+                "description": "Präsenz in Berlin, Düsseldorf, Frankfurt, Hamburg, München, Stuttgart und Wien. Regelmäßige Events mit Experten bieten wertvolle Einblicke in die Handelsbeziehungen."
             }
         },
         "expertise": {

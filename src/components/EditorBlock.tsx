@@ -10,7 +10,7 @@ interface EditorBlockProps {
     onUpdate: (id: string, updates: Partial<ContentBlock>) => void;
     onRemove: (id: string) => void;
     onMove: (index: number, direction: 'up' | 'down') => void;
-    onFileUpload: (file: File, blockId: string) => void;
+    onFileUpload: (file: File, blockId: string) => Promise<void>;
 }
 
 export const EditorBlock: React.FC<EditorBlockProps> = ({
@@ -23,6 +23,18 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
     onMove,
     onFileUpload
 }) => {
+    const [isUploading, setIsUploading] = React.useState(false);
+
+    const handleUpload = async (file: File) => {
+        setIsUploading(true);
+        try {
+            await onFileUpload(file, block.id);
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setIsUploading(false);
+        }
+    };
     return (
         <div className="group/block relative flex gap-2 hover:bg-slate-50 p-2 rounded-none transition-all border border-transparent hover:border-slate-200">
             {/* Arrow Navigation & Delete - Visible on Hover Only */}
@@ -81,7 +93,13 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                     />
                 )}
                 {(block.type === 'image' || block.type === 'video' || block.type === 'pdf') && (
-                    <div className="space-y-4 py-2">
+                    <div className="space-y-4 py-2 relative">
+                        {isUploading && (
+                            <div className="absolute inset-0 z-20 bg-white/80 flex flex-col items-center justify-center backdrop-blur-sm border border-slate-100 rounded-md">
+                                <div className="w-8 h-8 border-4 border-gmrt-blue border-t-transparent rounded-full animate-spin mb-2"></div>
+                                <span className="text-xs font-bold text-slate-500 animate-pulse">Wird hochgeladen...</span>
+                            </div>
+                        )}
 
                         {/* Preview Area */}
                         {block.type === 'image' && block.content && (
@@ -92,7 +110,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                                         type="file"
                                         className="hidden"
                                         accept="image/*"
-                                        onChange={(e) => e.target.files?.[0] && onFileUpload(e.target.files[0], block.id)}
+                                        onChange={(e) => e.target.files?.[0] && handleUpload(e.target.files[0])}
                                     />
                                     <span className="opacity-0 group-hover/image:opacity-100 bg-white text-slate-900 border border-slate-200 font-bold px-4 py-2 shadow-sm text-sm rounded-none hover:bg-slate-50">Bild ändern</span>
                                 </label>
@@ -115,20 +133,44 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                             </div>
                         )}
 
+                        {block.type === 'pdf' && block.content && (
+                            <div className="relative w-full border border-slate-200 bg-slate-50 p-4 flex items-center gap-4 group/pdf rounded-md">
+                                <div className="bg-white p-3 border border-slate-100 rounded-md shadow-sm">
+                                    <FileText size={32} className="text-red-500" />
+                                </div>
+                                <div className="flex-grow overflow-hidden">
+                                    <a href={block.content} target="_blank" rel="noopener noreferrer" className="font-bold text-slate-700 hover:text-gmrt-blue hover:underline truncate block text-sm">
+                                        {block.content.split('/').pop() || 'Dokument.pdf'}
+                                    </a>
+                                    <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">PDF Dokument</span>
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => onUpdate(block.id, { content: '' })}
+                                    className="text-slate-400 hover:text-red-500 p-2 hover:bg-red-50 rounded-md transition-colors"
+                                    title="PDF entfernen"
+                                >
+                                    <Trash2 size={18} />
+                                </button>
+                            </div>
+                        )}
+
                         {/* Upload State (if empty) */}
                         {!block.content && (
                             <div className="flex flex-col gap-4">
                                 <div className="flex gap-2">
-                                    <label className="flex-grow cursor-pointer bg-slate-50/20 hover:bg-slate-50 border-2 border-dashed border-slate-200 hover:border-gmrt-blue text-slate-400 hover:text-gmrt-blue h-32 transition-all flex flex-col items-center justify-center gap-2 text-sm font-medium rounded-md">
-                                        <Upload size={24} />
-                                        <span>
+                                    <label className="flex-grow cursor-pointer bg-slate-50/20 hover:bg-slate-50 border-2 border-dashed border-slate-200 hover:border-gmrt-blue text-slate-400 hover:text-gmrt-blue h-32 transition-all flex flex-col items-center justify-center gap-2 text-sm font-medium rounded-md group">
+                                        <div className="p-3 bg-white rounded-full shadow-sm group-hover:scale-110 transition-transform">
+                                            <Upload size={24} />
+                                        </div>
+                                        <span className="font-semibold">
                                             {block.type === 'image' ? "Bild hochladen" : block.type === 'video' ? "Video hochladen" : "PDF hochladen"}
                                         </span>
                                         <input
                                             type="file"
                                             className="hidden"
                                             accept={block.type === 'image' ? "image/*" : block.type === 'video' ? "video/*" : "application/pdf"}
-                                            onChange={(e) => e.target.files?.[0] && onFileUpload(e.target.files[0], block.id)}
+                                            onChange={(e) => e.target.files?.[0] && handleUpload(e.target.files[0])}
                                         />
                                     </label>
                                 </div>

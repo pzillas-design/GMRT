@@ -14,16 +14,17 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
 
     return (
 
-        <section className="py-24 bg-white text-gmrt-blue overflow-hidden">
-            {/* Light background for fresh look */}
+    return (
+        <section className="py-24 bg-slate-950 text-white overflow-hidden">
+            {/* Dark background for premium look */}
             <div className="max-w-[1600px] mx-auto px-4">
 
                 <div className="text-center mb-16 max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gmrt-blue mb-6">
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
                         {dict?.impact?.title || "Malaysia erfahren, mehr erreichen"}
                     </h2>
                     {dict?.impact?.subtitle && (
-                        <p className="text-slate-600 text-xl font-light leading-relaxed">
+                        <p className="text-slate-400 text-xl font-light leading-relaxed">
                             {dict.impact.subtitle}
                         </p>
                     )}
@@ -45,7 +46,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                         : 'lg:flex-1 h-24 lg:h-full'
                                     }
                                     rounded-2xl lg:rounded-none lg:first:rounded-l-2xl lg:last:rounded-r-2xl
-                                    bg-slate-100 border-b border-white lg:border-0 lg:border-l lg:border-white
+                                    bg-slate-900 border-b border-slate-800 lg:border-0 lg:border-l lg:border-slate-800
                                     group
                                 `}
                             >
@@ -54,14 +55,14 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                     src={item.image}
                                     alt={item.title}
                                     fill
-                                    className={`object-cover transition-all duration-700 ${isActive ? 'scale-100' : 'scale-110'}`}
+                                    className={`object-cover transition-all duration-700 ${isActive ? 'scale-100 opacity-60' : 'scale-110 opacity-40'}`}
                                 />
 
-                                {/* Overlay: Solid white when active (readability), subtle change when inactive */}
+                                {/* Overlay: Dark gradient for readability */}
                                 <div className={`absolute inset-0 transition-all duration-500 
                                     ${isActive
-                                        ? 'bg-white/90'
-                                        : 'bg-white/70 group-hover:bg-white/80'
+                                        ? 'bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-100'
+                                        : 'bg-black/50 group-hover:bg-black/30'
                                     }`}
                                 />
 
@@ -70,13 +71,13 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
 
                                     {/* Icon */}
                                     <div className={`absolute top-6 right-6 transition-all duration-500 ${isActive ? 'rotate-45 opacity-100' : 'rotate-0 opacity-50'}`}>
-                                        <Plus className="text-gmrt-blue" />
+                                        <Plus className="text-white" />
                                     </div>
 
                                     {/* Text Container */}
                                     <div className={`transform transition-all duration-500 ${isActive ? 'translate-y-0' : 'translate-y-4'}`}>
                                         <div className="w-full pr-4 md:pr-16">
-                                            <h3 className={`text-xl md:text-3xl font-bold text-gmrt-blue mb-4 ${isActive ? 'whitespace-normal' : 'whitespace-nowrap'} ${!isActive && 'lg:rotate-[-90deg] lg:origin-bottom-left lg:absolute lg:bottom-10 lg:left-6 lg:mb-0'}`}>
+                                            <h3 className={`text-xl md:text-3xl font-bold text-white mb-4 ${isActive ? 'whitespace-normal' : 'whitespace-nowrap'} ${!isActive && 'lg:rotate-[-90deg] lg:origin-bottom-left lg:absolute lg:bottom-10 lg:left-6 lg:mb-0'}`}>
                                                 {item.title}
                                             </h3>
 
@@ -84,7 +85,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                                 overflow-hidden transition-all duration-700 ease-in-out
                                                 ${isActive ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}
                                             `}>
-                                                <p className="text-slate-600 text-sm md:text-lg leading-relaxed max-w-xl whitespace-normal">
+                                                <p className="text-slate-300 text-sm md:text-lg leading-relaxed max-w-xl whitespace-normal">
                                                     {item.description}
                                                 </p>
                                             </div>

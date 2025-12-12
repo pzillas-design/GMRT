@@ -492,27 +492,27 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                     <div className="mt-8 flex flex-col items-start gap-3 w-full pb-12">
                         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.insert}</span>
                         <div className="grid grid-cols-6 w-full gap-2">
-                            <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-2 py-4 text-white bg-gradient-to-r from-gmrt-salmon to-[#E07A66] hover:opacity-90 transition-all rounded-md shadow-sm">
+                            <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-2 py-4 text-white bg-gradient-to-b from-gmrt-salmon to-[#E07A66] hover:opacity-90 transition-all rounded-md shadow-sm">
                                 <Type size={24} />
                                 <span className="text-sm font-normal">{t.text}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-2 py-4 text-white bg-gradient-to-r from-gmrt-salmon to-[#E07A66] hover:opacity-90 transition-all rounded-md shadow-sm">
+                            <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-2 py-4 text-white bg-gradient-to-b from-gmrt-salmon to-[#E07A66] hover:opacity-90 transition-all rounded-md shadow-sm">
                                 <Heading size={24} />
                                 <span className="text-sm font-normal">{t.headline}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-2 py-4 text-white bg-gradient-to-r from-gmrt-salmon to-[#E07A66] hover:opacity-90 transition-all rounded-md shadow-sm">
+                            <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-2 py-4 text-white bg-gradient-to-b from-gmrt-salmon to-[#E07A66] hover:opacity-90 transition-all rounded-md shadow-sm">
                                 <ImageIcon size={24} />
                                 <span className="text-sm font-normal">{t.image}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-2 py-4 text-white bg-gradient-to-r from-gmrt-salmon to-[#E07A66] hover:opacity-90 transition-all rounded-md shadow-sm">
+                            <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-2 py-4 text-white bg-gradient-to-b from-gmrt-salmon to-[#E07A66] hover:opacity-90 transition-all rounded-md shadow-sm">
                                 <Video size={24} />
                                 <span className="text-sm font-normal">{t.video}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-2 py-4 text-white bg-gradient-to-r from-gmrt-salmon to-[#E07A66] hover:opacity-90 transition-all rounded-md shadow-sm">
+                            <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-2 py-4 text-white bg-gradient-to-b from-gmrt-salmon to-[#E07A66] hover:opacity-90 transition-all rounded-md shadow-sm">
                                 <FileText size={24} />
                                 <span className="text-sm font-normal">{t.pdf}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-2 py-4 text-white bg-gradient-to-r from-gmrt-salmon to-[#E07A66] hover:opacity-90 transition-all rounded-md shadow-sm">
+                            <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-2 py-4 text-white bg-gradient-to-b from-gmrt-salmon to-[#E07A66] hover:opacity-90 transition-all rounded-md shadow-sm">
                                 <LinkIcon size={24} />
                                 <span className="text-sm font-normal">{t.link}</span>
                             </button>

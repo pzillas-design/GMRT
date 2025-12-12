@@ -82,7 +82,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                     />
                 )}
                 {(block.type === 'image' || block.type === 'video' || block.type === 'pdf') && (
-                    <div className="space-y-4 p-4 hover:bg-slate-50 transition-colors border border-slate-100 rounded-none bg-slate-50/30">
+                    <div className="space-y-4 py-2">
 
                         {/* Preview Area */}
                         {block.type === 'image' && block.content && (

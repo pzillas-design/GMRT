@@ -3,8 +3,10 @@ import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 import { cookies } from 'next/headers';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
-    console.log('API /api/upload received request');
+    console.log('API /api/upload received request [V2-DYNAMIC]');
 
     // Security check
     const cookieStore = await cookies();
@@ -79,6 +81,6 @@ export async function POST(request: Request) {
         return NextResponse.json({ url: `/uploads/${filename}` });
     } catch (error) {
         console.error('Upload error:', error);
-        return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
+        return NextResponse.json({ error: 'Upload failed: ' + (error as Error).message }, { status: 500 });
     }
 }

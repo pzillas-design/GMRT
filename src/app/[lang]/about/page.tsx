@@ -25,7 +25,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
             {/* 1. Mission Section (White) */}
             <section className="py-24 bg-white">
                 <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-                    <div className="prose prose-lg prose-slate max-w-4xl mx-auto text-center">
+                    <div className="prose prose-lg prose-slate max-w-4xl mx-auto">
                         <p className="lead text-2xl md:text-3xl text-[#0E2A47] font-light mb-8 leading-relaxed">
                             {dict.about.mission.lead}
                         </p>
@@ -68,17 +68,17 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
                         {dict.about.team.members?.map((member: any, index: number) => (
                             <div key={index} className="group">
-                                <div className="overflow-hidden rounded-2xl mb-6 bg-slate-100 relative aspect-[3/4] shadow-sm">
+                                <div className="overflow-hidden rounded-2xl mb-6 bg-slate-100 relative aspect-[4/3] shadow-sm">
                                     <img
                                         src={member.image}
                                         alt={member.name}
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
                                 </div>
-                                <div className="text-center">
+                                <div className="text-left">
                                     <h3 className="text-2xl font-bold text-[#0E2A47] mb-1">{member.name}</h3>
                                     <p className="text-gmrt-salmon font-bold uppercase tracking-wider text-sm mb-4">{member.role}</p>
-                                    <p className="text-slate-600 leading-relaxed mb-6 max-w-sm mx-auto">
+                                    <p className="text-slate-600 leading-relaxed mb-6 max-w-sm">
                                         {member.bio}
                                     </p>
                                     <ObfuscatedMail

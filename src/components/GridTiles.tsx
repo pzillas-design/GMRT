@@ -13,7 +13,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
     const [activeIndex, setActiveIndex] = useState<number | null>(0); // Default open first one
 
     return (
-    return (
+
         <section className="py-24 bg-white text-gmrt-blue overflow-hidden">
             {/* Light background for fresh look */}
             <div className="max-w-[1600px] mx-auto px-4">

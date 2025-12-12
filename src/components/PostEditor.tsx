@@ -49,7 +49,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
 
     const [hoveredBlockIndex, setHoveredBlockIndex] = useState<number | null>(null);
 
-    const locations = ['Allgemein', 'Düsseldorf', 'Frankfurt', 'München', 'Berlin', 'Hamburg', 'Stuttgart', 'Wien', 'Zürich', 'Hannover', 'Bremen', 'Ruhrgebiet', 'Neu...'];
+    const locations = ['Allgemein', 'Düsseldorf', 'Frankfurt', 'München', 'Berlin', 'Hamburg', 'Stuttgart', 'Wien', 'Zürich', 'Hannover', 'Bremen', 'Ruhrgebiet'];
 
     const fileInputRef = React.useRef<HTMLInputElement>(null);
 
@@ -410,7 +410,24 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                     <div>
                                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">{t.location}</label>
                                         {isCustomLocation ? (
-                                            <input type="text" value={customLocation} onChange={(e) => setCustomLocation(e.target.value)} className="w-full border border-slate-400 bg-slate-50/50 p-3 font-medium text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none" placeholder={lang === 'de' ? "Kategorie eingeben" : "Enter category"} autoFocus />
+                                            <div className="relative">
+                                                <input
+                                                    type="text"
+                                                    value={customLocation}
+                                                    onChange={(e) => setCustomLocation(e.target.value)}
+                                                    className="w-full border border-slate-400 bg-slate-50/50 p-3 pr-10 font-medium text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-black outline-none rounded-none"
+                                                    placeholder={lang === 'de' ? "Kategorie eingeben" : "Enter category"}
+                                                    autoFocus
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setIsCustomLocation(false)}
+                                                    className="absolute right-0 top-0 h-full px-3 text-slate-400 hover:text-gmrt-blue bg-transparent flex items-center justify-center transition-colors"
+                                                    title={lang === 'de' ? 'Zurück zur Auswahl' : 'Back to selection'}
+                                                >
+                                                    <span className="text-xl leading-none">&times;</span>
+                                                </button>
+                                            </div>
                                         ) : (
                                             <select
                                                 value={location}

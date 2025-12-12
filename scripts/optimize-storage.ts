@@ -110,10 +110,10 @@ async function optimizeStorage() {
         // Actually, if we just treating it as a string for replacement it usually works for URLs.
         if (typeof contentBlocksStr === 'object') {
             const jsonStr = JSON.stringify(contentBlocksStr);
-            const newJsonStr = replaceInString(jsonStr);
+            const newJsonStr = replaceInString(jsonStr) as string;
             newBlocks = JSON.parse(newJsonStr);
         } else {
-            newBlocks = replaceInString(contentBlocksStr);
+            newBlocks = replaceInString(contentBlocksStr) as string;
         }
 
         if (newCover !== coverImage || newContent !== content || newBlocks !== contentBlocksStr) {

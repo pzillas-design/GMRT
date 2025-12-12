@@ -221,12 +221,14 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
 
             if (!response.ok) throw new Error('Failed to save post');
 
+            const savedPost = await response.json();
+
             success(lang === 'de' ? 'Beitrag gespeichert' : 'Post saved');
 
             if (isEditing) {
                 router.push(`/${lang}/posts/${postId}`);
             } else {
-                router.push(`/${lang}`);
+                router.push(`/${lang}/posts/${savedPost.id}`);
             }
             router.refresh();
         } catch (error) {
@@ -333,7 +335,17 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                 ref={fileInputRef}
                                 className="hidden"
                                 accept="image/*"
-                                onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0]).then(url => setCoverImage(url))}
+                                onChange={(e) => {
+                                    const file = e.target.files?.[0];
+                                    if (file) {
+                                        handleFileUpload(file)
+                                            .then(url => setCoverImage(url))
+                                            .catch((err) => {
+                                                console.error(err);
+                                                toastError(lang === 'de' ? 'Bild-Upload fehlgeschlagen' : 'Image upload failed');
+                                            });
+                                    }
+                                }}
                             />
 
                             {coverImage ? (

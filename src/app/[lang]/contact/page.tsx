@@ -14,7 +14,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
             <PageHero
                 title={dict.contact.title}
                 subtitle={dict.contact.subtitle}
-                imageSrc="/images/about-hero-hq.jpg"
+                imageSrc="/uploads/about-hero-hq.jpg"
             />
 
             <div className="max-w-[1400px] mx-auto px-6 md:px-12 -mt-16 relative z-10">
@@ -44,9 +44,6 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                                 email="frankfurt@gmrt.de"
                                 className="text-xl font-medium text-slate-800 hover:text-gmrt-salmon transition-colors block mb-4 border-b-2 border-gmrt-salmon/20 hover:border-gmrt-salmon inline-block pb-1"
                             />
-                            <p className="text-sm text-slate-400 font-medium bg-slate-50 inline-block px-3 py-1 rounded-full">
-                                {dict.contact.response_time}
-                            </p>
                         </div>
                     </div>
                 </div>

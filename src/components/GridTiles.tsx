@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Plus } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 
 interface GridTilesProps {
     dict: any;
@@ -71,8 +71,8 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                 <div className={`absolute inset-0 flex flex-col justify-end p-6 md:p-10 transition-all duration-500`}>
 
                                     {/* Icon */}
-                                    <div className={`absolute top-6 right-6 transition-all duration-500 ${isActive ? 'rotate-45 opacity-100' : 'rotate-0 opacity-50'}`}>
-                                        <Plus className="text-white" />
+                                    <div className={`absolute top-6 right-6 transition-all duration-500 ${isActive ? 'opacity-100' : 'opacity-50'}`}>
+                                        {isActive ? <Minus className="text-white" /> : <Plus className="text-white" />}
                                     </div>
 
                                     {/* Text Container */}

@@ -20,8 +20,8 @@ export const Hero: React.FC<HeroProps> = ({ dict }) => {
             {/* Background Image - Skyline */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/images/frankfurt.png"
-                    alt="Hero Background"
+                    src="https://images.unsplash.com/photo-1564506414752-a73fbe0c6b00?q=80&w=4332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Kuala Lumpur Skyline"
                     fill
                     className="object-cover"
                     priority

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Mail, Github, Linkedin, Euro } from 'lucide-react';
 import { ObfuscatedMail } from '@/components/ObfuscatedMail';
+import { GmrtLogo } from '@/components/GmrtLogo';
 import React from 'react';
 import { Container } from '@/components/ui/Container';
 
@@ -13,8 +14,9 @@ export default function Footer({ dict, navDict, lang }: { dict: any, navDict: an
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
                     {/* Brand Section */}
                     <div className="md:col-span-5">
-                        <Link href={`/${lang}`} className="inline-block group mb-6">
-                            <span className="font-display font-medium text-4xl tracking-wide text-white">
+                        <Link href={`/${lang}`} className="inline-flex items-center gap-3 group mb-6">
+                            <GmrtLogo className="h-16 w-auto text-gmrt-salmon transition-transform duration-300 group-hover:scale-105" />
+                            <span className="font-display font-medium text-4xl tracking-wide text-white group-hover:text-gmrt-salmon transition-colors">
                                 GMRT
                             </span>
                         </Link>

@@ -300,7 +300,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
     };
 
     return (
-        <div className="min-h-screen bg-[#F9F9F7] text-slate-800 font-sans selection:bg-orange-100 selection:text-orange-900">
+        <div className="min-h-screen bg-slate-50">
             <ConfirmationModal
                 isOpen={isDeleteModalOpen}
                 onClose={() => setIsDeleteModalOpen(false)}
@@ -313,34 +313,32 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                 isLoading={isDeleting}
             />
 
-            {/* Top Bar - Minimal */}
-            <div className="sticky top-0 z-50 bg-[#F9F9F7]/80 backdrop-blur-md px-6 py-4 flex items-center justify-between transition-all">
-                <Button variant="ghost" onClick={() => router.back()} icon={<ArrowLeft size={20} className="text-slate-400 hover:text-slate-800 transition-colors" />}>
-                    <span className="sr-only">{t.back}</span>
+            {/* Top Bar */}
+            <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-3 flex items-center justify-between">
+                <Button variant="ghost" onClick={() => router.back()} icon={<ArrowLeft size={18} />}>
+                    {t.back}
                 </Button>
-                <div className="flex gap-3">
+                <div className="flex gap-2">
                     {isEditing && postId && (
-                        <Button variant="ghost" onClick={() => setIsDeleteModalOpen(true)} disabled={isSaving} className="text-slate-400 hover:text-red-600 hover:bg-red-50/50 px-3">
-                            <Trash2 size={20} />
+                        <Button variant="ghost" onClick={() => setIsDeleteModalOpen(true)} disabled={isSaving} className="text-red-500 hover:text-red-600 hover:bg-red-50 px-4">
+                            <Trash2 size={18} className="mr-2" />
+                            {t.delete}
                         </Button>
                     )}
-                    <button
-                        onClick={handleSubmit as any}
-                        disabled={isSaving}
-                        className="bg-slate-900 text-[#F9F9F7] px-6 py-2 rounded-full font-medium text-sm hover:bg-slate-800 disabled:opacity-50 transition-all shadow-lg shadow-slate-200"
-                    >
+                    <Button variant="primary" onClick={handleSubmit} disabled={isSaving} isLoading={isSaving} className="rounded-none px-6">
                         {isSaving ? t.saving : t.publish}
-                    </button>
+                    </Button>
                 </div>
             </div>
 
-            <div className="max-w-[720px] mx-auto px-6 py-12 pb-32">
-                <form onSubmit={handleSubmit} className="relative space-y-12">
+            <div className="max-w-4xl mx-auto mt-8 pb-32 px-4 sm:px-6">
+                <form onSubmit={handleSubmit} className="relative">
 
-                    {/* Metadata Header Group */}
-                    <div className="space-y-6">
-                        {/* Cover Image - Floating Card */}
-                        <div className="group relative w-full rounded-2xl overflow-hidden bg-white shadow-sm ring-1 ring-black/5 aspect-[21/9] transition-all hover:shadow-md">
+                    {/* Paper / Card Container */}
+                    <div className="bg-white shadow-sm border border-slate-200 min-h-[80vh]">
+
+                        {/* Cover Image Section - Full Width Top */}
+                        <div className="relative w-full group border-b border-slate-100 bg-slate-50 min-h-[100px]">
                             <input
                                 type="file"
                                 ref={fileInputRef}
@@ -360,13 +358,13 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                             />
 
                             {coverImage ? (
-                                <>
+                                <div className="aspect-[21/9] w-full relative">
                                     <img src={coverImage} alt="Cover" className="w-full h-full object-cover" />
-                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                                         <button
                                             type="button"
                                             onClick={() => fileInputRef.current?.click()}
-                                            className="bg-white/90 backdrop-blur text-slate-800 px-5 py-2.5 rounded-full font-medium text-sm shadow-lg hover:scale-105 transition-all flex items-center gap-2"
+                                            className="bg-white text-slate-700 px-4 py-2 rounded-md shadow-sm font-medium text-sm hover:bg-gmrt-blue hover:text-white transition-colors flex items-center gap-2"
                                         >
                                             <Wand2 size={16} />
                                             {lang === 'de' ? 'Bild ändern' : 'Change Image'}
@@ -375,90 +373,99 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                     <button
                                         type="button"
                                         onClick={() => setCoverImage('')}
-                                        className="absolute top-4 right-4 bg-white/90 p-2 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-all hover:text-red-500 text-slate-400"
+                                        className="absolute top-4 right-4 bg-white/90 p-2 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white text-slate-500 hover:text-red-500 rounded-md border border-slate-200"
                                     >
                                         <Trash2 size={16} />
                                     </button>
-                                </>
+                                </div>
                             ) : (
-                                <button
-                                    type="button"
-                                    onClick={() => fileInputRef.current?.click()}
-                                    className="w-full h-full flex flex-col items-center justify-center gap-3 text-slate-300 hover:text-slate-500 hover:bg-slate-50 transition-colors"
-                                >
-                                    <ImageIcon size={32} strokeWidth={1.5} />
+                                <button type="button" onClick={() => fileInputRef.current?.click()} className="w-full h-32 flex flex-col items-center justify-center text-slate-400 hover:bg-slate-100 transition-colors gap-2">
+                                    <ImageIcon size={24} />
                                     <span className="font-medium text-sm">{t.coverImage}</span>
                                 </button>
                             )}
                         </div>
 
-                        {/* Title - Serif & Big */}
-                        <textarea
-                            value={title}
-                            onChange={(e) => {
-                                setTitle(e.target.value);
-                                e.target.style.height = 'auto';
-                                e.target.style.height = e.target.scrollHeight + 'px';
-                            }}
-                            className="w-full text-5xl md:text-6xl font-serif font-medium text-slate-900 placeholder:text-slate-300 bg-transparent border-none focus:ring-0 outline-none resize-none overflow-hidden leading-tight"
-                            placeholder={lang === 'de' ? 'Titel...' : 'Title...'}
-                            rows={1}
-                            style={{ minHeight: '1.2em' }}
-                        />
+                        {/* Metadata Header - Gray Background */}
+                        <div className="bg-slate-50/50 border-b border-slate-100 p-8 md:p-12 space-y-10">
 
-                        {/* Byline / Metadata Row */}
-                        <div className="flex flex-wrap items-center gap-3 text-slate-400 text-base font-normal border-b border-slate-200/60 pb-8">
-                            <span>{lang === 'de' ? 'Veröffentlicht am' : 'Published on'}</span>
-
-                            {/* Date Inputs - Invisible */}
-                            <div className="flex items-center gap-1 hover:text-slate-600 transition-colors">
-                                <input type="number" value={day} onChange={(e) => setDay(e.target.value)} placeholder="DD" className="w-8 bg-transparent text-center outline-none focus:text-slate-900 border-b border-transparent focus:border-slate-300 placeholder:text-slate-300" />
-                                <span>.</span>
-                                <input type="number" value={month} onChange={(e) => setMonth(e.target.value)} placeholder="MM" className="w-8 bg-transparent text-center outline-none focus:text-slate-900 border-b border-transparent focus:border-slate-300 placeholder:text-slate-300" />
-                                <span>.</span>
-                                <input type="number" value={year} onChange={(e) => setYear(e.target.value)} placeholder="YYYY" className="w-12 bg-transparent text-center outline-none focus:text-slate-900 border-b border-transparent focus:border-slate-300 placeholder:text-slate-300" />
+                            {/* Title (The most important element) */}
+                            <div>
+                                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 select-none">{t.title}</label>
+                                <input
+                                    type="text"
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    className="w-full text-3xl md:text-5xl font-extrabold text-slate-900 placeholder:text-slate-300 placeholder:font-normal bg-transparent border-none focus:ring-0 p-0 leading-tight transition-colors outline-none"
+                                    placeholder={lang === 'de' ? 'Beitragstitel' : 'Post Title'}
+                                    required
+                                />
                             </div>
 
-                            <span>{lang === 'de' ? 'in' : 'in'}</span>
-
-                            {/* Category - Invisible Select */}
-                            <div className="relative group/cat">
-                                {isCustomLocation ? (
-                                    <div className="relative inline-block">
-                                        <input
-                                            type="text"
-                                            value={customLocation}
-                                            onChange={(e) => setCustomLocation(e.target.value)}
-                                            className="bg-transparent border-b border-slate-300 focus:border-slate-800 outline-none w-32 text-slate-900 placeholder:text-slate-300"
-                                            placeholder={lang === 'de' ? "Kategorie..." : "Category..."}
-                                            autoFocus
-                                        />
-                                        <button onClick={() => setIsCustomLocation(false)} className="ml-2 text-slate-400 hover:text-slate-600">&times;</button>
+                            {/* Meta Grid */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-4 border-t border-slate-200/50">
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 select-none">Datum</label>
+                                    <div className="flex gap-3">
+                                        <div className="flex-1">
+                                            <input type="number" value={day} onChange={(e) => setDay(e.target.value)} placeholder="DD" className="w-full bg-white border border-slate-300 focus:border-slate-900 rounded-md p-3 text-center font-medium text-slate-900 placeholder:text-slate-300 outline-none transition-colors" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <input type="number" value={month} onChange={(e) => setMonth(e.target.value)} placeholder="MM" className="w-full bg-white border border-slate-300 focus:border-slate-900 rounded-md p-3 text-center font-medium text-slate-900 placeholder:text-slate-300 outline-none transition-colors" />
+                                        </div>
+                                        <div className="flex-[1.5]">
+                                            <input type="number" value={year} onChange={(e) => setYear(e.target.value)} placeholder="YYYY" className="w-full bg-white border border-slate-300 focus:border-slate-900 rounded-md p-3 text-center font-medium text-slate-900 placeholder:text-slate-300 outline-none transition-colors" />
+                                        </div>
                                     </div>
-                                ) : (
-                                    <div className="relative">
-                                        <select
-                                            value={location}
-                                            onChange={(e) => {
-                                                if (e.target.value === 'custom_new_entry') setIsCustomLocation(true);
-                                                else setLocation(e.target.value);
-                                            }}
-                                            className="appearance-none bg-transparent pr-4 cursor-pointer hover:text-slate-600 outline-none focus:text-slate-900"
-                                        >
-                                            {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
-                                            <option value="custom_new_entry">+ {lang === 'de' ? 'Neu...' : 'New...'}</option>
-                                        </select>
-                                    </div>
-                                )}
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 select-none">{t.location}</label>
+                                    {isCustomLocation ? (
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                value={customLocation}
+                                                onChange={(e) => setCustomLocation(e.target.value)}
+                                                className="w-full bg-white border border-slate-300 focus:border-slate-900 rounded-md p-3 pr-10 font-medium text-slate-900 placeholder:text-slate-300 outline-none transition-colors"
+                                                placeholder={lang === 'de' ? "Kategorie eingeben" : "Enter category"}
+                                                autoFocus
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => setIsCustomLocation(false)}
+                                                className="absolute right-0 top-0 h-full px-3 text-slate-400 hover:text-gmrt-blue bg-transparent flex items-center justify-center transition-colors"
+                                            >
+                                                <span className="text-xl leading-none">&times;</span>
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <div className="relative">
+                                            <select
+                                                value={location}
+                                                onChange={(e) => {
+                                                    if (e.target.value === 'custom_new_entry') {
+                                                        setIsCustomLocation(true);
+                                                    } else {
+                                                        setLocation(e.target.value);
+                                                    }
+                                                }}
+                                                className="w-full bg-white border border-slate-300 focus:border-slate-900 rounded-md p-3 font-medium text-slate-900 outline-none cursor-pointer appearance-none"
+                                            >
+                                                {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
+                                                <option value="custom_new_entry">{lang === 'de' ? '+ Neu...' : '+ New...'}</option>
+                                            </select>
+                                            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                                <ArrowDown size={14} />
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Content Area - Pure & Clean */}
-                    <div id="content-blocks-container" className="pt-4 relative min-h-[30vh]">
-
-                        {/* Blocks */}
-                        <div className="space-y-4">
+                        {/* Main Content Area */}
+                        {/* Main Content Area */}
+                        <div id="content-blocks-container" className="p-8 md:p-16 space-y-4 min-h-[400px]">
                             {blocks.length > 0 && (
                                 <div className="h-4 group/top-insert relative z-30 flex justify-center items-center hover:h-16 transition-all duration-200 -mb-4">
                                     <div className="absolute top-1/2 left-4 right-4 h-px bg-gmrt-blue/10 opacity-0 group-hover/top-insert:opacity-100 transition-opacity pointer-events-none"></div>
@@ -518,36 +525,40 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                             </AnimatePresence>
                         </div>
                     </div>
-
-                    {/* Floating Toolbar (Zen Mode) */}
-                    <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-40 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                        <div className="flex items-center gap-1 bg-slate-900/90 backdrop-blur-md text-slate-200 p-1.5 rounded-full shadow-2xl ring-1 ring-white/10">
-                            <span className="px-3 text-[10px] font-bold tracking-widest text-slate-500 uppercase select-none">{t.insert}</span>
-                            <div className="w-px h-4 bg-white/10 mx-1"></div>
-
-                            <button type="button" onClick={() => addBlock('text')} className="p-2.5 rounded-full hover:bg-white/10 hover:text-white hover:scale-110 transition-all" title={t.text}>
-                                <Type size={20} />
-                            </button>
-                            <button type="button" onClick={() => addBlock('headline')} className="p-2.5 rounded-full hover:bg-white/10 hover:text-white hover:scale-110 transition-all" title={t.headline}>
-                                <Heading size={20} />
-                            </button>
-                            <button type="button" onClick={() => addBlock('image')} className="p-2.5 rounded-full hover:bg-white/10 hover:text-white hover:scale-110 transition-all" title={t.image}>
-                                <ImageIcon size={20} />
-                            </button>
-                            <button type="button" onClick={() => addBlock('video')} className="p-2.5 rounded-full hover:bg-white/10 hover:text-white hover:scale-110 transition-all" title={t.video}>
-                                <Video size={20} />
-                            </button>
-                            <button type="button" onClick={() => addBlock('pdf')} className="p-2.5 rounded-full hover:bg-white/10 hover:text-white hover:scale-110 transition-all" title={t.pdf}>
-                                <FileText size={20} />
-                            </button>
-                            <button type="button" onClick={() => addBlock('link')} className="p-2.5 rounded-full hover:bg-white/10 hover:text-white hover:scale-110 transition-all" title={t.link}>
-                                <LinkIcon size={20} />
-                            </button>
-                        </div>
-                    </div>
-
-                </form>
             </div>
-        </div>
+
+            {/* PERMANENT BOTTOM TOOLBAR */}
+            <div className="mt-8 flex flex-col items-start gap-3 w-full pb-12">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.insert}</span>
+                <div className="grid grid-cols-6 w-full gap-2">
+                    <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                        <Type size={24} />
+                        <span className="text-sm font-normal">{t.text}</span>
+                    </button>
+                    <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                        <Heading size={24} />
+                        <span className="text-sm font-normal">{t.headline}</span>
+                    </button>
+                    <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                        <ImageIcon size={24} />
+                        <span className="text-sm font-normal">{t.image}</span>
+                    </button>
+                    <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                        <Video size={24} />
+                        <span className="text-sm font-normal">{t.video}</span>
+                    </button>
+                    <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                        <FileText size={24} />
+                        <span className="text-sm font-normal">{t.pdf}</span>
+                    </button>
+                    <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-2 py-4 text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-all rounded-md shadow-sm">
+                        <LinkIcon size={24} />
+                        <span className="text-sm font-normal">{t.link}</span>
+                    </button>
+                </div>
+            </div>
+        </form >
+            </div >
+        </div >
     );
 }

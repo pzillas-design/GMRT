@@ -122,7 +122,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                                         ? 'font-bold'
                                         : 'font-normal'
                                         } ${isDarkText
-                                            ? 'text-slate-600 hover:text-gmrt-blue hover:bg-slate-50'
+                                            ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                                             : 'text-white/90 hover:text-white hover:bg-white/10'
                                         } ${isActive && isDarkText ? '!text-gmrt-blue' : ''} ${isActive && !isDarkText ? '!text-white' : ''}`}
                                 >

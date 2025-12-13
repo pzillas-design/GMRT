@@ -66,17 +66,16 @@ export function ContentRenderer({ blocks }: ContentRendererProps) {
                         );
                     case 'image':
                         return (
-                            <figure key={block.id} className="my-8 relative w-full rounded-2xl overflow-hidden shadow-sm">
-                                <div className="relative w-full aspect-[16/9] md:aspect-[21/9]">
-                                    <Image
-                                        src={block.content}
-                                        alt={block.caption || 'Blog image'}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1000px"
-                                        className="object-cover"
-                                        priority={false}
-                                    />
-                                </div>
+                            <figure key={block.id} className="my-8 relative w-full rounded-2xl overflow-hidden shadow-sm bg-slate-50">
+                                <Image
+                                    src={block.content}
+                                    alt={block.caption || 'Blog image'}
+                                    width={1200}
+                                    height={800}
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1000px"
+                                    className="w-full h-auto object-contain"
+                                    priority={false}
+                                />
                                 {block.caption && (
                                     <figcaption className="text-center text-sm text-slate-500 mt-3 italic">
                                         {block.caption}

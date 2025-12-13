@@ -59,7 +59,6 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
     const handleLoginSuccess = () => {
         setIsLoginModalOpen(false);
-        router.push(`/${lang}/news`);
         router.refresh();
     };
 

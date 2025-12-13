@@ -60,21 +60,38 @@ export async function POST(request: Request) {
             try {
                 const { put } = await import('@vercel/blob');
 
+                console.log('Attempting Vercel Blob upload...');
                 const blob = await put(filename, finalBuffer, {
                     access: 'public',
                     contentType,
                     token: process.env.BLOB_READ_WRITE_TOKEN
                 });
+                console.log('Vercel Blob upload success:', blob.url);
 
                 return NextResponse.json({ url: blob.url });
-            } catch (err) {
-                console.error('Vercel Blob upload failed (falling back to local):', err);
-                // Swallow error to allow local fallback
+            } catch (err: any) {
+                console.error('Vercel Blob upload failed:', err);
+
+                // If on Vercel, do NOT fallback to local (it will fail with EROFS)
+                // Just return the specific error
+                if (process.env.VERCEL) {
+                    return NextResponse.json(
+                        { error: `Vercel Blob Error: ${err.message || 'Unknown error'}. Check BLOB_READ_WRITE_TOKEN.` },
+                        { status: 500 }
+                    );
+                }
+                // If local (dev), allow falling back to local file system
+                console.warn('Falling back to local storage provided we are not on Vercel...');
             }
         }
         // -----------------------------------------------
 
-        // Fallback: Local Storage (Dev Mode)
+        // Fallback: Local Storage (Dev Mode ONLY)
+        if (process.env.VERCEL) {
+            console.error('Local upload attempted on Vercel environment (failed Blob backup).');
+            return NextResponse.json({ error: 'Storage configuration error. Vercel Blob token missing or invalid.' }, { status: 500 });
+        }
+
         const uploadDir = join(process.cwd(), 'public', 'uploads');
         await mkdir(uploadDir, { recursive: true });
 

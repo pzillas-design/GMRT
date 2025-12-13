@@ -23,15 +23,7 @@ export default function Footer({ dict, navDict, lang }: { dict: any, navDict: an
                         <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-sm">
                             {dict.subtitle || "German-Malaysian Round Table – Die Plattform für wirtschaftlichen und kulturellen Austausch."}
                         </p>
-                        <div className="flex gap-4">
-                            <Link
-                                href={`/${lang}/contact`}
-                                aria-label="Contact via Email"
-                                className="w-10 h-10 flex items-center justify-center bg-white/10 text-white hover:bg-gmrt-salmon hover:text-white transition-all transform hover:scale-105"
-                            >
-                                <Mail size={20} />
-                            </Link>
-                        </div>
+
                     </div>
 
                     {/* Navigation Links */}

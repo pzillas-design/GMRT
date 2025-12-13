@@ -19,7 +19,6 @@ export function EventCard({ post, lang = 'de', isAdmin }: EventCardProps) {
     const dateLocale = lang === 'en' ? 'en-US' : 'de-DE';
 
     return (
-    return (
         <div className="relative group isolate h-full bg-slate-50 transition-all duration-300 hover:bg-slate-100 active:bg-slate-200 flex flex-col border border-transparent hover:border-slate-200/50">
             <Link href={`/${lang}/posts/${post.id}`} className="cursor-pointer block flex flex-col flex-grow">
                 <div className="aspect-video w-full overflow-hidden bg-slate-100 relative">
@@ -55,6 +54,5 @@ export function EventCard({ post, lang = 'de', isAdmin }: EventCardProps) {
                 </div>
             )}
         </div>
-    );
     );
 }

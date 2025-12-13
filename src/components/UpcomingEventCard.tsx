@@ -20,7 +20,6 @@ export function UpcomingEventCard({ post, lang = 'de', isAdmin }: UpcomingEventC
     const dateLocale = lang === 'en' ? 'en-US' : 'de-DE';
 
     return (
-    return (
         <div className="relative group isolate bg-slate-50 transition-all duration-300 hover:bg-slate-100 active:bg-slate-200 flex flex-col md:flex-row min-h-[400px] border border-transparent hover:border-slate-200/50">
             <Link href={`/${lang}/posts/${post.id}`} className="w-full h-64 md:h-auto md:w-5/12 relative overflow-hidden block">
                 <div className="absolute inset-0 bg-slate-200 h-full w-full">
@@ -58,6 +57,5 @@ export function UpcomingEventCard({ post, lang = 'de', isAdmin }: UpcomingEventC
                 )}
             </div>
         </div>
-    );
     );
 }

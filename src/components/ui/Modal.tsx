@@ -24,7 +24,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/40 z-[90] flex items-center justify-center p-4"
+                        className="fixed inset-0 bg-black/40 z-[9990] flex items-center justify-center p-4"
                         onClick={onClose}
                     />
 
@@ -33,7 +33,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
                         initial={{ opacity: 0, scale: 0.95, y: 10 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none"
+                        className="fixed inset-0 z-[10000] flex items-center justify-center pointer-events-none"
                     >
                         <div
                             className="bg-white pointer-events-auto rounded-none shadow-xl w-full max-w-md border border-slate-200 overflow-hidden"

@@ -42,7 +42,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     return (
         <ToastContext.Provider value={{ addToast, success, error, info }}>
             {children}
-            <div className="fixed top-24 right-6 z-[100] flex flex-col gap-3 pointer-events-none">
+            <div className="fixed top-24 right-6 z-[20000] flex flex-col gap-3 pointer-events-none">
                 <AnimatePresence mode="popLayout">
                     {toasts.map((toast) => (
                         <motion.div
@@ -54,12 +54,12 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                         >
                             {/* Accent Line */}
                             <div className={`absolute left-0 top-0 bottom-0 w-1 ${toast.type === 'success' ? 'bg-green-500' :
-                                    toast.type === 'error' ? 'bg-red-500' : 'bg-blue-500'
+                                toast.type === 'error' ? 'bg-red-500' : 'bg-blue-500'
                                 }`} />
 
                             {/* Icon */}
                             <div className={`mt-0.5 ${toast.type === 'success' ? 'text-green-500' :
-                                    toast.type === 'error' ? 'text-red-500' : 'text-blue-500'
+                                toast.type === 'error' ? 'text-red-500' : 'text-blue-500'
                                 }`}>
                                 {toast.type === 'success' && <CheckCircle size={20} />}
                                 {toast.type === 'error' && <AlertCircle size={20} />}

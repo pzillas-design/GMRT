@@ -7,6 +7,7 @@ import { ContentBlock } from '@/types';
 import { getDictionary } from '@/get-dictionary';
 import { getPostImage } from '@/lib/blog-utils';
 import { ImageHeader } from '@/components/headers/ImageHeader';
+import { PostActions } from '@/components/PostActions';
 import { Metadata } from 'next';
 import { cookies } from 'next/headers';
 
@@ -85,15 +86,7 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
                             {post.location || 'Allgemein'}
                         </div>
                     </div>
-                    {isAdmin && (
-                        <Link
-                            href={`/${lang}/edit/${post.id}`}
-                            className="self-start bg-gmrt-salmon text-white px-6 py-2 rounded-md font-bold uppercase tracking-wider hover:bg-white hover:text-gmrt-salmon transition-colors flex items-center gap-2 shadow-sm"
-                        >
-                            <Edit2 size={16} />
-                            <span>{lang === 'de' ? 'Post bearbeiten' : 'Edit Post'}</span>
-                        </Link>
-                    )}
+                    <PostActions postId={post.id} lang={lang} isAdmin={isAdmin} />
                 </div>
             </ImageHeader>
 

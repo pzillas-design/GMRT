@@ -7,7 +7,7 @@ import { EventCard } from '@/components/EventCard';
 import { SimpleHeader } from '@/components/headers/SimpleHeader';
 import { LoadMore } from '@/components/LoadMore';
 import { getDictionary } from '@/get-dictionary';
-import { cookies } from 'next/headers';
+import { getIsAdmin } from '@/lib/auth-utils';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,8 +18,7 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
     const locationFilter = location;
     const where = locationFilter && locationFilter !== 'Alle' ? { location: locationFilter } : {};
 
-    const cookieStore = await cookies();
-    const isAdmin = cookieStore.get('gmrt_auth_token')?.value === 'authenticated';
+    const isAdmin = await getIsAdmin();
 
     const now = new Date();
     now.setHours(0, 0, 0, 0);

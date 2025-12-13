@@ -11,7 +11,7 @@ import { GridTiles } from '@/components/GridTiles';
 import { getDictionary } from '@/get-dictionary';
 import { Button } from '@/components/ui/Button';
 
-import { cookies } from 'next/headers';
+import { getIsAdmin } from '@/lib/auth-utils';
 
 export const dynamic = 'force-dynamic';
 
@@ -22,8 +22,7 @@ export default async function Home({ params, searchParams }: { params: Promise<{
   const locationFilter = location;
   const where = locationFilter && locationFilter !== 'Alle' ? { location: locationFilter } : {};
 
-  const cookieStore = await cookies();
-  const isAdmin = cookieStore.get('gmrt_auth_token')?.value === 'authenticated';
+  const isAdmin = await getIsAdmin();
 
   const posts = await prisma.post.findMany({
     where,

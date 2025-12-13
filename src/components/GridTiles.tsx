@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 
 interface GridTilesProps {
-    dict: any;
+    dict: Record<string, any>;
 }
 
 export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
@@ -14,8 +14,6 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
     const [activeIndex, setActiveIndex] = useState<number | null>(0); // Default open first one
 
     return (
-
-
 
         <section className="pt-24 pb-0 bg-gmrt-blue text-white overflow-hidden">
             {/* Dark background (Footer Blue) */}
@@ -34,7 +32,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
             {/* Full Width Grid - No Gaps, No Borders, Edge-to-Edge */}
             <div className="w-full h-auto lg:h-[600px]">
                 <div className="flex flex-col lg:flex-row h-full w-full gap-0">
-                    {items.map((item: any, index: number) => {
+                    {items.map((item: { image: string; title: string; description: string }, index: number) => {
                         const isActive = activeIndex === index;
 
                         return (

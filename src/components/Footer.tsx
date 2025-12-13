@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import { Mail, Github, Linkedin, Euro } from 'lucide-react';
-import { ObfuscatedMail } from '@/components/ObfuscatedMail';
+import { Github, Linkedin, Euro } from 'lucide-react';
 import { GmrtLogo } from '@/components/GmrtLogo';
 import React from 'react';
 import { Container } from '@/components/ui/Container';
 
-export default function Footer({ dict, navDict, lang }: { dict: any, navDict: any, lang: string }) {
+export default function Footer({ dict, navDict, lang }: { dict: Record<string, any>, navDict: Record<string, any>, lang: string }) {
     const currentYear = new Date().getFullYear();
 
     return (

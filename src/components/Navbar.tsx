@@ -12,7 +12,7 @@ import { LoginModal } from '@/components/auth/LoginModal';
 
 interface NavbarProps {
     lang: 'de' | 'en';
-    dict: any;
+    dict: Record<string, any>;
 }
 
 export default function Navbar({ lang, dict }: NavbarProps) {

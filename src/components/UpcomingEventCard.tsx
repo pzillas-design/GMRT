@@ -24,7 +24,7 @@ export function UpcomingEventCard({ post, lang = 'de', isAdmin }: UpcomingEventC
             <Link href={`/${lang}/posts/${post.id}`} className="w-full h-64 md:h-auto md:w-5/12 relative overflow-hidden block">
                 <div className="absolute inset-0 bg-slate-200 h-full w-full">
                     <Image
-                        src={(post as any).coverImage || getPostImage(post.location)}
+                        src={post.coverImage || getPostImage(post.location)}
                         alt={post.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"

@@ -12,7 +12,7 @@ export const metadata = {
 
 export default async function AboutPage({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
-    const dict: any = await getDictionary(lang as 'de' | 'en');
+    const dict: Record<string, any> = await getDictionary(lang as 'de' | 'en');
 
     return (
         <div className="bg-white text-slate-900">

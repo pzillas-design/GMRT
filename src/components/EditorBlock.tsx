@@ -167,29 +167,29 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                             </div>
                         )}
 
-                        {/* Upload State (Cleaner Design) */}
+                        {/* Upload State (Super Clean Design) */}
                         {!block.content && (
-                            <div className="bg-white rounded-xl border-2 border-dashed border-slate-300 p-12 transition-all group/upload hover:border-gmrt-blue hover:bg-slate-50 relative">
-                                <div className="flex flex-col items-center justify-center gap-4 text-center">
+                            <div className="p-8 transition-all group/upload relative">
+                                <div className="flex flex-col items-center justify-center gap-6 text-center">
                                     <label className="cursor-pointer flex flex-col items-center justify-center gap-4 group-hover/upload:scale-105 transition-transform duration-300">
                                         {isUploading ? (
-                                            <div className="flex flex-col items-center animate-pulse">
-                                                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mb-2">
+                                            <div className="flex flex-col items-center">
+                                                <div className="w-12 h-12 flex items-center justify-center mb-2">
                                                     <div className="w-6 h-6 border-2 border-slate-300 border-t-gmrt-blue rounded-full animate-spin"></div>
                                                 </div>
-                                                <span className="text-sm font-bold text-slate-500">Wird hochgeladen...</span>
+                                                <span className="text-sm font-bold text-gmrt-blue">Wird hochgeladen...</span>
                                             </div>
                                         ) : (
                                             <>
-                                                <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 group-hover/upload:text-gmrt-blue group-hover/upload:bg-blue-50 transition-colors">
-                                                    {block.type === 'image' ? <ImageIcon size={24} /> : block.type === 'video' ? <Video size={24} /> : <FileText size={24} />}
+                                                <div className="w-16 h-16 bg-white/50 rounded-2xl flex items-center justify-center text-slate-400 group-hover/upload:text-gmrt-blue group-hover/upload:bg-white transition-colors shadow-sm">
+                                                    {block.type === 'image' ? <ImageIcon size={32} strokeWidth={1.5} /> : block.type === 'video' ? <Video size={32} strokeWidth={1.5} /> : <FileText size={32} strokeWidth={1.5} />}
                                                 </div>
                                                 <div className="space-y-1">
-                                                    <span className="block font-bold text-slate-700">
+                                                    <span className="block font-bold text-slate-700 text-lg">
                                                         {block.type === 'image' ? "Bild auswählen" : block.type === 'video' ? "Video auswählen" : "PDF auswählen"}
                                                     </span>
-                                                    <span className="block text-xs text-slate-400 font-medium uppercase tracking-wider">
-                                                        Drag & Drop oder Klicken
+                                                    <span className="block text-sm text-slate-400 font-medium">
+                                                        Klicken oder hineinziehen
                                                     </span>
                                                 </div>
                                                 <input
@@ -203,16 +203,16 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                                     </label>
 
                                     {/* Video Link Option */}
-                                    {block.type === 'video' && (
-                                        <div className="w-full max-w-sm mt-6 pt-6 border-t border-slate-200/60">
+                                    {block.type === 'video' && !isUploading && (
+                                        <div className="w-full max-w-sm">
                                             <div className="relative group/link">
-                                                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within/link:text-gmrt-blue transition-colors">
+                                                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within/link:text-gmrt-blue transition-colors">
                                                     <LinkIcon size={16} />
                                                 </div>
                                                 <input
                                                     type="text"
-                                                    placeholder="YouTube / Vimeo Link..."
-                                                    className="w-full pl-10 pr-4 py-2 bg-transparent border border-slate-200 rounded-lg focus:border-gmrt-blue focus:bg-white outline-none transition-all text-sm font-medium text-slate-600 placeholder:text-slate-300 text-center"
+                                                    placeholder="Oder YouTube / Vimeo Link"
+                                                    className="w-full pl-10 pr-4 py-2 bg-white/50 border-none rounded-lg focus:bg-white focus:ring-2 focus:ring-gmrt-blue/10 outline-none transition-all text-sm font-medium text-slate-600 placeholder:text-slate-400 text-center shadow-sm"
                                                     onKeyDown={(e) => {
                                                         if (e.key === 'Enter') {
                                                             e.preventDefault();
@@ -241,25 +241,30 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                     </div>
                 )}
                 {block.type === 'link' && (
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
-                        <div className="bg-slate-50 p-3 rounded-lg text-slate-400">
-                            <LinkIcon size={20} />
+                    <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                        <div className="flex items-center gap-2 mb-2 text-slate-800 font-bold border-b border-slate-100 pb-2">
+                            <LinkIcon size={18} />
+                            <span>Link Button konfigurieren</span>
                         </div>
-                        <div className="flex-grow flex flex-col gap-1">
-                            <input
-                                type="text"
-                                value={block.caption || ''}
-                                onChange={(e) => onUpdate(block.id, { caption: e.target.value })}
-                                className="w-full font-bold text-gmrt-blue bg-transparent border-none outline-none text-base placeholder:text-slate-300 p-0"
-                                placeholder="Link Text (Button Label)"
-                            />
-                            <div className="flex items-center gap-2">
-                                <span className="text-slate-400 text-[10px] font-mono tracking-wide uppercase">URL</span>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-xs font-bold uppercase text-slate-400 mb-1">Button Text</label>
+                                <input
+                                    type="text"
+                                    value={block.caption || ''}
+                                    onChange={(e) => onUpdate(block.id, { caption: e.target.value })}
+                                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 font-medium focus:bg-white focus:border-gmrt-blue outline-none transition-colors"
+                                    placeholder="z.B. Jetzt anmelden"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-bold uppercase text-slate-400 mb-1">Ziel-URL</label>
                                 <input
                                     type="text"
                                     value={block.content}
                                     onChange={(e) => onUpdate(block.id, { content: e.target.value })}
-                                    className="w-full text-sm font-mono text-slate-600 bg-transparent border-none outline-none p-0 placeholder:text-slate-300"
+                                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-mono text-slate-600 focus:bg-white focus:border-gmrt-blue outline-none transition-colors"
                                     placeholder="https://..."
                                 />
                             </div>

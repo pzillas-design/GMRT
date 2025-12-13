@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/Button';
 import { useToast } from '@/components/ui/Toast';
 import { ConfirmationModal } from '@/components/ui/Modal';
 import { AnimatePresence, motion } from 'framer-motion';
+import { upload } from '@vercel/blob/client';
 
 interface InsertButtonProps {
     onClick: () => void;
@@ -164,24 +165,16 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
     };
 
     const handleFileUpload = async (file: File): Promise<string> => {
-        console.log('Starting upload for file:', file.name, 'Size:', file.size, 'Type:', file.type);
-        const formData = new FormData();
-        formData.append('file', file);
         try {
-            const res = await fetch('/api/upload', { method: 'POST', body: formData });
-
-            if (!res.ok) {
-                const errorText = await res.text();
-                console.error('Upload failed with status:', res.status, 'Response:', errorText);
-                throw new Error('Upload failed: ' + errorText);
-            }
-
-            const data = await res.json();
-            console.log('Upload successful, URL:', data.url);
-            return data.url;
+            const newBlob = await upload(file.name, file, {
+                access: 'public',
+                handleUploadUrl: '/api/upload/handle',
+            });
+            console.log('Upload success:', newBlob.url);
+            return newBlob.url;
         } catch (error) {
-            console.error('Upload error in catch block:', error);
-            throw error;
+            console.error('Upload failed:', error);
+            throw new Error('Upload failed: ' + (error as Error).message);
         }
     };
 

@@ -86,7 +86,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                         ease-in-out
                                         ${isActive ? 'transition-opacity duration-700 delay-300 opacity-100' : 'transition-opacity duration-500 opacity-0'}
                                     `}>
-                                        <div className="w-full">
+                                        <div className={`${isActive ? 'w-full' : 'min-w-[60vw] md:min-w-[500px]'}`}>
                                             <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">
                                                 {item.title}
                                             </h3>

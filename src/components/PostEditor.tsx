@@ -489,9 +489,8 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                             {/* Blocks */}
                             <div className="space-y-4">
                                 {blocks.length > 0 && (
-                                    <div className="h-4 group/top-insert relative z-30 flex justify-center items-center hover:h-16 transition-all duration-200 -mb-4">
-                                        <div className="absolute top-1/2 left-4 right-4 h-px bg-gmrt-blue/0 group-hover/top-insert:bg-gmrt-blue/20 transition-colors duration-300 pointer-events-none"></div>
-                                        <div className="flex items-center gap-1 bg-white border border-slate-200 shadow-xl p-1.5 px-6 rounded-full scale-0 opacity-0 group-hover/top-insert:scale-100 group-hover/top-insert:opacity-100 transition-all duration-200 relative z-30">
+                                    <div className="h-12 group/top-insert relative z-30 flex justify-center items-center hover:z-40 transition-all my-2">
+                                        <div className="flex items-center gap-1 bg-white border border-slate-200 shadow-xl p-1.5 px-6 rounded-full opacity-0 scale-95 group-hover/top-insert:opacity-100 group-hover/top-insert:scale-100 transition-all duration-200">
                                             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-2 select-none border-r border-slate-100 pr-2">{t.insert}</span>
                                             <InsertButton onClick={() => addBlock('headline', -1)} icon={Heading} label={t.headline} />
                                             <InsertButton onClick={() => addBlock('text', -1)} icon={Type} label={t.text} />

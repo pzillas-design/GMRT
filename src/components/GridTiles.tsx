@@ -30,7 +30,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
             </div>
 
             {/* Full Width Grid - No Gaps, No Borders, Edge-to-Edge */}
-            <div className="w-full h-auto lg:h-[600px]">
+            <div className="w-full h-auto lg:h-[510px]">
                 <div className="flex flex-col lg:flex-row h-full w-full gap-0">
                     {items.map((item: { image: string; title: string; description: string }, index: number) => {
                         const isActive = activeIndex === index;

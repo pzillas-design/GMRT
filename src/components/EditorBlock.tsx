@@ -39,13 +39,13 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
         <div className="group/block relative p-6 rounded-xl bg-slate-100 hover:bg-slate-200 transition-all duration-300 border border-transparent hover:shadow-sm">
 
             {/* Integrated Action Toolbar (Top Right) */}
-            <div className="absolute right-3 top-3 flex items-center gap-1 opacity-0 group-hover/block:opacity-100 transition-all duration-200 z-20 bg-white/80 backdrop-blur-sm p-1 rounded-lg border border-slate-200/50 shadow-sm translate-y-2 group-hover/block:translate-y-0">
+            <div className="absolute right-3 top-3 flex items-center gap-1 opacity-0 group-hover/block:opacity-100 transition-all duration-200 z-20 bg-white p-1 rounded-lg border border-slate-200 shadow-md translate-y-2 group-hover/block:translate-y-0">
                 <button
                     type="button"
                     onClick={() => onMove(index, 'up')}
                     disabled={isFirst}
                     title="Nach oben"
-                    className="p-1.5 hover:bg-white text-slate-400 hover:text-slate-900 rounded-md disabled:opacity-30 transition-colors"
+                    className="p-1.5 hover:bg-slate-100 text-slate-500 hover:text-slate-900 rounded-md disabled:opacity-30 transition-colors"
                 >
                     <ArrowUp size={16} />
                 </button>
@@ -54,7 +54,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                     onClick={() => onMove(index, 'down')}
                     disabled={isLast}
                     title="Nach unten"
-                    className="p-1.5 hover:bg-white text-slate-400 hover:text-slate-900 rounded-md disabled:opacity-30 transition-colors"
+                    className="p-1.5 hover:bg-slate-100 text-slate-500 hover:text-slate-900 rounded-md disabled:opacity-30 transition-colors"
                 >
                     <ArrowDown size={16} />
                 </button>
@@ -63,7 +63,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                     type="button"
                     onClick={() => onRemove(block.id)}
                     title="Löschen"
-                    className="p-1.5 hover:bg-red-50 text-slate-400 hover:text-red-500 rounded-md transition-colors"
+                    className="p-1.5 hover:bg-red-50 text-slate-500 hover:text-red-600 rounded-md transition-colors"
                 >
                     <Trash2 size={16} />
                 </button>

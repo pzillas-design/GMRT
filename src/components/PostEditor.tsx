@@ -17,7 +17,7 @@ interface InsertButtonProps {
 }
 
 const InsertButton = ({ onClick, icon: Icon, label }: InsertButtonProps) => (
-    <button type="button" onClick={onClick} className="group/btn relative p-2 hover:bg-slate-50 text-slate-400 hover:text-gmrt-blue rounded-lg transition-colors w-8 h-8 flex items-center justify-center">
+    <button type="button" onClick={onClick} className="group/btn relative p-2 hover:bg-slate-100 text-slate-500 hover:text-gmrt-blue rounded-lg transition-colors w-8 h-8 flex items-center justify-center">
         <Icon size={16} />
         <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50 shadow-sm">
             {label}
@@ -486,8 +486,8 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                 {blocks.length > 0 && (
                                     <div className="h-4 group/top-insert relative z-30 flex justify-center items-center hover:h-16 transition-all duration-200 -mb-4">
                                         <div className="absolute top-1/2 left-4 right-4 h-px bg-gmrt-blue/0 group-hover/top-insert:bg-gmrt-blue/20 transition-colors duration-300 pointer-events-none"></div>
-                                        <div className="flex items-center gap-1 bg-white border border-slate-100 shadow-lg p-1.5 px-3 rounded-xl scale-0 opacity-0 group-hover/top-insert:scale-100 group-hover/top-insert:opacity-100 transition-all duration-200 relative z-30">
-                                            <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider mr-2 select-none border-r border-slate-100 pr-2">{t.insert}</span>
+                                        <div className="flex items-center gap-1 bg-white border border-slate-200 shadow-lg p-1.5 px-3 rounded-xl scale-0 opacity-0 group-hover/top-insert:scale-100 group-hover/top-insert:opacity-100 transition-all duration-200 relative z-30">
+                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-2 select-none border-r border-slate-100 pr-2">{t.insert}</span>
                                             <InsertButton onClick={() => addBlock('headline', -1)} icon={Heading} label={t.headline} />
                                             <InsertButton onClick={() => addBlock('text', -1)} icon={Type} label={t.text} />
                                             <InsertButton onClick={() => addBlock('image', -1)} icon={ImageIcon} label={t.image} />
@@ -527,8 +527,8 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                             {/* Hover Insertion (Between) */}
                                             <div className={`absolute -bottom-8 left-0 right-0 z-20 h-16 flex justify-center items-center opacity-0 group-hover/wrapper:opacity-100 hover:opacity-100 transition-opacity`}>
                                                 <div className="absolute top-1/2 left-1/3 right-1/3 h-0.5 bg-gmrt-blue/10 pointer-events-none rounded-full"></div>
-                                                <div className="flex items-center gap-1 bg-white border border-slate-100 shadow-xl p-1.5 px-6 rounded-full scale-95 hover:scale-100 transition-transform relative z-30">
-                                                    <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider mr-2 select-none border-r border-slate-100 pr-2">{t.insert}</span>
+                                                <div className="flex items-center gap-1 bg-white border border-slate-200 shadow-xl p-1.5 px-6 rounded-full scale-95 hover:scale-100 transition-transform relative z-30">
+                                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-2 select-none border-r border-slate-100 pr-2">{t.insert}</span>
                                                     <InsertButton onClick={() => addBlock('headline', index)} icon={Heading} label={t.headline} />
                                                     <InsertButton onClick={() => addBlock('text', index)} icon={Type} label={t.text} />
                                                     <InsertButton onClick={() => addBlock('image', index)} icon={ImageIcon} label={t.image} />

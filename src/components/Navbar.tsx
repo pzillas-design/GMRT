@@ -145,7 +145,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                         {isAuthenticated ? (
                             <button
                                 onClick={() => setIsLogoutModalOpen(true)}
-                                className={`cursor-pointer p-2 rounded-full transition-colors text-gmrt-salmon ${isDarkText ? 'hover:bg-slate-100' : 'hover:bg-white/10'}`}
+                                className={`cursor-pointer p-3 rounded-full transition-colors ${isDarkText ? 'text-gmrt-salmon hover:bg-slate-50 hover:text-gmrt-blue' : 'text-gmrt-salmon hover:bg-white/10 hover:text-white'}`}
                                 title={lang === 'de' ? 'Abmelden' : 'Log out'}
                             >
                                 <LogOut size={24} />
@@ -153,7 +153,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                         ) : (
                             <button
                                 onClick={() => setIsLoginModalOpen(true)}
-                                className={`cursor-pointer p-2 rounded-full transition-colors ${isDarkText ? 'hover:bg-slate-100 hover:text-gmrt-blue' : 'hover:bg-white/10 hover:text-white'}`}
+                                className={`cursor-pointer p-3 rounded-full transition-colors ${isDarkText ? 'hover:bg-slate-50 hover:text-gmrt-blue' : 'hover:bg-white/10 hover:text-white'}`}
                                 title={lang === 'de' ? 'Anmelden' : 'Login'}
                             >
                                 <User size={24} />

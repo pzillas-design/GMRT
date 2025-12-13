@@ -48,7 +48,7 @@ export function PostActions({ postId, lang, isAdmin }: PostActionsProps) {
             <div className="flex items-center gap-3 self-start">
                 <Link
                     href={`/${lang}/edit/${postId}`}
-                    className="bg-gmrt-salmon text-white px-6 py-2 rounded-md font-bold uppercase tracking-wider hover:bg-white hover:text-gmrt-salmon transition-colors flex items-center gap-2 shadow-sm"
+                    className="bg-gradient-to-r from-gmrt-salmon to-gmrt-logo text-white px-6 py-2 rounded-md font-bold uppercase tracking-wider hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm"
                 >
                     <Edit2 size={16} />
                     <span>{lang === 'de' ? 'Bearbeiten' : 'Edit'}</span>
@@ -61,7 +61,7 @@ export function PostActions({ postId, lang, isAdmin }: PostActionsProps) {
                     <Trash2 size={16} />
                     <span>{lang === 'de' ? 'Löschen' : 'Delete'}</span>
                 </button>
-            </div>
+            </div >
 
             <ConfirmationModal
                 isOpen={isDeleteModalOpen}

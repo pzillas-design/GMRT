@@ -17,7 +17,7 @@ export const Hero: React.FC<HeroProps> = ({ dict, lang = 'de' }) => {
     };
 
     return (
-        <div className="relative h-[55vh] min-h-[450px] md:h-[700px] w-full flex items-center">
+        <div className="relative h-[65vh] min-h-[550px] md:h-[700px] w-full flex items-center">
             {/* Background Image - Skyline */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -31,7 +31,7 @@ export const Hero: React.FC<HeroProps> = ({ dict, lang = 'de' }) => {
                 <div className="absolute inset-0 bg-black/30"></div>
             </div>
 
-            <div className="relative z-10 w-full pt-32 md:pt-40">
+            <div className="relative z-10 w-full pt-28 md:pt-40">
                 <Container size="xl">
                     <div className="max-w-5xl">
                         <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tight">

@@ -176,59 +176,66 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
             {/* Mobile Menu Overlay */}
             {isOpen && (
-                <div className="absolute top-full left-0 w-full bg-white border-t border-slate-100 py-4 px-6 md:hidden shadow-xl">
-                    <div className="flex flex-col gap-4 divide-y divide-slate-100">
-                        {navItems.map((item) => {
-                            const isActive = pathname === item.href || (item.href !== `/${lang}` && pathname.startsWith(item.href));
-                            return (
-                                <Link
-                                    key={item.label}
-                                    href={item.href}
-                                    onClick={() => setIsOpen(false)}
-                                    className={`text-2xl py-3 ${isActive
-                                        ? 'font-bold text-gmrt-blue pl-2 border-l-4 border-l-gmrt-salmon'
-                                        : 'font-light text-slate-600 hover:text-gmrt-blue'
-                                        }`}
-                                >
-                                    {item.label}
-                                </Link>
-                            );
-                        })}
-                        {/* Mobile Auth Button */}
-                        <div className="pt-4">
-                            {isAuthenticated ? (
-                                <button
-                                    onClick={() => {
-                                        setIsLogoutModalOpen(true); // Modal handles logic
-                                        setIsOpen(false);
-                                    }}
-                                    className="w-full flex items-center gap-3 text-lg font-medium text-gmrt-salmon px-2 py-2 hover:bg-slate-50 rounded-lg transition-colors"
-                                >
-                                    <LogOut size={22} />
-                                    <span>{lang === 'de' ? 'Abmelden' : 'Log out'}</span>
-                                </button>
-                            ) : (
-                                <button
-                                    onClick={() => {
-                                        setIsLoginModalOpen(true);
-                                        setIsOpen(false);
-                                    }}
-                                    className="w-full flex items-center gap-3 text-lg font-medium text-slate-700 px-2 py-2 hover:bg-slate-50 rounded-lg transition-colors"
-                                >
-                                    <User size={22} />
-                                    <span>{lang === 'de' ? 'Anmelden' : 'Login'}</span>
-                                </button>
-                            )}
-                        </div>
-
-                        <button onClick={() => { toggleLanguage(); setIsOpen(false); }} className="text-xl py-3 font-medium text-slate-600 hover:text-gmrt-blue flex items-center gap-4 pt-4">
-                            <div className="flex bg-slate-100 rounded-lg p-1">
-                                <span className={`px-3 py-1 rounded-md ${lang === 'de' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>DE</span>
-                                <span className={`px-3 py-1 rounded-md ${lang === 'en' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>EN</span>
+                <>
+                    {/* Backdrop to close menu */}
+                    <div
+                        className="fixed inset-0 bg-black/20 md:hidden z-[-1]"
+                        onClick={() => setIsOpen(false)}
+                    />
+                    <div className="absolute top-full left-0 w-full bg-white border-t border-slate-100 py-4 px-6 md:hidden shadow-xl z-50">
+                        <div className="flex flex-col gap-4 divide-y divide-slate-100">
+                            {navItems.map((item) => {
+                                const isActive = pathname === item.href || (item.href !== `/${lang}` && pathname.startsWith(item.href));
+                                return (
+                                    <Link
+                                        key={item.label}
+                                        href={item.href}
+                                        onClick={() => setIsOpen(false)}
+                                        className={`text-2xl py-3 ${isActive
+                                            ? 'font-bold text-gmrt-blue pl-2 border-l-4 border-l-gmrt-salmon'
+                                            : 'font-light text-slate-600 hover:text-gmrt-blue'
+                                            }`}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                );
+                            })}
+                            {/* Mobile Auth Button */}
+                            <div className="pt-4">
+                                {isAuthenticated ? (
+                                    <button
+                                        onClick={() => {
+                                            setIsLogoutModalOpen(true); // Modal handles logic
+                                            setIsOpen(false);
+                                        }}
+                                        className="w-full flex items-center gap-3 text-lg font-medium text-gmrt-salmon px-2 py-2 hover:bg-slate-50 rounded-lg transition-colors"
+                                    >
+                                        <LogOut size={22} />
+                                        <span>{lang === 'de' ? 'Abmelden' : 'Log out'}</span>
+                                    </button>
+                                ) : (
+                                    <button
+                                        onClick={() => {
+                                            setIsLoginModalOpen(true);
+                                            setIsOpen(false);
+                                        }}
+                                        className="w-full flex items-center gap-3 text-lg font-medium text-slate-700 px-2 py-2 hover:bg-slate-50 rounded-lg transition-colors"
+                                    >
+                                        <User size={22} />
+                                        <span>{lang === 'de' ? 'Anmelden' : 'Login'}</span>
+                                    </button>
+                                )}
                             </div>
-                        </button>
+
+                            <button onClick={() => { toggleLanguage(); setIsOpen(false); }} className="text-xl py-3 font-medium text-slate-600 hover:text-gmrt-blue flex items-center gap-4 pt-4">
+                                <div className="flex bg-slate-100 rounded-lg p-1">
+                                    <span className={`px-3 py-1 rounded-md ${lang === 'de' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>DE</span>
+                                    <span className={`px-3 py-1 rounded-md ${lang === 'en' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>EN</span>
+                                </div>
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </>
             )}
         </nav>
     );

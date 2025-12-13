@@ -55,10 +55,11 @@ export function PostActions({ postId, lang, isAdmin }: PostActionsProps) {
                 </Link>
                 <button
                     onClick={() => setIsDeleteModalOpen(true)}
-                    className="bg-slate-100 text-slate-500 px-4 py-2 rounded-md font-bold uppercase tracking-wider hover:bg-slate-200 hover:text-red-600 transition-colors flex items-center gap-2 shadow-sm"
+                    className="bg-slate-100 text-slate-500 px-6 py-2 rounded-md font-bold uppercase tracking-wider hover:bg-slate-200 hover:text-red-600 transition-colors flex items-center gap-2 shadow-sm"
                     title={lang === 'de' ? 'Löschen' : 'Delete'}
                 >
                     <Trash2 size={16} />
+                    <span>{lang === 'de' ? 'Löschen' : 'Delete'}</span>
                 </button>
             </div>
 

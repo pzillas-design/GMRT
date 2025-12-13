@@ -72,12 +72,12 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
 
                                     {/* 1. Collapsed Label (Centered) - Fades Out */}
                                     <div className={`
-                                        absolute inset-0 flex items-center justify-start pl-10 md:pl-16 pb-0 lg:justify-center lg:pl-0 lg:items-end lg:pb-12
+                                        absolute inset-0 flex items-center justify-start pl-10 md:pl-16 pb-0 lg:block
                                         transition-opacity duration-500 ease-in-out
                                         ${isActive ? 'opacity-0 duration-200' : 'opacity-100 delay-200'}
                                     `}>
-                                        <h3 className="flex items-center gap-3 text-2xl font-semibold text-white tracking-wide whitespace-nowrap lg:-rotate-90 origin-center lg:translate-y-[-1rem]">
-                                            <Plus className="text-gmrt-salmon w-6 h-6" />
+                                        <h3 className="flex items-center gap-3 text-2xl font-semibold text-white tracking-wide whitespace-nowrap lg:absolute lg:left-1/2 lg:bottom-24 lg:origin-[1rem_50%] lg:-translate-x-[1rem] lg:-rotate-90">
+                                            <Plus className="text-gmrt-salmon w-6 h-6 md:w-8 md:h-8 shrink-0" />
                                             {item.title}
                                         </h3>
                                     </div>
@@ -90,7 +90,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                     `}>
                                         <div className={`${isActive ? 'w-full' : 'min-w-[60vw] md:min-w-[500px]'}`}>
                                             <h3 className="flex items-center gap-3 text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">
-                                                <Minus className="text-gmrt-salmon w-6 h-6 md:w-8 md:h-8" />
+                                                <Minus className="text-gmrt-salmon w-6 h-6 md:w-8 md:h-8 lg:hidden shrink-0" />
                                                 {item.title}
                                             </h3>
                                             <p className="text-slate-200 text-lg md:text-xl leading-relaxed">

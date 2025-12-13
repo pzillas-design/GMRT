@@ -423,7 +423,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                         type="text"
                                         value={title}
                                         onChange={(e) => setTitle(e.target.value)}
-                                        className="w-full text-4xl font-extrabold text-slate-900 placeholder:text-slate-300 placeholder:font-bold bg-slate-100 border-none hover:bg-slate-200 focus:bg-white focus:ring-2 focus:ring-gmrt-blue/10 p-4 rounded-xl leading-tight transition-all outline-none"
+                                        className="w-full text-4xl font-extrabold text-slate-900 placeholder:text-slate-400 placeholder:font-bold bg-slate-100 border-none hover:bg-slate-200 focus:bg-white focus:ring-2 focus:ring-gmrt-blue/10 p-4 rounded-xl leading-tight transition-all outline-none"
                                         placeholder={lang === 'de' ? 'Titel des Beitrags' : 'Post Title'}
                                         required
                                     />
@@ -434,13 +434,13 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 pl-1">Datum</label>
                                         <div className="flex gap-3">
                                             <div className="flex-1">
-                                                <input type="number" value={day} onChange={(e) => setDay(e.target.value)} placeholder="DD" className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={day} onChange={(e) => setDay(e.target.value)} placeholder={lang === 'de' ? 'TT' : 'DD'} className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                             <div className="flex-1">
-                                                <input type="number" value={month} onChange={(e) => setMonth(e.target.value)} placeholder="MM" className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={month} onChange={(e) => setMonth(e.target.value)} placeholder="MM" className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                             <div className="flex-[1.5]">
-                                                <input type="number" value={year} onChange={(e) => setYear(e.target.value)} placeholder="YYYY" className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={year} onChange={(e) => setYear(e.target.value)} placeholder={lang === 'de' ? 'JJJJ' : 'YYYY'} className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                         </div>
                                     </div>

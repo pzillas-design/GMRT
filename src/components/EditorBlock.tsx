@@ -74,7 +74,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                     <textarea
                         value={block.content}
                         onChange={(e) => onUpdate(block.id, { content: e.target.value })}
-                        className="w-full text-3xl font-extrabold px-0 py-2 bg-transparent border-none focus:ring-0 outline-none placeholder:text-slate-300 placeholder:font-bold text-slate-900 resize-none overflow-hidden"
+                        className="w-full text-3xl font-extrabold px-0 py-2 bg-transparent border-none focus:ring-0 outline-none placeholder:text-slate-400 placeholder:font-bold text-slate-900 resize-none overflow-hidden"
                         placeholder="Überschrift..."
                         rows={1}
                         style={{ fieldSizing: "content" } as any}
@@ -89,7 +89,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                     <textarea
                         value={block.content}
                         onChange={(e) => onUpdate(block.id, { content: e.target.value })}
-                        className="w-full min-h-[50px] px-0 py-2 bg-transparent border-none focus:ring-0 outline-none resize-none text-slate-600 text-lg leading-relaxed placeholder:text-slate-300 font-medium tracking-wide overflow-hidden"
+                        className="w-full min-h-[50px] px-0 py-2 bg-transparent border-none focus:ring-0 outline-none resize-none text-slate-600 text-lg leading-relaxed placeholder:text-slate-400 font-medium tracking-wide overflow-hidden"
                         placeholder="Schreiben Sie etwas..."
                         rows={1}
                         style={{ fieldSizing: "content" } as any}

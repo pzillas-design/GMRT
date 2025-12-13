@@ -113,37 +113,53 @@ export function ContentRenderer({ blocks }: ContentRendererProps) {
                         );
                     case 'pdf':
                         return (
-                            <div key={block.id} className="my-6">
+                            <div key={block.id} className="my-8">
                                 <a
                                     href={block.content}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white hover:border-gmrt-blue/30 hover:shadow-sm transition-all group"
+                                    className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 bg-white hover:border-gmrt-blue/50 hover:shadow-md transition-all group no-underline"
                                 >
-                                    <div className="p-3 bg-white rounded-lg border border-slate-100 group-hover:border-gmrt-blue/20 text-gmrt-salmon">
+                                    <div className="w-12 h-12 flex items-center justify-center bg-red-50 text-red-500 rounded-lg group-hover:scale-110 transition-transform duration-300">
                                         <FileText size={24} />
                                     </div>
-                                    <div className="flex-grow">
-                                        <h3 className="font-semibold text-slate-800 group-hover:text-gmrt-blue transition-colors">
-                                            {block.caption || 'PDF Dokument herunterladen'}
+                                    <div className="flex-grow min-w-0">
+                                        <h3 className="font-bold text-slate-800 text-base group-hover:text-gmrt-blue transition-colors truncate pr-4">
+                                            {block.caption || 'PDF Dokument ansehen'}
                                         </h3>
-                                        <p className="text-sm text-slate-500">Klicken zum Öffnen</p>
+                                        <span className="text-sm text-slate-400 font-medium">
+                                            PDF • Klicken zum Öffnen
+                                        </span>
                                     </div>
-                                    <ExternalLink size={20} className="text-slate-400 group-hover:text-gmrt-blue" />
+                                    <div className="hidden sm:flex items-center justify-center w-8 h-8 text-slate-300 group-hover:translate-x-1 group-hover:text-gmrt-blue transition-all">
+                                        <ExternalLink size={20} />
+                                    </div>
                                 </a>
                             </div>
                         );
                     case 'link':
                         return (
-                            <div key={block.id} className="my-6">
+                            <div key={block.id} className="my-8">
                                 <a
                                     href={block.content}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-gmrt-blue text-white rounded-full font-medium hover:bg-gmrt-logo transition-all shadow-sm hover:shadow-md"
+                                    className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 bg-white hover:border-gmrt-blue/50 hover:shadow-md transition-all group no-underline"
                                 >
-                                    <LinkIcon size={18} />
-                                    {block.caption || 'Link öffnen'}
+                                    <div className="w-12 h-12 flex items-center justify-center bg-slate-50 text-slate-500 rounded-lg group-hover:text-gmrt-blue group-hover:bg-blue-50 transition-colors duration-300">
+                                        <LinkIcon size={24} />
+                                    </div>
+                                    <div className="flex-grow min-w-0">
+                                        <h3 className="font-bold text-slate-800 text-base group-hover:text-gmrt-blue transition-colors truncate pr-4">
+                                            {block.caption || 'Link öffnen'}
+                                        </h3>
+                                        <span className="text-sm text-slate-400 font-medium truncate block font-mono opacity-80">
+                                            {block.content.replace(/^https?:\/\//, '')}
+                                        </span>
+                                    </div>
+                                    <div className="px-4 py-2 bg-slate-100 text-slate-600 rounded-lg text-sm font-bold group-hover:bg-gmrt-blue group-hover:text-white transition-colors">
+                                        Öffnen
+                                    </div>
                                 </a>
                             </div>
                         );

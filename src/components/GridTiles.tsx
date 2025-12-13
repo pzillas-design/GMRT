@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { Plus, Minus } from 'lucide-react';
 
 
 
@@ -71,11 +72,12 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
 
                                     {/* 1. Collapsed Label (Centered) - Fades Out */}
                                     <div className={`
-                                        absolute inset-0 flex items-center justify-start pl-10 md:pl-16 pb-0 lg:justify-start lg:pl-10 lg:items-end lg:pb-12
+                                        absolute inset-0 flex items-center justify-start pl-10 md:pl-16 pb-0 lg:justify-center lg:pl-0 lg:items-end lg:pb-12
                                         transition-opacity duration-500 ease-in-out
                                         ${isActive ? 'opacity-0 duration-200' : 'opacity-100 delay-200'}
                                     `}>
-                                        <h3 className="text-2xl font-semibold text-white tracking-wide whitespace-nowrap lg:-rotate-90 origin-center lg:translate-y-[-1rem]">
+                                        <h3 className="flex items-center gap-3 text-2xl font-semibold text-white tracking-wide whitespace-nowrap lg:-rotate-90 origin-center lg:translate-y-[-1rem]">
+                                            <Plus className="text-gmrt-salmon w-6 h-6" />
                                             {item.title}
                                         </h3>
                                     </div>
@@ -87,7 +89,8 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                         ${isActive ? 'transition-opacity duration-700 delay-300 opacity-100' : 'transition-opacity duration-500 opacity-0'}
                                     `}>
                                         <div className={`${isActive ? 'w-full' : 'min-w-[60vw] md:min-w-[500px]'}`}>
-                                            <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                                            <h3 className="flex items-center gap-3 text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                                                <Minus className="text-gmrt-salmon w-6 h-6 md:w-8 md:h-8" />
                                                 {item.title}
                                             </h3>
                                             <p className="text-slate-200 text-lg md:text-xl leading-relaxed">

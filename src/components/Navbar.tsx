@@ -118,15 +118,17 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                                 <Link
                                     key={item.label}
                                     href={item.href}
-                                    className={`px-5 py-2 rounded-t-lg text-lg tracking-wide transition-all border-b-2 ${isActive
-                                        ? 'font-bold border-gmrt-salmon'
-                                        : 'font-normal border-transparent'
+                                    className={`px-5 py-2 rounded-lg text-lg tracking-wide transition-all ${isActive
+                                        ? 'font-bold'
+                                        : 'font-normal'
                                         } ${isDarkText
-                                            ? (isActive ? 'text-gmrt-blue' : 'text-slate-600 hover:text-gmrt-salmon hover:bg-slate-50')
-                                            : (isActive ? 'text-white' : 'text-white/90 hover:text-gmrt-salmon hover:bg-white/10')
-                                        }`}
+                                            ? 'text-slate-600 hover:text-gmrt-blue hover:bg-slate-50'
+                                            : 'text-white/90 hover:text-white hover:bg-white/10'
+                                        } ${isActive && isDarkText ? '!text-gmrt-blue' : ''} ${isActive && !isDarkText ? '!text-white' : ''}`}
                                 >
-                                    {item.label}
+                                    <span className={`pb-1 border-b-2 ${isActive ? 'border-gmrt-salmon' : 'border-transparent'}`}>
+                                        {item.label}
+                                    </span>
                                 </Link>
                             );
                         })}
@@ -134,7 +136,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
                     {/* Icons / Actions */}
                     <div className={`hidden md:flex items-center space-x-4 ${isDarkText ? 'text-slate-600' : 'text-white/90'}`}>
-                        <button onClick={toggleLanguage} className={`px-3 py-2 rounded-lg cursor-pointer text-base font-medium flex items-center gap-1 transition-colors ${isDarkText ? 'hover:bg-slate-50' : 'hover:bg-white/10'} hover:text-gmrt-salmon`}>
+                        <button onClick={toggleLanguage} className={`px-3 py-2 rounded-lg cursor-pointer text-base font-medium flex items-center gap-1 transition-colors ${isDarkText ? 'hover:bg-slate-50 hover:text-gmrt-blue' : 'hover:bg-white/10 hover:text-white'}`}>
                             <span className={lang === 'de' ? 'font-bold' : 'opacity-70'}>DE</span>
                             <span className="opacity-50">|</span>
                             <span className={lang === 'en' ? 'font-bold' : 'opacity-70'}>EN</span>
@@ -151,7 +153,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                         ) : (
                             <button
                                 onClick={() => setIsLoginModalOpen(true)}
-                                className={`cursor-pointer p-2 rounded-full transition-colors hover:text-gmrt-salmon ${isDarkText ? 'hover:bg-slate-100' : 'hover:bg-white/10'}`}
+                                className={`cursor-pointer p-2 rounded-full transition-colors ${isDarkText ? 'hover:bg-slate-100 hover:text-gmrt-blue' : 'hover:bg-white/10 hover:text-white'}`}
                                 title={lang === 'de' ? 'Anmelden' : 'Login'}
                             >
                                 <User size={24} />

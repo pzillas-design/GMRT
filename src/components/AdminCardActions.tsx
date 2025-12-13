@@ -51,7 +51,7 @@ export const AdminCardActions = ({ postId, lang = 'de' }: AdminCardActionsProps)
                 isDanger
                 isLoading={isDeleting}
             />
-            <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-slate-200/60 relative z-20" onClick={(e) => e.preventDefault()}>
+            <div className="grid grid-cols-2 gap-3 mt-4 pt-4 relative z-20" onClick={(e) => e.preventDefault()}>
                 <Link
                     href={`/${lang}/edit/${postId}`}
                     className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-bold text-sm uppercase tracking-wide bg-gradient-to-r from-gmrt-salmon to-gmrt-logo text-white hover:opacity-90 shadow-sm transition-all"
@@ -67,7 +67,7 @@ export const AdminCardActions = ({ postId, lang = 'de' }: AdminCardActionsProps)
                         e.stopPropagation();
                         setIsDeleteModalOpen(true);
                     }}
-                    className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-bold text-sm uppercase tracking-wide bg-slate-100 text-slate-500 hover:bg-red-50 hover:text-red-500 transition-all"
+                    className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-bold text-sm uppercase tracking-wide bg-slate-100 text-slate-500 hover:bg-white hover:text-slate-900 transition-all"
                     title={lang === 'de' ? 'Löschen' : 'Delete'}
                 >
                     <Trash2 size={16} />

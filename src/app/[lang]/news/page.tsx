@@ -148,6 +148,7 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
                                         lang={lang}
                                         location={locationFilter}
                                         type="past"
+                                        isAdmin={isAdmin}
                                     />
                                 </>
                             )}

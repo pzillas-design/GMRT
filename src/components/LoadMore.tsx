@@ -10,9 +10,10 @@ interface LoadMoreProps {
     lang: string;
     location?: string;
     type: 'upcoming' | 'past';
+    isAdmin?: boolean;
 }
 
-export function LoadMore({ initialPage = 1, lang, location, type }: LoadMoreProps) {
+export function LoadMore({ initialPage = 1, lang, location, type, isAdmin }: LoadMoreProps) {
     const [posts, setPosts] = useState<any[]>([]);
     const [page, setPage] = useState(initialPage);
     const [hasMore, setHasMore] = useState(true);
@@ -60,7 +61,7 @@ export function LoadMore({ initialPage = 1, lang, location, type }: LoadMoreProp
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
                 {posts.map((post: any) => (
-                    <EventCard key={post.id} post={post} lang={lang} />
+                    <EventCard key={post.id} post={post} lang={lang} isAdmin={isAdmin} />
                 ))}
             </div>
 

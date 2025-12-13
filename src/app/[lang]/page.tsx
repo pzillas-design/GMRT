@@ -11,6 +11,8 @@ import { GridTiles } from '@/components/GridTiles';
 import { getDictionary } from '@/get-dictionary';
 import { Button } from '@/components/ui/Button';
 
+import { cookies } from 'next/headers';
+
 export const dynamic = 'force-dynamic';
 
 export default async function Home({ params, searchParams }: { params: Promise<{ lang: string }>, searchParams: Promise<{ location?: string }> }) {
@@ -19,6 +21,9 @@ export default async function Home({ params, searchParams }: { params: Promise<{
   const { location } = await searchParams;
   const locationFilter = location;
   const where = locationFilter && locationFilter !== 'Alle' ? { location: locationFilter } : {};
+
+  const cookieStore = await cookies();
+  const isAdmin = cookieStore.get('gmrt_auth_token')?.value === 'authenticated';
 
   const posts = await prisma.post.findMany({
     where,
@@ -52,7 +57,7 @@ export default async function Home({ params, searchParams }: { params: Promise<{
 
               <div className="flex flex-col gap-12 mb-12">
                 {upcomingPosts.map((post: any) => (
-                  <UpcomingEventCard key={post.id} post={post} />
+                  <UpcomingEventCard key={post.id} post={post} isAdmin={isAdmin} />
                 ))}
               </div>
 

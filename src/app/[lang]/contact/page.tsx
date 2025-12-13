@@ -14,7 +14,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
             <PageHero
                 title={dict.contact.title}
                 subtitle={dict.contact.subtitle}
-                imageSrc="/uploads/about-hero-hq.jpg"
+                imageSrc="/images/contact-header.webp"
             />
 
             <div className="max-w-[1400px] mx-auto px-6 md:px-12 -mt-16 relative z-10">

@@ -118,12 +118,12 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                                 <Link
                                     key={item.label}
                                     href={item.href}
-                                    className={`px-4 py-2 rounded-lg text-lg tracking-wide transition-all ${isActive
-                                        ? 'font-bold'
-                                        : 'font-normal'
+                                    className={`px-5 py-2 rounded-t-lg text-lg tracking-wide transition-all border-b-2 ${isActive
+                                        ? 'font-bold border-gmrt-salmon'
+                                        : 'font-normal border-transparent'
                                         } ${isDarkText
-                                            ? (isActive ? 'text-gmrt-blue bg-slate-50' : 'text-slate-600 hover:text-gmrt-salmon hover:bg-slate-50')
-                                            : (isActive ? 'text-white bg-white/10' : 'text-white/90 hover:text-gmrt-salmon hover:bg-white/10')
+                                            ? (isActive ? 'text-gmrt-blue' : 'text-slate-600 hover:text-gmrt-salmon hover:bg-slate-50')
+                                            : (isActive ? 'text-white' : 'text-white/90 hover:text-gmrt-salmon hover:bg-white/10')
                                         }`}
                                 >
                                     {item.label}

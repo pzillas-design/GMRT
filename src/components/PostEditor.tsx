@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Image as ImageIcon, Type, Video, FileText, Link as LinkIcon, Heading, Trash2, Wand2 } from 'lucide-react';
+import { ArrowLeft, Image as ImageIcon, Type, Video, FileText, Link as LinkIcon, Heading, Trash2, Upload } from 'lucide-react';
 import { ContentBlock, ContentBlockType } from '@/types';
 import { EditorBlock } from './EditorBlock';
 import { Button } from '@/components/ui/Button';
@@ -389,7 +389,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                             onClick={() => fileInputRef.current?.click()}
                                             className="bg-white text-slate-700 px-4 py-2 rounded-lg shadow-sm font-bold text-sm hover:bg-gmrt-blue hover:text-white transition-colors flex items-center gap-2"
                                         >
-                                            <Wand2 size={16} />
+                                            <Upload size={16} />
                                             {lang === 'de' ? 'Bild ändern' : 'Change Image'}
                                         </button>
                                     </div>

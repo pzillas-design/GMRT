@@ -17,7 +17,7 @@ export const Hero: React.FC<HeroProps> = ({ dict, lang = 'de' }) => {
     };
 
     return (
-        <div className="relative h-[700px] w-full flex items-center">
+        <div className="relative h-[55vh] min-h-[450px] md:h-[700px] w-full flex items-center">
             {/* Background Image - Skyline */}
             <div className="absolute inset-0 z-0">
                 <Image

@@ -177,7 +177,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
             {/* Mobile Menu Overlay */}
             {isOpen && (
                 <div className="absolute top-full left-0 w-full bg-white border-t border-slate-100 py-4 px-6 md:hidden shadow-xl">
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-4 divide-y divide-slate-100">
                         {navItems.map((item) => {
                             const isActive = pathname === item.href || (item.href !== `/${lang}` && pathname.startsWith(item.href));
                             return (
@@ -185,7 +185,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                                     key={item.label}
                                     href={item.href}
                                     onClick={() => setIsOpen(false)}
-                                    className={`text-2xl py-2 border-b border-slate-50 last:border-0 ${isActive
+                                    className={`text-2xl py-3 ${isActive
                                         ? 'font-bold text-gmrt-blue pl-2 border-l-4 border-l-gmrt-salmon'
                                         : 'font-light text-slate-600 hover:text-gmrt-blue'
                                         }`}
@@ -195,13 +195,11 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                             );
                         })}
                         {/* Mobile Auth Button */}
-                        <div className="border-t border-slate-100 pt-4 mt-2">
+                        <div className="pt-4">
                             {isAuthenticated ? (
                                 <button
                                     onClick={() => {
                                         setIsLogoutModalOpen(true); // Modal handles logic
-                                        // keeping menu open? No, modal is overlay.
-                                        // Menu is z-50? Modal is z-90. Ideally close menu.
                                         setIsOpen(false);
                                     }}
                                     className="w-full flex items-center gap-3 text-lg font-medium text-gmrt-salmon px-2 py-2 hover:bg-slate-50 rounded-lg transition-colors"
@@ -223,7 +221,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                             )}
                         </div>
 
-                        <button onClick={() => { toggleLanguage(); setIsOpen(false); }} className="text-xl py-3 font-medium text-slate-600 hover:text-gmrt-blue flex items-center gap-4 border-t border-slate-100 pt-4">
+                        <button onClick={() => { toggleLanguage(); setIsOpen(false); }} className="text-xl py-3 font-medium text-slate-600 hover:text-gmrt-blue flex items-center gap-4 pt-4">
                             <div className="flex bg-slate-100 rounded-lg p-1">
                                 <span className={`px-3 py-1 rounded-md ${lang === 'de' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>DE</span>
                                 <span className={`px-3 py-1 rounded-md ${lang === 'en' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>EN</span>

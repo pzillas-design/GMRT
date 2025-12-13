@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 export async function GET(
     request: Request,
@@ -27,6 +28,13 @@ export async function PUT(
     { params }: { params: Promise<{ id: string }> }
 ) {
     try {
+        const cookieStore = await cookies();
+        const authToken = cookieStore.get('gmrt_auth_token');
+
+        if (authToken?.value !== 'authenticated') {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
         // Parse payload
         const { id } = await params;
         const body = await request.json();
@@ -68,6 +76,13 @@ export async function DELETE(
     { params }: { params: Promise<{ id: string }> }
 ) {
     try {
+        const cookieStore = await cookies();
+        const authToken = cookieStore.get('gmrt_auth_token');
+
+        if (authToken?.value !== 'authenticated') {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
         const { id } = await params;
         await prisma.post.delete({
             where: { id: parseInt(id) },

@@ -12,10 +12,18 @@ interface ModalProps {
     children: React.ReactNode;
 }
 
-export function Modal({ isOpen, onClose, title, children }: ModalProps) {
-    if (!isOpen) return null;
+import { createPortal } from 'react-dom';
 
-    return (
+export function Modal({ isOpen, onClose, title, children }: ModalProps) {
+    const [mounted, setMounted] = React.useState(false);
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
+
+    return createPortal(
         <AnimatePresence>
             {isOpen && (
                 <>
@@ -55,7 +63,8 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
                     </motion.div>
                 </>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
     );
 }
 

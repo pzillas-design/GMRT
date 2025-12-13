@@ -75,6 +75,7 @@ export function ContentRenderer({ blocks }: ContentRendererProps) {
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1000px"
                                     className="w-full h-auto object-contain block"
                                     priority={false}
+                                    unoptimized
                                 />
                                 {block.caption && (
                                     <figcaption className="w-full bg-slate-50 p-4 md:p-6 text-left border-t border-slate-100">

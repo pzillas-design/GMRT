@@ -337,11 +337,20 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
             />
 
             {/* Top Bar */}
-            <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-3 flex items-center justify-between">
-                <Button variant="ghost" onClick={() => router.back()} icon={<ArrowLeft size={18} />}>
-                    {t.back}
-                </Button>
-                <div className="flex gap-2">
+            <div className="sticky top-0 z-50 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-sm">
+                <button
+                    onClick={() => router.back()}
+                    className="flex items-center gap-2 text-slate-500 hover:text-slate-900 transition-colors font-medium"
+                >
+                    <ArrowLeft size={20} />
+                    <span>{t.back}</span>
+                </button>
+
+                <h1 className="hidden md:block absolute left-1/2 -translate-x-1/2 font-bold text-lg text-slate-800">
+                    {lang === 'de' ? 'Beitrag erstellen' : 'Create Post'}
+                </h1>
+
+                <div className="flex items-center gap-3">
                     {isEditing && postId && (
                         <Button variant="ghost" onClick={() => setIsDeleteModalOpen(true)} disabled={isSaving} className="text-red-500 hover:text-red-600 hover:bg-red-50 px-4">
                             <Trash2 size={18} className="mr-2" />

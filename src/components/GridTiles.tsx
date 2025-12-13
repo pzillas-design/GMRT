@@ -71,7 +71,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
 
                                     {/* 1. Collapsed Label (Centered) - Fades Out */}
                                     <div className={`
-                                        absolute inset-0 flex items-center justify-center pb-0 lg:items-end lg:pb-12
+                                        absolute inset-0 flex items-center justify-start pl-10 md:pl-16 pb-0 lg:justify-center lg:pl-0 lg:items-end lg:pb-12
                                         transition-opacity duration-500 ease-in-out
                                         ${isActive ? 'opacity-0 duration-200' : 'opacity-100 delay-200'}
                                     `}>

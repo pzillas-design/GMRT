@@ -71,21 +71,22 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                 {/* Content Wrapper */}
                                 <div className="absolute inset-0 pointer-events-none">
 
-                                    {/* 1. Collapsed Label (Rotated) - Fades Out */}
+                                    {/* 1. Collapsed Label (Centered) - Fades Out */}
                                     <div className={`
-                                        absolute bottom-6 left-6 origin-bottom-left -rotate-90 whitespace-nowrap
-                                        text-2xl font-bold text-white tracking-widest
+                                        absolute inset-0 flex items-center justify-center
                                         transition-opacity duration-500 ease-in-out
-                                        ${isActive ? 'opacity-0' : 'opacity-100 delay-200'}
+                                        ${isActive ? 'opacity-0 duration-200' : 'opacity-100 delay-200'}
                                     `}>
-                                        {item.title}
+                                        <h3 className="text-2xl font-bold text-white tracking-widest whitespace-nowrap lg:-rotate-90 uppercase">
+                                            {item.title}
+                                        </h3>
                                     </div>
 
                                     {/* 2. Expanded Content (Title + Description) - Fades In */}
                                     <div className={`
                                         absolute inset-0 p-8 md:p-12 flex flex-col justify-end
-                                        transition-opacity duration-700 ease-in-out
-                                        ${isActive ? 'opacity-100 delay-300' : 'opacity-0'}
+                                        ease-in-out
+                                        ${isActive ? 'transition-opacity duration-700 delay-300 opacity-100' : 'transition-opacity duration-200 opacity-0'}
                                     `}>
                                         <div className="max-w-xl">
                                             <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">

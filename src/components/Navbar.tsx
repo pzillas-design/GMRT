@@ -111,19 +111,19 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                     </div>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center space-x-10">
+                    <div className="hidden md:flex items-center space-x-2">
                         {navItems.map((item) => {
                             const isActive = pathname === item.href || (item.href !== `/${lang}` && pathname.startsWith(item.href));
                             return (
                                 <Link
                                     key={item.label}
                                     href={item.href}
-                                    className={`text-lg tracking-wide transition-all ${isActive
-                                        ? 'font-bold underline decoration-2 underline-offset-8'
+                                    className={`px-4 py-2 rounded-lg text-lg tracking-wide transition-all ${isActive
+                                        ? 'font-bold'
                                         : 'font-normal'
                                         } ${isDarkText
-                                            ? (isActive ? 'text-gmrt-blue decoration-gmrt-salmon' : 'text-slate-600 hover:text-gmrt-salmon')
-                                            : (isActive ? 'text-white decoration-white' : 'text-white/90 hover:text-gmrt-salmon')
+                                            ? (isActive ? 'text-gmrt-blue bg-slate-50' : 'text-slate-600 hover:text-gmrt-salmon hover:bg-slate-50')
+                                            : (isActive ? 'text-white bg-white/10' : 'text-white/90 hover:text-gmrt-salmon hover:bg-white/10')
                                         }`}
                                 >
                                     {item.label}
@@ -133,8 +133,8 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                     </div>
 
                     {/* Icons / Actions */}
-                    <div className={`hidden md:flex items-center space-x-6 ${isDarkText ? 'text-slate-600' : 'text-white/90'}`}>
-                        <button onClick={toggleLanguage} className={`cursor-pointer text-base font-medium flex items-center gap-1 hover:text-gmrt-salmon transition-colors`}>
+                    <div className={`hidden md:flex items-center space-x-4 ${isDarkText ? 'text-slate-600' : 'text-white/90'}`}>
+                        <button onClick={toggleLanguage} className={`px-3 py-2 rounded-lg cursor-pointer text-base font-medium flex items-center gap-1 transition-colors ${isDarkText ? 'hover:bg-slate-50' : 'hover:bg-white/10'} hover:text-gmrt-salmon`}>
                             <span className={lang === 'de' ? 'font-bold' : 'opacity-70'}>DE</span>
                             <span className="opacity-50">|</span>
                             <span className={lang === 'en' ? 'font-bold' : 'opacity-70'}>EN</span>
@@ -143,7 +143,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                         {isAuthenticated ? (
                             <button
                                 onClick={() => setIsLogoutModalOpen(true)}
-                                className="hover:text-gmrt-salmon transition-colors text-gmrt-salmon"
+                                className={`cursor-pointer p-2 rounded-full transition-colors text-gmrt-salmon ${isDarkText ? 'hover:bg-slate-100' : 'hover:bg-white/10'}`}
                                 title={lang === 'de' ? 'Abmelden' : 'Log out'}
                             >
                                 <LogOut size={24} />
@@ -151,7 +151,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                         ) : (
                             <button
                                 onClick={() => setIsLoginModalOpen(true)}
-                                className="hover:text-gmrt-salmon transition-colors"
+                                className={`cursor-pointer p-2 rounded-full transition-colors hover:text-gmrt-salmon ${isDarkText ? 'hover:bg-slate-100' : 'hover:bg-white/10'}`}
                                 title={lang === 'de' ? 'Anmelden' : 'Login'}
                             >
                                 <User size={24} />

@@ -102,12 +102,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                 )}
                 {(block.type === 'image' || block.type === 'video' || block.type === 'pdf') && (
                     <div className="space-y-4 pt-2 relative">
-                        {isUploading && (
-                            <div className="absolute inset-0 z-20 bg-white/80 flex flex-col items-center justify-center rounded-xl transition-opacity">
-                                <div className="w-8 h-8 border-2 border-gmrt-blue border-t-transparent rounded-full animate-spin mb-3"></div>
-                                <span className="text-xs font-bold text-gmrt-blue uppercase tracking-widest animate-pulse">Uploading...</span>
-                            </div>
-                        )}
+
 
                         {/* Preview Area */}
                         {block.type === 'image' && block.content && (
@@ -125,6 +120,12 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                                         Bild ändern
                                     </span>
                                 </label>
+                                {isUploading && (
+                                    <div className="absolute inset-0 z-20 bg-white/80 flex flex-col items-center justify-center backdrop-blur-[2px]">
+                                        <div className="w-8 h-8 border-2 border-gmrt-blue border-t-transparent rounded-full animate-spin mb-2"></div>
+                                        <span className="text-xs font-bold text-gmrt-blue">Wird aktualisiert...</span>
+                                    </div>
+                                )}
                             </div>
                         )}
 
@@ -171,23 +172,34 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                             <div className="bg-white rounded-xl border-2 border-dashed border-slate-300 p-12 transition-all group/upload hover:border-gmrt-blue hover:bg-slate-50 relative">
                                 <div className="flex flex-col items-center justify-center gap-4 text-center">
                                     <label className="cursor-pointer flex flex-col items-center justify-center gap-4 group-hover/upload:scale-105 transition-transform duration-300">
-                                        <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 group-hover/upload:text-gmrt-blue group-hover/upload:bg-blue-50 transition-colors">
-                                            {block.type === 'image' ? <ImageIcon size={24} /> : block.type === 'video' ? <Video size={24} /> : <FileText size={24} />}
-                                        </div>
-                                        <div className="space-y-1">
-                                            <span className="block font-bold text-slate-700">
-                                                {block.type === 'image' ? "Bild auswählen" : block.type === 'video' ? "Video auswählen" : "PDF auswählen"}
-                                            </span>
-                                            <span className="block text-xs text-slate-400 font-medium uppercase tracking-wider">
-                                                Drag & Drop oder Klicken
-                                            </span>
-                                        </div>
-                                        <input
-                                            type="file"
-                                            className="hidden"
-                                            accept={block.type === 'image' ? "image/*" : block.type === 'video' ? "video/*" : "application/pdf"}
-                                            onChange={(e) => e.target.files?.[0] && handleUpload(e.target.files[0])}
-                                        />
+                                        {isUploading ? (
+                                            <div className="flex flex-col items-center animate-pulse">
+                                                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mb-2">
+                                                    <div className="w-6 h-6 border-2 border-slate-300 border-t-gmrt-blue rounded-full animate-spin"></div>
+                                                </div>
+                                                <span className="text-sm font-bold text-slate-500">Wird hochgeladen...</span>
+                                            </div>
+                                        ) : (
+                                            <>
+                                                <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 group-hover/upload:text-gmrt-blue group-hover/upload:bg-blue-50 transition-colors">
+                                                    {block.type === 'image' ? <ImageIcon size={24} /> : block.type === 'video' ? <Video size={24} /> : <FileText size={24} />}
+                                                </div>
+                                                <div className="space-y-1">
+                                                    <span className="block font-bold text-slate-700">
+                                                        {block.type === 'image' ? "Bild auswählen" : block.type === 'video' ? "Video auswählen" : "PDF auswählen"}
+                                                    </span>
+                                                    <span className="block text-xs text-slate-400 font-medium uppercase tracking-wider">
+                                                        Drag & Drop oder Klicken
+                                                    </span>
+                                                </div>
+                                                <input
+                                                    type="file"
+                                                    className="hidden"
+                                                    accept={block.type === 'image' ? "image/*" : block.type === 'video' ? "video/*" : "application/pdf"}
+                                                    onChange={(e) => e.target.files?.[0] && handleUpload(e.target.files[0])}
+                                                />
+                                            </>
+                                        )}
                                     </label>
 
                                     {/* Video Link Option */}

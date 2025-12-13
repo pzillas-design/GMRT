@@ -18,7 +18,7 @@ export function ContentRenderer({ blocks }: ContentRendererProps) {
                     case 'headline':
                         // Simplified headline (always H2 style, but maybe H2 or H3 tag)
                         return (
-                            <h2 key={block.id} className="text-2xl md:text-3xl font-bold text-gmrt-blue mt-8 mb-4">
+                            <h2 key={block.id} className="text-2xl md:text-3xl font-bold text-gmrt-blue mt-8 mb-4 break-words overflow-hidden">
                                 {block.content}
                             </h2>
                         );
@@ -60,7 +60,7 @@ export function ContentRenderer({ blocks }: ContentRendererProps) {
                         };
 
                         return (
-                            <div key={block.id} className="prose prose-lg text-slate-700 max-w-none leading-relaxed whitespace-pre-wrap">
+                            <div key={block.id} className="prose prose-lg text-slate-700 max-w-none leading-relaxed whitespace-pre-wrap break-words overflow-hidden">
                                 {linkify(block.content)}
                             </div>
                         );

@@ -347,7 +347,10 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                 </button>
 
                 <h1 className="hidden md:block absolute left-1/2 -translate-x-1/2 font-bold text-lg text-slate-800">
-                    {lang === 'de' ? 'Beitrag erstellen' : 'Create Post'}
+                    {isEditing
+                        ? (lang === 'de' ? 'Beitrag bearbeiten' : 'Edit Post')
+                        : (lang === 'de' ? 'Beitrag erstellen' : 'Create Post')
+                    }
                 </h1>
 
                 <div className="flex items-center gap-3">

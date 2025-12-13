@@ -17,7 +17,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
 
 
 
-        <section className="py-24 bg-gmrt-blue text-white overflow-hidden">
+        <section className="pt-24 pb-0 bg-gmrt-blue text-white overflow-hidden">
             {/* Dark background (Footer Blue) */}
 
             <div className="max-w-[1600px] mx-auto px-4 mb-16 text-center">

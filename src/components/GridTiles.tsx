@@ -69,27 +69,34 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
                                 />
 
                                 {/* Content Wrapper */}
-                                <div className={`absolute inset-0 flex flex-col justify-end p-6 md:p-10 transition-all duration-500`}>
+                                <div className="absolute inset-0 pointer-events-none">
 
-                                    {/* Icon removed as per request */}
+                                    {/* 1. Collapsed Label (Rotated) - Fades Out */}
+                                    <div className={`
+                                        absolute bottom-6 left-6 origin-bottom-left -rotate-90 whitespace-nowrap
+                                        text-2xl font-bold text-white tracking-widest
+                                        transition-opacity duration-500 ease-in-out
+                                        ${isActive ? 'opacity-0' : 'opacity-100 delay-200'}
+                                    `}>
+                                        {item.title}
+                                    </div>
 
-                                    {/* Text Container */}
-                                    <div className={`transform transition-all duration-500 ${isActive ? 'translate-y-0' : 'translate-y-4'}`}>
-                                        <div className="w-full pr-4 md:pr-16">
-                                            <h3 className={`text-xl md:text-3xl font-bold text-white mb-4 ${isActive ? 'whitespace-normal' : 'whitespace-nowrap'} ${!isActive && 'lg:rotate-[-90deg] lg:origin-bottom-left lg:absolute lg:bottom-10 lg:left-6 lg:mb-0'}`}>
+                                    {/* 2. Expanded Content (Title + Description) - Fades In */}
+                                    <div className={`
+                                        absolute inset-0 p-8 md:p-12 flex flex-col justify-end
+                                        transition-opacity duration-700 ease-in-out
+                                        ${isActive ? 'opacity-100 delay-300' : 'opacity-0'}
+                                    `}>
+                                        <div className="max-w-xl">
+                                            <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">
                                                 {item.title}
                                             </h3>
-
-                                            <div className={`
-                                                overflow-hidden transition-all duration-700 ease-in-out
-                                                ${isActive ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}
-                                            `}>
-                                                <p className="text-slate-300 text-sm md:text-lg leading-relaxed max-w-xl whitespace-normal">
-                                                    {item.description}
-                                                </p>
-                                            </div>
+                                            <p className="text-slate-200 text-lg md:text-xl leading-relaxed">
+                                                {item.description}
+                                            </p>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         );

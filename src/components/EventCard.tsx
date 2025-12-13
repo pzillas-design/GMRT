@@ -19,13 +19,9 @@ export function EventCard({ post, lang = 'de', isAdmin }: EventCardProps) {
     const dateLocale = lang === 'en' ? 'en-US' : 'de-DE';
 
     return (
-        <div className="relative group isolate h-full">
-            {isAdmin && (
-                <div className="absolute top-4 right-4 z-50 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <AdminCardActions postId={post.id} lang={lang} />
-                </div>
-            )}
-            <Link href={`/${lang}/posts/${post.id}`} className="cursor-pointer block flex flex-col h-full bg-slate-50 transition-all duration-300 hover:bg-slate-100 active:bg-slate-200">
+    return (
+        <div className="relative group isolate h-full bg-slate-50 transition-all duration-300 hover:bg-slate-100 active:bg-slate-200 flex flex-col border border-transparent hover:border-slate-200/50">
+            <Link href={`/${lang}/posts/${post.id}`} className="cursor-pointer block flex flex-col flex-grow">
                 <div className="aspect-video w-full overflow-hidden bg-slate-100 relative">
                     <Image
                         src={getPostImage(post.location)}
@@ -53,6 +49,12 @@ export function EventCard({ post, lang = 'de', isAdmin }: EventCardProps) {
                     </p>
                 </div>
             </Link>
+            {isAdmin && (
+                <div className="px-6 pb-6">
+                    <AdminCardActions postId={post.id} lang={lang} />
+                </div>
+            )}
         </div>
+    );
     );
 }

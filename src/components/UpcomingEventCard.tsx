@@ -20,25 +20,21 @@ export function UpcomingEventCard({ post, lang = 'de', isAdmin }: UpcomingEventC
     const dateLocale = lang === 'en' ? 'en-US' : 'de-DE';
 
     return (
-        <div className="relative group isolate">
-            {isAdmin && (
-                <div className="absolute top-4 right-4 z-50 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <AdminCardActions postId={post.id} lang={lang} />
+    return (
+        <div className="relative group isolate bg-slate-50 transition-all duration-300 hover:bg-slate-100 active:bg-slate-200 flex flex-col md:flex-row min-h-[400px] border border-transparent hover:border-slate-200/50">
+            <Link href={`/${lang}/posts/${post.id}`} className="w-full h-64 md:h-auto md:w-5/12 relative overflow-hidden block">
+                <div className="absolute inset-0 bg-slate-200 h-full w-full">
+                    <Image
+                        src={(post as any).coverImage || getPostImage(post.location)}
+                        alt={post.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 40vw"
+                    />
                 </div>
-            )}
-            <Link href={`/${lang}/posts/${post.id}`} className="cursor-pointer block bg-slate-50 transition-all duration-300 flex flex-col md:flex-row min-h-[400px] hover:bg-slate-100 active:bg-slate-200">
-                <div className="w-full h-64 md:h-auto md:w-5/12 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-slate-200">
-                        <Image
-                            src={(post as any).coverImage || getPostImage(post.location)}
-                            alt={post.title}
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, 40vw"
-                        />
-                    </div>
-                </div>
-                <div className="p-10 md:w-7/12 flex flex-col justify-center">
+            </Link>
+            <div className="p-10 md:w-7/12 flex flex-col justify-center">
+                <Link href={`/${lang}/posts/${post.id}`} className="block">
                     <div className="mb-6 flex items-center gap-4">
                         <p className="text-sm font-bold text-gmrt-salmon uppercase tracking-wide flex items-center gap-2">
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
@@ -54,8 +50,14 @@ export function UpcomingEventCard({ post, lang = 'de', isAdmin }: UpcomingEventC
                     <p className="text-slate-600 text-lg line-clamp-3">
                         {post.content}
                     </p>
-                </div>
-            </Link>
+                </Link>
+                {isAdmin && (
+                    <div className="mt-auto">
+                        <AdminCardActions postId={post.id} lang={lang} />
+                    </div>
+                )}
+            </div>
         </div>
+    );
     );
 }

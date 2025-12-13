@@ -16,7 +16,7 @@ export default function Footer({ dict, navDict, lang }: { dict: any, navDict: an
                     <div className="col-span-2 lg:col-span-5">
                         <Link href={`/${lang}`} className="inline-flex items-center gap-3 group mb-6">
                             <GmrtLogo className="h-16 w-auto text-gmrt-salmon transition-transform duration-300 group-hover:scale-105" />
-                            <span className="font-display font-medium text-4xl tracking-wide text-white group-hover:text-gmrt-salmon transition-colors">
+                            <span className="font-display font-semibold text-4xl tracking-wide text-white group-hover:text-gmrt-salmon transition-colors">
                                 GMRT
                             </span>
                         </Link>

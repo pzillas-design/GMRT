@@ -118,7 +118,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                                 <Link
                                     key={item.label}
                                     href={item.href}
-                                    className={`px-5 py-2 rounded-lg text-lg tracking-wide transition-all ${isActive
+                                    className={`px-5 py-3 rounded-lg text-lg tracking-wide transition-all ${isActive
                                         ? 'font-bold'
                                         : 'font-normal'
                                         } ${isDarkText
@@ -136,7 +136,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
                     {/* Icons / Actions */}
                     <div className={`hidden md:flex items-center space-x-4 ${isDarkText ? 'text-slate-600' : 'text-white/90'}`}>
-                        <button onClick={toggleLanguage} className={`px-3 py-2 rounded-lg cursor-pointer text-base font-medium flex items-center gap-1 transition-colors ${isDarkText ? 'hover:bg-slate-50 hover:text-gmrt-blue' : 'hover:bg-white/10 hover:text-white'}`}>
+                        <button onClick={toggleLanguage} className={`px-3 py-3 rounded-lg cursor-pointer text-base font-medium flex items-center gap-1 transition-colors ${isDarkText ? 'hover:bg-slate-50 hover:text-gmrt-blue' : 'hover:bg-white/10 hover:text-white'}`}>
                             <span className={lang === 'de' ? 'font-bold' : 'opacity-70'}>DE</span>
                             <span className="opacity-50">|</span>
                             <span className={lang === 'en' ? 'font-bold' : 'opacity-70'}>EN</span>

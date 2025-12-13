@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { PageHero } from '@/components/PageHero';
 import { getDictionary } from '@/get-dictionary';
-import { Mail } from 'lucide-react';
+import { Mail, HandCoins, ShieldCheck, Scale } from 'lucide-react';
 import { ObfuscatedMail } from '@/components/ObfuscatedMail';
 
 export const metadata = {
@@ -22,12 +22,12 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
                 imageSrc="https://images.unsplash.com/photo-1594950474627-f49c063b4b45?q=80&w=2000&auto=format&fit=crop"
             />
 
-            {/* 1. Mission Section (White) */}
-            <section className="py-24 bg-white">
+            {/* 1. Mission Section (Slate-50) */}
+            <section className="py-24 bg-slate-50">
                 <div className="max-w-[1200px] mx-auto px-6 md:px-12">
                     <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-start">
                         {/* Left: Headline */}
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0E2A47] leading-tight">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gmrt-blue leading-tight">
                             {dict.about.mission.lead}
                         </h2>
 
@@ -41,23 +41,31 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
                 </div>
             </section>
 
-            {/* 2. Principles Section (Slate-50) */}
-            <section className="py-24 bg-slate-50 border-y border-slate-100">
+            {/* 2. Principles Section (White) */}
+            <section className="py-24 bg-white border-y border-slate-100">
                 <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-                    <div className="max-w-4xl mx-auto">
-                        <h3 className="text-2xl md:text-3xl font-bold text-[#0E2A47] mb-12 text-center">
-                            {dict.about.principles.title}
-                        </h3>
-                        <div className="grid gap-6 md:grid-cols-3">
-                            {dict.about.principles.items.map((item: any, index: number) => (
-                                <div key={index} className="flex gap-4 bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-                                    <span className="text-gmrt-salmon font-bold text-xl">•</span>
-                                    <span className="text-lg text-slate-700 leading-relaxed">
-                                        <strong>{item.bold}</strong> {item.text}
-                                    </span>
+                    <h3 className="text-3xl md:text-4xl font-bold text-gmrt-blue mb-16 text-center">
+                        {dict.about.principles.title}
+                    </h3>
+                    <div className="grid gap-8 md:grid-cols-3">
+                        {dict.about.principles.items.map((item: any, index: number) => {
+                            const icons = [
+                                <HandCoins key={0} size={40} strokeWidth={1.5} />,
+                                <ShieldCheck key={1} size={40} strokeWidth={1.5} />,
+                                <Scale key={2} size={40} strokeWidth={1.5} />
+                            ];
+                            return (
+                                <div key={index} className="flex flex-col items-start text-left bg-slate-50 p-10 rounded-2xl hover:shadow-lg transition-all duration-300 border border-slate-100 h-full group">
+                                    <div className="mb-6 text-gmrt-salmon bg-white p-4 rounded-xl shadow-sm group-hover:bg-gmrt-salmon group-hover:text-white transition-colors">
+                                        {icons[index]}
+                                    </div>
+                                    <div className="text-lg text-slate-700 leading-relaxed">
+                                        <strong className="block text-xl text-gmrt-blue mb-3">{item.bold.replace(':', '')}</strong>
+                                        {item.text}
+                                    </div>
                                 </div>
-                            ))}
-                        </div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>

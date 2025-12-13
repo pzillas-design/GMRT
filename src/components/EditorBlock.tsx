@@ -71,12 +71,18 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
 
             <div className="w-full relative">
                 {block.type === 'headline' && (
-                    <input
-                        type="text"
+                    <textarea
                         value={block.content}
                         onChange={(e) => onUpdate(block.id, { content: e.target.value })}
-                        className="w-full text-3xl font-extrabold px-0 py-2 bg-transparent border-none focus:ring-0 outline-none placeholder:text-slate-300 placeholder:font-bold text-slate-900"
+                        className="w-full text-3xl font-extrabold px-0 py-2 bg-transparent border-none focus:ring-0 outline-none placeholder:text-slate-300 placeholder:font-bold text-slate-900 resize-none overflow-hidden"
                         placeholder="Überschrift..."
+                        rows={1}
+                        style={{ fieldSizing: "content" } as any}
+                        onInput={(e) => {
+                            const target = e.target as HTMLTextAreaElement;
+                            target.style.height = 'auto';
+                            target.style.height = target.scrollHeight + 'px';
+                        }}
                     />
                 )}
                 {block.type === 'text' && (

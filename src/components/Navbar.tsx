@@ -80,7 +80,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
     if (isEditorPage) return null;
 
     return (
-        <nav className={`fixed w-full z-50 transition-colors duration-500 py-4 md:py-6 ${showBackground ? 'bg-white/95 shadow-md' : 'bg-transparent'}`}>
+        <nav className={`fixed w-full z-[100] transition-colors duration-500 py-4 md:py-6 ${showBackground ? 'bg-white/95 shadow-md' : 'bg-transparent'}`}>
             <Container size="xl">
                 <ConfirmationModal
                     isOpen={isLogoutModalOpen}
@@ -192,7 +192,36 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                                 </Link>
                             );
                         })}
-                        <button onClick={() => { toggleLanguage(); setIsOpen(false); }} className="text-xl py-3 font-medium text-slate-600 hover:text-gmrt-blue flex items-center gap-4 mt-2 border-t border-slate-100 pt-4">
+                        {/* Mobile Auth Button */}
+                        <div className="border-t border-slate-100 pt-4 mt-2">
+                            {isAuthenticated ? (
+                                <button
+                                    onClick={() => {
+                                        setIsLogoutModalOpen(true); // Modal handles logic
+                                        // keeping menu open? No, modal is overlay.
+                                        // Menu is z-50? Modal is z-90. Ideally close menu.
+                                        setIsOpen(false);
+                                    }}
+                                    className="w-full flex items-center gap-3 text-lg font-medium text-gmrt-salmon px-2 py-2 hover:bg-slate-50 rounded-lg transition-colors"
+                                >
+                                    <LogOut size={22} />
+                                    <span>{lang === 'de' ? 'Abmelden' : 'Log out'}</span>
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={() => {
+                                        setIsLoginModalOpen(true);
+                                        setIsOpen(false);
+                                    }}
+                                    className="w-full flex items-center gap-3 text-lg font-medium text-slate-700 px-2 py-2 hover:bg-slate-50 rounded-lg transition-colors"
+                                >
+                                    <User size={22} />
+                                    <span>{lang === 'de' ? 'Anmelden' : 'Login'}</span>
+                                </button>
+                            )}
+                        </div>
+
+                        <button onClick={() => { toggleLanguage(); setIsOpen(false); }} className="text-xl py-3 font-medium text-slate-600 hover:text-gmrt-blue flex items-center gap-4 border-t border-slate-100 pt-4">
                             <div className="flex bg-slate-100 rounded-lg p-1">
                                 <span className={`px-3 py-1 rounded-md ${lang === 'de' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>DE</span>
                                 <span className={`px-3 py-1 rounded-md ${lang === 'en' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>EN</span>

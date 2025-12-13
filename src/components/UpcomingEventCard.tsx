@@ -27,7 +27,7 @@ export function UpcomingEventCard({ post, lang = 'de', isAdmin }: UpcomingEventC
                 </div>
             )}
             <Link href={`/${lang}/posts/${post.id}`} className="cursor-pointer block bg-slate-50 transition-all duration-300 flex flex-col md:flex-row min-h-[400px] hover:bg-slate-100 active:bg-slate-200">
-                <div className="md:w-5/12 relative overflow-hidden">
+                <div className="w-full h-64 md:h-auto md:w-5/12 relative overflow-hidden">
                     <div className="absolute inset-0 bg-slate-200">
                         <Image
                             src={(post as any).coverImage || getPostImage(post.location)}

@@ -44,12 +44,12 @@ export default async function RootLayout({
     return (
         <html lang={lang}>
             <body
-                className={`${inter.variable} ${lexend.variable} antialiased min-h-screen flex flex-col bg-slate-50`}
+                className={`${inter.variable} ${lexend.variable} antialiased min-h-screen flex flex-col bg-gmrt-blue`}
             >
                 <ToastProvider>
                     <AuthProvider>
                         <Navbar lang={lang as 'de' | 'en'} dict={dict.navigation} />
-                        <main className="flex-grow">
+                        <main className="flex-grow bg-slate-50">
                             {children}
                         </main>
                         <Footer dict={dict.footer} navDict={dict.navigation} lang={lang as string} />

@@ -11,9 +11,9 @@ export default function Footer({ dict, navDict, lang }: { dict: any, navDict: an
     return (
         <footer className="bg-gmrt-blue text-white py-16">
             <Container size="xl">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+                <div className="grid grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
                     {/* Brand Section */}
-                    <div className="md:col-span-5">
+                    <div className="col-span-2 lg:col-span-5">
                         <Link href={`/${lang}`} className="inline-flex items-center gap-3 group mb-6">
                             <GmrtLogo className="h-16 w-auto text-gmrt-salmon transition-transform duration-300 group-hover:scale-105" />
                             <span className="font-display font-medium text-4xl tracking-wide text-white group-hover:text-gmrt-salmon transition-colors">
@@ -35,7 +35,7 @@ export default function Footer({ dict, navDict, lang }: { dict: any, navDict: an
                     </div>
 
                     {/* Navigation Links */}
-                    <div className="md:col-span-3 md:col-start-7">
+                    <div className="col-span-1 lg:col-span-3 lg:col-start-7">
                         <h3 className="text-white font-bold text-lg mb-6">{dict.navigation_title || 'Navigation'}</h3>
                         <ul className="space-y-4">
                             <li><Link href={`/${lang}`} className="text-slate-300 hover:text-gmrt-salmon transition-colors">{navDict?.home || 'Home'}</Link></li>
@@ -46,7 +46,7 @@ export default function Footer({ dict, navDict, lang }: { dict: any, navDict: an
                     </div>
 
                     {/* Legal Links */}
-                    <div className="md:col-span-3">
+                    <div className="col-span-1 lg:col-span-3">
                         <h3 className="text-white font-bold text-lg mb-6">{dict.legal_title || 'Rechtliches'}</h3>
                         <ul className="space-y-4">
                             <li><Link href={`/${lang}/impressum`} className="text-slate-300 hover:text-gmrt-salmon transition-colors">{dict.impressum}</Link></li>

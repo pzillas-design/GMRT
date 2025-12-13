@@ -45,7 +45,7 @@ export default async function Home({ params, searchParams }: { params: Promise<{
           <section className="py-24 bg-slate-50">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12">
               <div className="mb-12 text-center md:text-left">
-                <h2 className="text-3xl md:text-4xl font-bold text-gmrt-blue">
+                <h2 className="text-2xl md:text-4xl font-bold text-gmrt-blue">
                   {dict.homepage.upcoming.title}
                 </h2>
               </div>

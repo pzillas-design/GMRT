@@ -36,7 +36,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
         }
     };
     return (
-        <div className="group/block relative p-6 rounded-xl bg-slate-50 hover:bg-slate-100 transition-all duration-300 border border-transparent hover:shadow-sm">
+        <div className="group/block relative p-6 rounded-xl bg-slate-100 hover:bg-slate-200 transition-all duration-300 border border-transparent hover:shadow-sm">
 
             {/* Integrated Action Toolbar (Top Right) */}
             <div className="absolute right-3 top-3 flex items-center gap-1 opacity-0 group-hover/block:opacity-100 transition-all duration-200 z-20 bg-white/80 backdrop-blur-sm p-1 rounded-lg border border-slate-200/50 shadow-sm translate-y-2 group-hover/block:translate-y-0">
@@ -165,7 +165,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                             <div className="bg-white rounded-xl border border-slate-200 p-8 shadow-sm hover:border-gmrt-blue/30 hover:shadow-md transition-all group/upload">
                                 <div className="flex flex-col gap-6">
                                     <label className="flex-grow cursor-pointer flex flex-col items-center justify-center gap-4 text-center">
-                                        <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-gmrt-blue group-hover/upload:scale-110 transition-transform duration-300">
+                                        <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center text-gmrt-blue group-hover/upload:scale-110 transition-transform duration-300">
                                             <Upload size={32} strokeWidth={1.5} />
                                         </div>
                                         <div className="space-y-1">
@@ -194,7 +194,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                                                 <input
                                                     type="text"
                                                     placeholder="YouTube / Vimeo Link einfügen..."
-                                                    className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:border-gmrt-blue outline-none transition-all text-sm font-medium"
+                                                    className="w-full pl-12 pr-4 py-3 bg-slate-100 border border-slate-200 rounded-lg focus:bg-white focus:border-gmrt-blue outline-none transition-all text-sm font-medium"
                                                     onKeyDown={(e) => {
                                                         if (e.key === 'Enter') {
                                                             e.preventDefault();
@@ -242,7 +242,7 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                                 type="text"
                                 value={block.content}
                                 onChange={(e) => onUpdate(block.id, { content: e.target.value })}
-                                className="flex-grow text-sm font-mono text-slate-600 bg-slate-50 px-2 py-1 rounded border border-slate-100 focus:border-gmrt-blue outline-none transition-colors"
+                                className="flex-grow text-sm font-mono text-slate-600 bg-slate-100 px-2 py-1 rounded border border-slate-100 focus:border-gmrt-blue outline-none transition-colors"
                                 placeholder="https://..."
                             />
                         </div>

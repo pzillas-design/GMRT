@@ -361,7 +361,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                     <div id="content-blocks-container" className="bg-white min-h-[50vh] rounded-2xl shadow-sm border border-slate-100 overflow-visible relative">
 
                         {/* Cover Image */}
-                        <div className="relative w-full bg-slate-50 border-b border-slate-100 group rounded-t-2xl overflow-hidden">
+                        <div className="relative w-full bg-slate-100 border-b border-slate-100 group rounded-t-2xl overflow-hidden">
                             <input
                                 type="file"
                                 ref={fileInputRef}
@@ -418,7 +418,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                         type="text"
                                         value={title}
                                         onChange={(e) => setTitle(e.target.value)}
-                                        className="w-full text-4xl font-extrabold text-slate-900 placeholder:text-slate-300 placeholder:font-bold bg-slate-50 border-none hover:bg-slate-100 focus:bg-white focus:ring-2 focus:ring-gmrt-blue/10 p-4 rounded-xl leading-tight transition-all outline-none"
+                                        className="w-full text-4xl font-extrabold text-slate-900 placeholder:text-slate-300 placeholder:font-bold bg-slate-100 border-none hover:bg-slate-200 focus:bg-white focus:ring-2 focus:ring-gmrt-blue/10 p-4 rounded-xl leading-tight transition-all outline-none"
                                         placeholder={lang === 'de' ? 'Titel des Beitrags' : 'Post Title'}
                                         required
                                     />
@@ -429,13 +429,13 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 pl-1">Datum</label>
                                         <div className="flex gap-3">
                                             <div className="flex-1">
-                                                <input type="number" value={day} onChange={(e) => setDay(e.target.value)} placeholder="DD" className="w-full bg-slate-50 hover:bg-slate-100 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={day} onChange={(e) => setDay(e.target.value)} placeholder="DD" className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                             <div className="flex-1">
-                                                <input type="number" value={month} onChange={(e) => setMonth(e.target.value)} placeholder="MM" className="w-full bg-slate-50 hover:bg-slate-100 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={month} onChange={(e) => setMonth(e.target.value)} placeholder="MM" className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                             <div className="flex-[1.5]">
-                                                <input type="number" value={year} onChange={(e) => setYear(e.target.value)} placeholder="YYYY" className="w-full bg-slate-50 hover:bg-slate-100 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={year} onChange={(e) => setYear(e.target.value)} placeholder="YYYY" className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                         </div>
                                     </div>
@@ -447,7 +447,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                                     type="text"
                                                     value={customLocation}
                                                     onChange={(e) => setCustomLocation(e.target.value)}
-                                                    className="w-full bg-slate-50 hover:bg-slate-100 focus:bg-white border-none p-3 pr-10 font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all"
+                                                    className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 pr-10 font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all"
                                                     placeholder={lang === 'de' ? "Kategorie eingeben" : "Enter category"}
                                                     autoFocus
                                                 />
@@ -465,7 +465,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                                 <select
                                                     value={location}
                                                     onChange={handleLocationChange}
-                                                    className="w-full bg-slate-50 hover:bg-slate-100 focus:bg-white border-none p-3 font-bold text-slate-900 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl cursor-pointer appearance-none transition-all"
+                                                    className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 font-bold text-slate-900 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl cursor-pointer appearance-none transition-all"
                                                 >
                                                     {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
                                                     <option value="custom_new_entry">{lang === 'de' ? '+ Neu...' : '+ New...'}</option>
@@ -548,27 +548,27 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                     <div className="mt-8 flex flex-col items-start gap-4 w-full pb-12">
                         <span className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">{t.insert}</span>
                         <div className="grid grid-cols-6 w-full gap-4">
-                            <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
+                            <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-100 hover:bg-slate-200 border-none transition-all rounded-xl hover:shadow-sm">
                                 <Heading size={24} />
                                 <span className="text-sm font-medium">{t.headline}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
+                            <button type="button" onClick={() => addBlock('text')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-100 hover:bg-slate-200 border-none transition-all rounded-xl hover:shadow-sm">
                                 <Type size={24} />
                                 <span className="text-sm font-medium">{t.text}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
+                            <button type="button" onClick={() => addBlock('image')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-100 hover:bg-slate-200 border-none transition-all rounded-xl hover:shadow-sm">
                                 <ImageIcon size={24} />
                                 <span className="text-sm font-medium">{t.image}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
+                            <button type="button" onClick={() => addBlock('video')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-100 hover:bg-slate-200 border-none transition-all rounded-xl hover:shadow-sm">
                                 <Video size={24} />
                                 <span className="text-sm font-medium">{t.video}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
+                            <button type="button" onClick={() => addBlock('pdf')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-100 hover:bg-slate-200 border-none transition-all rounded-xl hover:shadow-sm">
                                 <FileText size={24} />
                                 <span className="text-sm font-medium">{t.pdf}</span>
                             </button>
-                            <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-50 hover:bg-slate-100 border-none transition-all rounded-xl hover:shadow-sm">
+                            <button type="button" onClick={() => addBlock('link')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-100 hover:bg-slate-200 border-none transition-all rounded-xl hover:shadow-sm">
                                 <LinkIcon size={24} />
                                 <span className="text-sm font-medium">{t.link}</span>
                             </button>

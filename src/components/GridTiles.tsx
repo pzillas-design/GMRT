@@ -30,7 +30,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
             </div>
 
             {/* Full Width Grid - No Gaps, No Borders, Edge-to-Edge */}
-            <div className="w-full h-auto lg:h-[510px]">
+            <div className="w-full h-auto lg:h-[600px]">
                 <div className="flex flex-col lg:flex-row h-full w-full gap-0">
                     {items.map((item: { image: string; title: string; description: string }, index: number) => {
                         const isActive = activeIndex === index;
@@ -71,7 +71,7 @@ export const GridTiles: React.FC<GridTilesProps> = ({ dict }) => {
 
                                     {/* 1. Collapsed Label (Centered) - Fades Out */}
                                     <div className={`
-                                        absolute inset-0 flex items-center justify-start pl-8 md:pl-12 pb-0 lg:items-end lg:justify-center lg:pl-0 lg:pb-24
+                                        absolute inset-0 flex items-center justify-center pb-0 lg:items-end lg:pb-24
                                         transition-opacity duration-500 ease-in-out
                                         ${isActive ? 'opacity-0 duration-200' : 'opacity-100 delay-200'}
                                     `}>

@@ -32,7 +32,7 @@ export function UpcomingEventCard({ post, lang = 'de', isAdmin }: UpcomingEventC
                     />
                 </div>
             </Link>
-            <div className="p-10 md:w-7/12 flex flex-col justify-center">
+            <div className="p-6 md:p-10 md:w-7/12 flex flex-col justify-center">
                 <Link href={`/${lang}/posts/${post.id}`} className="block">
                     <div className="mb-6 flex items-center gap-4">
                         <p className="text-sm font-bold text-gmrt-salmon uppercase tracking-wide flex items-center gap-2">
@@ -43,7 +43,7 @@ export function UpcomingEventCard({ post, lang = 'de', isAdmin }: UpcomingEventC
                             {post.location || 'Event'}
                         </span>
                     </div>
-                    <h3 className="text-3xl md:text-4xl font-bold text-gmrt-blue leading-tight group-hover:text-gmrt-logo transition-colors mb-6">
+                    <h3 className="text-2xl md:text-4xl font-bold text-gmrt-blue leading-tight group-hover:text-gmrt-logo transition-colors mb-6">
                         {post.title}
                     </h3>
                     <p className="text-slate-600 text-lg line-clamp-3">

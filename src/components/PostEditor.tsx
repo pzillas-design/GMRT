@@ -430,7 +430,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                         type="button"
                         onClick={() => handleSubmit(undefined, true)}
                         disabled={isSaving}
-                        className="flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 px-3 py-2 md:px-4 rounded-lg font-bold text-sm transition-all"
+                        className="flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 px-3 md:px-4 h-10 rounded-lg font-bold text-sm transition-all"
                         title={lang === 'de' ? 'Als Entwurf speichern' : 'Save as Draft'}
                     >
                         <Save size={18} />

@@ -6,69 +6,8 @@ import { ArrowLeft, Image as ImageIcon, Type, Video, FileText, Link as LinkIcon,
 import { ContentBlock, ContentBlockType } from '@/types';
 import { EditorBlock } from './EditorBlock';
 import { Button } from '@/components/ui/Button';
-// ... checks ...
-
-// ... inside component ...
-// ... inside component ...
-
-if (!response.ok) throw new Error('Failed to save post');
-
-const savedPost = await response.json();
-
-// Distinct message for draft vs publish
-const msg = isDraft
-    ? (lang === 'de' ? 'Entwurf gespeichert' : 'Draft saved')
-    : (lang === 'de' ? 'Beitrag veröffentlicht' : 'Post published');
-
-success(msg);
-
-if (isEditing) {
-    router.push(`/${lang}/posts/${postId}`);
-} else {
-    router.push(`/${lang}/posts/${savedPost.id}`);
-}
-router.refresh();
-    } catch (error) {
-    console.error('Error saving post:', error);
-    toastError(lang === 'de' ? 'Fehler beim Speichern des Beitrags.' : 'Error saving post.');
-} finally {
-    setIsSaving(false);
-}
-};
-// ... t dict ...
-
-// ... Top Bar ...
-<div className="flex items-center gap-2 md:gap-3">
-    {isEditing && postId && (
-        <button
-            type="button"
-            onClick={() => setIsDeleteModalOpen(true)}
-            disabled={isSaving}
-            className="text-slate-400 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors"
-            title={t.delete}
-        >
-            <Trash2 size={20} />
-        </button>
-    )}
-
-    {/* Save Draft Button */}
-    <button
-        type="button"
-        onClick={() => handleSubmit(undefined, true)}
-        disabled={isSaving}
-        className="flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 px-3 py-2 md:px-4 rounded-lg font-bold text-sm transition-all"
-        title={lang === 'de' ? 'Als Entwurf speichern' : 'Save as Draft'}
-    >
-        <Save size={18} />
-        <span className="hidden md:inline">{lang === 'de' ? 'Entwurf speichern' : 'Save Draft'}</span>
-    </button>
-
-    <Button variant="primary" onClick={(e) => handleSubmit(e, false)} disabled={isSaving} isLoading={isSaving} className="rounded-lg px-4 md:px-6 h-10 shadow-sm">
-        {isSaving ? t.saving : t.publish}
-    </Button>
-</div>
 import { useToast } from '@/components/ui/Toast';
-import { ConfirmationModal } from '@/components/ui/Modal';
+import { ConfirmationModal, Modal } from '@/components/ui/Modal';
 import { AnimatePresence, motion } from 'framer-motion';
 import { upload } from '@vercel/blob/client';
 
@@ -129,6 +68,9 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
 
+    const [hasChanges, setHasChanges] = useState(false);
+    const [isExitModalOpen, setIsExitModalOpen] = useState(false);
+
     const [hoveredBlockIndex, setHoveredBlockIndex] = useState<number | null>(null);
     const [openMobileMenuIndex, setOpenMobileMenuIndex] = useState<number | null>(null);
 
@@ -163,6 +105,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
     };
 
     const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setHasChanges(true);
         const value = e.target.value;
         if (value === 'custom_new_entry') {
             setIsCustomLocation(true);
@@ -183,6 +126,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
     };
 
     const addBlock = (type: ContentBlockType, index?: number) => {
+        setHasChanges(true);
         const newBlock: ContentBlock = {
             id: crypto.randomUUID(),
             type,
@@ -207,14 +151,17 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
     };
 
     const updateBlock = (id: string, updates: Partial<ContentBlock>) => {
+        setHasChanges(true);
         setBlocks(blocks.map(b => b.id === id ? { ...b, ...updates } : b));
     };
 
     const removeBlock = (id: string) => {
+        setHasChanges(true);
         setBlocks(blocks.filter(b => b.id !== id));
     };
 
     const moveBlock = (index: number, direction: 'up' | 'down') => {
+        setHasChanges(true);
         if (direction === 'up' && index === 0) return;
         if (direction === 'down' && index === blocks.length - 1) return;
 
@@ -397,11 +344,57 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                 isLoading={isDeleting}
             />
 
+            <Modal
+                isOpen={isExitModalOpen}
+                onClose={() => setIsExitModalOpen(false)}
+                title={lang === 'de' ? 'Unsaved Changes' : 'Unsaved Changes'}
+            >
+                <div className="flex flex-col gap-6 ">
+                    <p className="text-slate-600">
+                        {lang === 'de'
+                            ? 'Sie haben ungespeicherte Änderungen. Möchten Sie diese als Entwurf speichern oder verwerfen?'
+                            : 'You have unsaved changes. Do you want to save them as a draft or discard them?'}
+                    </p>
+                    <div className="flex flex-col gap-2">
+                        <Button
+                            variant="secondary"
+                            onClick={() => { handleSubmit(undefined, true); }}
+                            className="bg-slate-100 hover:bg-slate-200 text-slate-800 w-full justify-center"
+                        >
+                            <Save size={18} className="mr-2" />
+                            {lang === 'de' ? 'Als Entwurf speichern' : 'Save as Draft'}
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            onClick={() => router.back()}
+                            className="text-red-600 hover:bg-red-50 hover:text-red-700 w-full justify-center"
+                        >
+                            <Trash2 size={18} className="mr-2" />
+                            {lang === 'de' ? 'Änderungen verwerfen' : 'Discard Changes'}
+                        </Button>
+                        <div className="h-px bg-slate-100 my-1"></div>
+                        <Button
+                            variant="ghost"
+                            onClick={() => setIsExitModalOpen(false)}
+                            className="text-slate-500 hover:text-slate-700 w-full justify-center"
+                        >
+                            {lang === 'de' ? 'Abbrechen' : 'Cancel'}
+                        </Button>
+                    </div>
+                </div>
+            </Modal>
+
             {/* Top Bar */}
             <div className="sticky top-0 z-50 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-sm">
                 <button
-                    onClick={() => router.back()}
-                    className="flex items-center gap-2 text-slate-500 hover:text-slate-900 transition-colors font-medium"
+                    onClick={() => {
+                        if (hasChanges) {
+                            setIsExitModalOpen(true);
+                        } else {
+                            router.back();
+                        }
+                    }}
+                    className="flex items-center gap-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 px-3 py-2 rounded-lg transition-all font-medium"
                 >
                     <ArrowLeft size={20} />
                     <span>{t.back}</span>
@@ -461,7 +454,10 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                     const file = e.target.files?.[0];
                                     if (file) {
                                         handleFileUpload(file)
-                                            .then(url => setCoverImage(url))
+                                            .then(url => {
+                                                setCoverImage(url);
+                                                setHasChanges(true);
+                                            })
                                             .catch((err) => {
                                                 console.error(err);
                                                 toastError(err.message || (lang === 'de' ? 'Bild-Upload fehlgeschlagen' : 'Image upload failed'));
@@ -485,7 +481,10 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                     </div>
                                     <button
                                         type="button"
-                                        onClick={() => setCoverImage('')}
+                                        onClick={() => {
+                                            setCoverImage('');
+                                            setHasChanges(true);
+                                        }}
                                         className="absolute top-4 right-4 bg-white/90 p-2 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white text-slate-500 hover:text-red-500 rounded-lg border border-slate-200"
                                     >
                                         <Trash2 size={16} />
@@ -507,7 +506,10 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                     <input
                                         type="text"
                                         value={title}
-                                        onChange={(e) => setTitle(e.target.value)}
+                                        onChange={(e) => {
+                                            setTitle(e.target.value);
+                                            setHasChanges(true);
+                                        }}
                                         className="w-full text-3xl md:text-5xl font-extrabold text-slate-900 placeholder:text-slate-400 placeholder:font-bold bg-slate-100 border-none hover:bg-slate-200 focus:bg-white focus:ring-2 focus:ring-gmrt-blue/10 p-4 rounded-xl leading-tight transition-all outline-none"
                                         placeholder={lang === 'de' ? 'Titel des Beitrags' : 'Post Title'}
                                         required
@@ -519,13 +521,13 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 pl-1">Datum</label>
                                         <div className="flex gap-3">
                                             <div className="flex-1">
-                                                <input type="number" value={day} onChange={(e) => setDay(e.target.value)} placeholder={lang === 'de' ? 'TT' : 'DD'} className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={day} onChange={(e) => { setDay(e.target.value); setHasChanges(true); }} placeholder={lang === 'de' ? 'TT' : 'DD'} className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                             <div className="flex-1">
-                                                <input type="number" value={month} onChange={(e) => setMonth(e.target.value)} placeholder="MM" className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={month} onChange={(e) => { setMonth(e.target.value); setHasChanges(true); }} placeholder="MM" className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                             <div className="flex-[1.5]">
-                                                <input type="number" value={year} onChange={(e) => setYear(e.target.value)} placeholder={lang === 'de' ? 'JJJJ' : 'YYYY'} className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                                                <input type="number" value={year} onChange={(e) => { setYear(e.target.value); setHasChanges(true); }} placeholder={lang === 'de' ? 'JJJJ' : 'YYYY'} className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 text-center font-bold text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                             </div>
                                         </div>
                                     </div>
@@ -536,7 +538,10 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                                 <input
                                                     type="text"
                                                     value={customLocation}
-                                                    onChange={(e) => setCustomLocation(e.target.value)}
+                                                    onChange={(e) => {
+                                                        setCustomLocation(e.target.value);
+                                                        setHasChanges(true);
+                                                    }}
                                                     className="w-full bg-slate-100 hover:bg-slate-200 focus:bg-white border-none p-3 pr-10 font-bold text-slate-900 placeholder:text-slate-300 focus:ring-2 focus:ring-gmrt-blue/10 outline-none rounded-xl transition-all"
                                                     placeholder={lang === 'de' ? "Kategorie eingeben" : "Enter category"}
                                                     autoFocus

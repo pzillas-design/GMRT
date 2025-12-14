@@ -347,39 +347,45 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
             <Modal
                 isOpen={isExitModalOpen}
                 onClose={() => setIsExitModalOpen(false)}
-                title={lang === 'de' ? 'Unsaved Changes' : 'Unsaved Changes'}
+                title={lang === 'de' ? 'Ungespeicherte Änderungen' : 'Unsaved Changes'}
             >
-                <div className="flex flex-col gap-6 ">
-                    <p className="text-slate-600">
+                <div className="flex flex-col gap-6">
+                    <p className="text-slate-600 leading-relaxed">
                         {lang === 'de'
-                            ? 'Sie haben ungespeicherte Änderungen. Möchten Sie diese als Entwurf speichern oder verwerfen?'
-                            : 'You have unsaved changes. Do you want to save them as a draft or discard them?'}
+                            ? 'Sie haben ungespeicherte Änderungen. Möchten Sie den Beitrag als Entwurf speichern?'
+                            : 'You have unsaved changes. Do you want to save this post as a draft?'}
                     </p>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-3">
+                        {/* Primary: Save Draft */}
                         <Button
-                            variant="secondary"
+                            variant="primary"
                             onClick={() => { handleSubmit(undefined, true); }}
-                            className="bg-slate-100 hover:bg-slate-200 text-slate-800 w-full justify-center"
+                            className="w-full justify-center shadow-lg shadow-gmrt-salmon/20"
                         >
                             <Save size={18} className="mr-2" />
                             {lang === 'de' ? 'Als Entwurf speichern' : 'Save as Draft'}
                         </Button>
-                        <Button
-                            variant="ghost"
+
+                        {/* Secondary: Discard */}
+                        <button
+                            type="button"
                             onClick={() => router.back()}
-                            className="text-red-600 hover:bg-red-50 hover:text-red-700 w-full justify-center"
+                            className="w-full py-2.5 rounded-lg flex items-center justify-center font-bold text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors"
                         >
-                            <Trash2 size={18} className="mr-2" />
+                            <Trash2 size={18} className="mr-2 opacity-70" />
                             {lang === 'de' ? 'Änderungen verwerfen' : 'Discard Changes'}
-                        </Button>
+                        </button>
+
                         <div className="h-px bg-slate-100 my-1"></div>
-                        <Button
-                            variant="ghost"
+
+                        {/* Cancel */}
+                        <button
+                            type="button"
                             onClick={() => setIsExitModalOpen(false)}
-                            className="text-slate-500 hover:text-slate-700 w-full justify-center"
+                            className="w-full py-2 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors"
                         >
                             {lang === 'de' ? 'Abbrechen' : 'Cancel'}
-                        </Button>
+                        </button>
                     </div>
                 </div>
             </Modal>

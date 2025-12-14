@@ -359,7 +359,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                 </div>
             </div>
 
-            <div className="max-w-[850px] mx-auto px-6 py-12 pb-12">
+            <div className="max-w-[850px] mx-auto px-4 py-8 md:px-6 md:py-12 pb-24 md:pb-12">
                 <form onSubmit={handleSubmit} className="relative">
 
                     {/* Main Content */}
@@ -386,7 +386,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                             />
 
                             {coverImage ? (
-                                <div className="aspect-[21/9] w-full relative">
+                                <div className="aspect-video md:aspect-[21/9] w-full relative">
                                     <img src={coverImage} alt="Cover" className="w-full h-full object-cover" />
                                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                                         <button
@@ -409,12 +409,12 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                             ) : (
                                 <label className="flex flex-col items-center justify-center aspect-[21/9] w-full text-slate-400 cursor-pointer hover:bg-slate-100 transition-colors gap-3 border-2 border-transparent hover:border-slate-200" onClick={() => fileInputRef.current?.click()}>
                                     <ImageIcon size={32} />
-                                    <span className="font-medium text-lg">{t.coverImage}</span>
+                                    <span className="font-medium text-base md:text-lg">{t.coverImage}</span>
                                 </label>
                             )}
                         </div>
 
-                        <div className="px-12 md:px-16 pt-12 space-y-12 pb-12">
+                        <div className="px-6 py-8 md:px-16 md:pt-12 space-y-8 md:space-y-12 pb-8 md:pb-12">
                             {/* Metadata */}
                             <div className="space-y-8">
                                 <div>
@@ -423,7 +423,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                         type="text"
                                         value={title}
                                         onChange={(e) => setTitle(e.target.value)}
-                                        className="w-full text-4xl font-extrabold text-slate-900 placeholder:text-slate-400 placeholder:font-bold bg-slate-100 border-none hover:bg-slate-200 focus:bg-white focus:ring-2 focus:ring-gmrt-blue/10 p-4 rounded-xl leading-tight transition-all outline-none"
+                                        className="w-full text-3xl md:text-5xl font-extrabold text-slate-900 placeholder:text-slate-400 placeholder:font-bold bg-slate-100 border-none hover:bg-slate-200 focus:bg-white focus:ring-2 focus:ring-gmrt-blue/10 p-4 rounded-xl leading-tight transition-all outline-none"
                                         placeholder={lang === 'de' ? 'Titel des Beitrags' : 'Post Title'}
                                         required
                                     />
@@ -551,7 +551,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                     {/* PERMANENT BOTTOM TOOLBAR */}
                     <div className="mt-8 flex flex-col items-start gap-4 w-full pb-12">
                         <span className="text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">{t.insert}</span>
-                        <div className="grid grid-cols-6 w-full gap-4">
+                        <div className="grid grid-cols-3 md:grid-cols-6 w-full gap-3 md:gap-4">
                             <button type="button" onClick={() => addBlock('headline')} className="flex flex-col items-center justify-center gap-3 py-6 text-slate-600 bg-slate-100 hover:bg-slate-200 border-none transition-all rounded-xl hover:shadow-sm">
                                 <Heading size={24} />
                                 <span className="text-sm font-medium">{t.headline}</span>

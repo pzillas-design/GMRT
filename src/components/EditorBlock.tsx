@@ -36,10 +36,10 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
         }
     };
     return (
-        <div className="group/block relative p-6 rounded-xl bg-slate-100 hover:bg-slate-200 transition-all duration-300 border border-transparent hover:shadow-sm">
+        <div className="group/block relative p-4 pt-16 md:p-6 rounded-xl bg-slate-100 hover:bg-slate-200 transition-all duration-300 border border-transparent hover:shadow-sm">
 
             {/* Integrated Action Toolbar (Top Right) */}
-            <div className="absolute right-3 top-3 flex items-center gap-1 opacity-0 group-hover/block:opacity-100 transition-all duration-200 z-20 bg-white p-1 rounded-lg border border-slate-200 shadow-md translate-y-2 group-hover/block:translate-y-0">
+            <div className="absolute right-2 top-2 md:right-3 md:top-3 flex items-center gap-1 opacity-100 md:opacity-0 md:group-hover/block:opacity-100 transition-all duration-200 z-20 bg-white p-1 rounded-lg border border-slate-200 shadow-sm md:shadow-md translate-y-0 md:translate-y-2 md:group-hover/block:translate-y-0">
                 <button
                     type="button"
                     onClick={() => onMove(index, 'up')}

@@ -45,7 +45,7 @@ export const Hero: React.FC<HeroProps> = ({ dict, lang = 'de' }) => {
                             href={`/${lang}/news`}
                             variant="primary"
                             size="lg"
-                            className="bg-gmrt-salmon hover:bg-white hover:text-gmrt-blue border-none text-white px-10 py-4 h-auto text-lg"
+                            className="bg-gmrt-salmon hover:bg-white hover:text-gmrt-blue border-none text-white px-10 py-4 h-auto text-lg mb-8 md:mb-0"
                         >
                             {t.cta}
                         </Button>

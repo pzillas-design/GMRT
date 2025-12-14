@@ -80,7 +80,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
     return (
         <nav className={`fixed w-full z-[100] transition-colors duration-500 py-4 md:py-6 ${showBackground ? 'bg-white/95 shadow-md' : 'bg-transparent'}`}>
-            <Container size="xl">
+            <Container size="xl" className="relative z-50">
                 <ConfirmationModal
                     isOpen={isLogoutModalOpen}
                     onClose={() => setIsLogoutModalOpen(false)}
@@ -199,18 +199,25 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                                     </Link>
                                 );
                             })}
-                            {/* Mobile Auth Button */}
-                            <div className="pt-4">
+                            {/* Mobile Footer: Lang Switcher & Auth Icon */}
+                            <div className="pt-6 mt-4 border-t border-slate-100 flex items-center justify-between">
+                                <button onClick={() => { toggleLanguage(); setIsOpen(false); }} className="text-xl font-medium text-slate-600 hover:text-gmrt-blue flex items-center gap-4">
+                                    <div className="flex bg-slate-100 rounded-lg p-1">
+                                        <span className={`px-3 py-1 rounded-md text-sm ${lang === 'de' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>DE</span>
+                                        <span className={`px-3 py-1 rounded-md text-sm ${lang === 'en' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>EN</span>
+                                    </div>
+                                </button>
+
                                 {isAuthenticated ? (
                                     <button
                                         onClick={() => {
-                                            setIsLogoutModalOpen(true); // Modal handles logic
+                                            setIsLogoutModalOpen(true);
                                             setIsOpen(false);
                                         }}
-                                        className="w-full flex items-center gap-3 text-lg font-medium text-gmrt-salmon px-2 py-2 hover:bg-slate-50 rounded-lg transition-colors"
+                                        className="p-3 text-gmrt-salmon hover:bg-slate-50 rounded-full transition-colors"
+                                        title={lang === 'de' ? 'Abmelden' : 'Log out'}
                                     >
-                                        <LogOut size={22} />
-                                        <span>{lang === 'de' ? 'Abmelden' : 'Log out'}</span>
+                                        <LogOut size={24} />
                                     </button>
                                 ) : (
                                     <button
@@ -218,20 +225,13 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                                             setIsLoginModalOpen(true);
                                             setIsOpen(false);
                                         }}
-                                        className="w-full flex items-center gap-3 text-lg font-medium text-slate-700 px-2 py-2 hover:bg-slate-50 rounded-lg transition-colors"
+                                        className="p-3 text-slate-700 hover:bg-slate-50 rounded-full transition-colors"
+                                        title={lang === 'de' ? 'Anmelden' : 'Login'}
                                     >
-                                        <User size={22} />
-                                        <span>{lang === 'de' ? 'Anmelden' : 'Login'}</span>
+                                        <User size={24} />
                                     </button>
                                 )}
                             </div>
-
-                            <button onClick={() => { toggleLanguage(); setIsOpen(false); }} className="text-xl py-3 font-medium text-slate-600 hover:text-gmrt-blue flex items-center gap-4 pt-4">
-                                <div className="flex bg-slate-100 rounded-lg p-1">
-                                    <span className={`px-3 py-1 rounded-md ${lang === 'de' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>DE</span>
-                                    <span className={`px-3 py-1 rounded-md ${lang === 'en' ? 'bg-white shadow-sm text-gmrt-blue font-bold' : 'text-slate-500'}`}>EN</span>
-                                </div>
-                            </button>
                         </div>
                     </div>
                 </>

@@ -42,7 +42,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
             </section>
 
             {/* 2. Principles Section (White) */}
-            <section className="py-24 bg-white border-y border-slate-100">
+            <section className="py-24 bg-white border-t border-slate-100">
                 <div className="max-w-[1200px] mx-auto px-6 md:px-12">
                     <h3 className="text-3xl md:text-4xl font-bold text-gmrt-blue mb-16 text-center">
                         {dict.about.principles.title}
@@ -71,7 +71,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
             </section>
 
             {/* 3. Team Section (White) */}
-            <section className="py-24 bg-white">
+            <section className="pb-24 pt-0 bg-white">
                 <div className="max-w-[1400px] mx-auto px-6 md:px-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-[#0E2A47] mb-16 text-center">
                         {dict.about.team.title}

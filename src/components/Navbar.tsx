@@ -135,7 +135,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
                     {/* Icons / Actions */}
                     <div className={`hidden md:flex items-center space-x-4 ${isDarkText ? 'text-slate-600' : 'text-white/90'}`}>
-                        <button onClick={toggleLanguage} className={`px-3 py-3 rounded-lg cursor-pointer text-base font-medium flex items-center gap-1 transition-colors ${isDarkText ? 'hover:bg-slate-50 hover:text-gmrt-blue' : 'hover:bg-white/10 hover:text-white'}`}>
+                        <button onClick={toggleLanguage} className={`px-3 py-3 rounded-lg cursor-pointer text-base font-medium flex items-center gap-1 transition-colors ${isDarkText ? 'hover:bg-slate-100 hover:text-slate-900' : 'hover:bg-white/10 hover:text-white'}`}>
                             <span className={lang === 'de' ? 'font-bold' : 'opacity-70'}>DE</span>
                             <span className="opacity-50">|</span>
                             <span className={lang === 'en' ? 'font-bold' : 'opacity-70'}>EN</span>
@@ -144,7 +144,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                         {isAuthenticated ? (
                             <button
                                 onClick={() => setIsLogoutModalOpen(true)}
-                                className={`cursor-pointer p-3 rounded-full transition-colors ${isDarkText ? 'text-gmrt-salmon hover:bg-slate-50 hover:text-gmrt-blue' : 'text-gmrt-salmon hover:bg-white/10 hover:text-white'}`}
+                                className={`cursor-pointer p-3 rounded-full transition-colors ${isDarkText ? 'text-gmrt-salmon hover:bg-slate-100 hover:text-gmrt-blue' : 'text-gmrt-salmon hover:bg-white/10 hover:text-white'}`}
                                 title={lang === 'de' ? 'Abmelden' : 'Log out'}
                             >
                                 <LogOut size={24} />
@@ -152,7 +152,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                         ) : (
                             <button
                                 onClick={() => setIsLoginModalOpen(true)}
-                                className={`cursor-pointer p-3 rounded-full transition-colors ${isDarkText ? 'hover:bg-slate-50 hover:text-gmrt-blue' : 'hover:bg-white/10 hover:text-white'}`}
+                                className={`cursor-pointer p-3 rounded-full transition-colors ${isDarkText ? 'hover:bg-slate-100 hover:text-slate-900' : 'hover:bg-white/10 hover:text-white'}`}
                                 title={lang === 'de' ? 'Anmelden' : 'Login'}
                             >
                                 <User size={24} />

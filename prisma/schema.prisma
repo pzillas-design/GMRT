@@ -18,4 +18,5 @@ model Post {
   createdAt     DateTime @default(now())
   coverImage    String?  // URL for the header/teaser image
   isLegacy      Boolean  @default(false) // Flag to identify imported posts
+  published     Boolean  @default(true) // Draft status: true = public, false = draft
 }

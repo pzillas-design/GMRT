@@ -23,9 +23,14 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
     const now = new Date();
     now.setHours(0, 0, 0, 0);
 
+    const publicWhere = {
+        ...where,
+        published: true
+    };
+
     const upcomingPosts = await prisma.post.findMany({
         where: {
-            ...where,
+            ...publicWhere,
             eventDate: { gte: now }
         },
         orderBy: { eventDate: 'asc' }
@@ -35,12 +40,20 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
 
     const pastPosts = await prisma.post.findMany({
         where: {
-            ...where,
+            ...publicWhere,
             eventDate: { lt: now }
         },
         orderBy: { eventDate: 'desc' },
         take: INITIAL_LIMIT
     });
+
+    const draftPosts = isAdmin ? await prisma.post.findMany({
+        where: {
+            ...where,
+            published: false
+        },
+        orderBy: { id: 'desc' }
+    }) : [];
 
     const hasAnyPosts = upcomingPosts.length > 0 || pastPosts.length > 0;
 

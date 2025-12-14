@@ -2,10 +2,109 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Image as ImageIcon, Type, Video, FileText, Link as LinkIcon, Heading, Trash2, Upload, Plus, X } from 'lucide-react';
+import { ArrowLeft, Image as ImageIcon, Type, Video, FileText, Link as LinkIcon, Heading, Trash2, Upload, Plus, X, Save } from 'lucide-react';
 import { ContentBlock, ContentBlockType } from '@/types';
 import { EditorBlock } from './EditorBlock';
 import { Button } from '@/components/ui/Button';
+// ... checks ...
+
+// ... inside component ...
+const handleSubmit = async (e?: React.FormEvent, isDraft: boolean = false) => {
+    if (e) e.preventDefault();
+    setIsSaving(true);
+
+    if (!title.trim()) {
+        toastError(lang === 'de' ? 'Bitte geben Sie einen Titel ein.' : 'Please enter a title.');
+        setIsSaving(false);
+        return;
+    }
+
+    try {
+        const finalLocation = isCustomLocation ? customLocation : location;
+        const dateStr = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+        const eventDate = new Date(dateStr);
+
+        if (isNaN(eventDate.getTime())) {
+            toastError(lang === 'de' ? 'Bitte geben Sie ein gültiges Datum ein.' : 'Please enter a valid date.');
+            setIsSaving(false);
+            return;
+        }
+
+        const payload = {
+            title,
+            coverImage,
+            location: finalLocation,
+            eventDate: eventDate.toISOString(),
+            contentBlocks: JSON.stringify(blocks),
+            content: blocks.map(b => b.content).join('\n'),
+            published: !isDraft
+        };
+
+        const url = isEditing && postId ? `/api/posts/${postId}` : '/api/posts';
+        const method = isEditing ? 'PUT' : 'POST';
+
+        const response = await fetch(url, {
+            method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) throw new Error('Failed to save post');
+
+        const savedPost = await response.json();
+
+        // Distinct message for draft vs publish
+        const msg = isDraft
+            ? (lang === 'de' ? 'Entwurf gespeichert' : 'Draft saved')
+            : (lang === 'de' ? 'Beitrag veröffentlicht' : 'Post published');
+
+        success(msg);
+
+        if (isEditing) {
+            router.push(`/${lang}/posts/${postId}`);
+        } else {
+            router.push(`/${lang}/posts/${savedPost.id}`);
+        }
+        router.refresh();
+    } catch (error) {
+        console.error('Error saving post:', error);
+        toastError(lang === 'de' ? 'Fehler beim Speichern des Beitrags.' : 'Error saving post.');
+    } finally {
+        setIsSaving(false);
+    }
+};
+// ... t dict ...
+
+// ... Top Bar ...
+<div className="flex items-center gap-2 md:gap-3">
+    {isEditing && postId && (
+        <button
+            type="button"
+            onClick={() => setIsDeleteModalOpen(true)}
+            disabled={isSaving}
+            className="text-slate-400 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors"
+            title={t.delete}
+        >
+            <Trash2 size={20} />
+        </button>
+    )}
+
+    {/* Save Draft Button */}
+    <button
+        type="button"
+        onClick={() => handleSubmit(undefined, true)}
+        disabled={isSaving}
+        className="flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 px-3 py-2 md:px-4 rounded-lg font-bold text-sm transition-all"
+        title={lang === 'de' ? 'Als Entwurf speichern' : 'Save as Draft'}
+    >
+        <Save size={18} />
+        <span className="hidden md:inline">{lang === 'de' ? 'Entwurf speichern' : 'Save Draft'}</span>
+    </button>
+
+    <Button variant="primary" onClick={(e) => handleSubmit(e, false)} disabled={isSaving} isLoading={isSaving} className="rounded-lg px-4 md:px-6 h-10 shadow-sm">
+        {isSaving ? t.saving : t.publish}
+    </Button>
+</div>
 import { useToast } from '@/components/ui/Toast';
 import { ConfirmationModal } from '@/components/ui/Modal';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -206,8 +305,8 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = async (e?: React.FormEvent, isDraft: boolean = false) => {
+        if (e) e.preventDefault();
         setIsSaving(true);
 
         if (!title.trim()) {
@@ -233,7 +332,8 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                 location: finalLocation,
                 eventDate: eventDate.toISOString(),
                 contentBlocks: JSON.stringify(blocks),
-                content: blocks.map(b => b.content).join('\n')
+                content: blocks.map(b => b.content).join('\n'),
+                published: !isDraft
             };
 
             const url = isEditing && postId ? `/api/posts/${postId}` : '/api/posts';
@@ -249,7 +349,12 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
 
             const savedPost = await response.json();
 
-            success(lang === 'de' ? 'Beitrag gespeichert' : 'Post saved');
+            // Distinct message for draft vs publish
+            const msg = isDraft
+                ? (lang === 'de' ? 'Entwurf gespeichert' : 'Draft saved')
+                : (lang === 'de' ? 'Beitrag veröffentlicht' : 'Post published');
+
+            success(msg);
 
             if (isEditing) {
                 router.push(`/${lang}/posts/${postId}`);
@@ -347,14 +452,31 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                     }
                 </h1>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 md:gap-3">
                     {isEditing && postId && (
-                        <Button variant="ghost" onClick={() => setIsDeleteModalOpen(true)} disabled={isSaving} className="text-red-500 hover:text-red-600 hover:bg-red-50 px-4">
-                            <Trash2 size={18} className="mr-2" />
-                            {t.delete}
-                        </Button>
+                        <button
+                            type="button"
+                            onClick={() => setIsDeleteModalOpen(true)}
+                            disabled={isSaving}
+                            className="text-slate-400 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors"
+                            title={t.delete}
+                        >
+                            <Trash2 size={20} />
+                        </button>
                     )}
-                    <Button variant="primary" onClick={handleSubmit} disabled={isSaving} isLoading={isSaving} className="rounded-none px-6">
+
+                    <button
+                        type="button"
+                        onClick={() => handleSubmit(undefined, true)}
+                        disabled={isSaving}
+                        className="flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 px-3 py-2 md:px-4 rounded-lg font-bold text-sm transition-all"
+                        title={lang === 'de' ? 'Als Entwurf speichern' : 'Save as Draft'}
+                    >
+                        <Save size={18} />
+                        <span className="hidden md:inline">{lang === 'de' ? 'Entwurf speichern' : 'Save Draft'}</span>
+                    </button>
+
+                    <Button variant="primary" onClick={(e) => handleSubmit(e, false)} disabled={isSaving} isLoading={isSaving} className="rounded-lg px-4 md:px-6 h-10 shadow-sm">
                         {isSaving ? t.saving : t.publish}
                     </Button>
                 </div>

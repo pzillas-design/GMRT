@@ -40,7 +40,7 @@ export async function PUT(
         const body = await request.json();
 
 
-        const { title, content, location, eventDate, contentBlocks } = body;
+        const { title, content, location, eventDate, contentBlocks, published } = body;
 
         // Validation
         if (!title) {
@@ -55,6 +55,7 @@ export async function PUT(
             eventDate: eventDate ? new Date(eventDate) : undefined,
             contentBlocks: typeof contentBlocks !== 'string' ? JSON.stringify(contentBlocks) : contentBlocks,
             coverImage: body.coverImage || null, // Convert empty string or undefined to null if preferred, or keep as string
+            published: published !== undefined ? published : true,
         };
 
         const updatedPost = await prisma.post.update({

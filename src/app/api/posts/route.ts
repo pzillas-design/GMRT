@@ -7,6 +7,7 @@ export async function GET(request: Request) {
     const type = searchParams.get('type'); // 'upcoming' | 'past'
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '12'); // 12 fits grid of 2, 3, 4 nicely
+    const drafts = searchParams.get('drafts') === 'true';
     const skip = (page - 1) * limit;
 
     const now = new Date();
@@ -25,7 +26,8 @@ export async function GET(request: Request) {
 
     const where = {
         ...(location && location !== 'Alle' ? { location } : {}),
-        ...dateFilter
+        ...dateFilter,
+        published: drafts ? false : true
     };
 
     try {
@@ -67,7 +69,7 @@ export async function POST(request: Request) {
         }
 
         const body = await request.json();
-        const { title, content, location, eventDate, contentBlocks } = body;
+        const { title, content, location, eventDate, contentBlocks, published } = body;
 
         if (!title) {
             return NextResponse.json({ error: 'Title is required' }, { status: 400 });
@@ -81,6 +83,7 @@ export async function POST(request: Request) {
                 eventDate: eventDate ? new Date(eventDate) : new Date(),
                 contentBlocks: typeof contentBlocks !== 'string' ? JSON.stringify(contentBlocks || []) : contentBlocks,
                 coverImage: body.coverImage || null,
+                published: published !== undefined ? published : true,
             },
         });
 

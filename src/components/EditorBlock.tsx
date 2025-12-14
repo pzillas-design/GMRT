@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, ArrowDown, Trash2, Heading, Type, Image as ImageIcon, Video, FileText, Link as LinkIcon, Upload } from 'lucide-react';
+import { ArrowUp, ArrowDown, Trash2, Heading, Type, Image as ImageIcon, Video, FileText, Link as LinkIcon, Upload, ArrowRight } from 'lucide-react';
 import { ContentBlock } from '@/types';
 
 interface EditorBlockProps {
@@ -227,7 +227,17 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                                                 <input
                                                     type="text"
                                                     placeholder="Oder YouTube / Vimeo Link"
-                                                    className="w-full pl-10 pr-4 py-2 bg-white/50 border-none rounded-lg focus:bg-white focus:ring-2 focus:ring-gmrt-blue/10 outline-none transition-all text-sm font-medium text-slate-600 placeholder:text-slate-400 text-center shadow-sm"
+                                                    className="w-full pl-10 pr-12 py-2 bg-white/50 border-none rounded-lg focus:bg-white focus:ring-2 focus:ring-gmrt-blue/10 outline-none transition-all text-sm font-medium text-slate-600 placeholder:text-slate-400 text-center shadow-sm"
+                                                    onChange={(e) => {
+                                                        const val = e.target.value;
+                                                        // Auto-detect YouTube/Vimeo
+                                                        const ytMatch = val.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+                                                        const vimeoMatch = val.match(/(?:vimeo\.com\/)([0-9]+)/);
+
+                                                        if (ytMatch || vimeoMatch) {
+                                                            onUpdate(block.id, { content: val.trim() });
+                                                        }
+                                                    }}
                                                     onKeyDown={(e) => {
                                                         if (e.key === 'Enter') {
                                                             e.preventDefault();
@@ -237,6 +247,19 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                                                         }
                                                     }}
                                                 />
+                                                <button
+                                                    type="button"
+                                                    className="absolute right-1 top-1/2 -translate-y-1/2 p-1.5 text-slate-400 hover:text-gmrt-blue hover:bg-slate-100 rounded-md transition-all"
+                                                    onClick={(e) => {
+                                                        const input = e.currentTarget.previousElementSibling as HTMLInputElement;
+                                                        if (input && input.value.trim()) {
+                                                            onUpdate(block.id, { content: input.value.trim() });
+                                                        }
+                                                    }}
+                                                    title="Hinzufügen"
+                                                >
+                                                    <ArrowRight size={16} />
+                                                </button>
                                             </div>
                                         </div>
                                     )}

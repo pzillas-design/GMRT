@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Image as ImageIcon, Type, Video, FileText, Link as LinkIcon, Heading, Trash2, Upload } from 'lucide-react';
+import { ArrowLeft, Image as ImageIcon, Type, Video, FileText, Link as LinkIcon, Heading, Trash2, Upload, Plus, X } from 'lucide-react';
 import { ContentBlock, ContentBlockType } from '@/types';
 import { EditorBlock } from './EditorBlock';
 import { Button } from '@/components/ui/Button';
@@ -69,6 +69,7 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
     const [isDeleting, setIsDeleting] = useState(false);
 
     const [hoveredBlockIndex, setHoveredBlockIndex] = useState<number | null>(null);
+    const [openMobileMenuIndex, setOpenMobileMenuIndex] = useState<number | null>(null);
 
     const locations = ['Allgemein', 'Düsseldorf', 'Frankfurt', 'München', 'Berlin', 'Hamburg', 'Stuttgart', 'Wien', 'Zürich', 'Hannover', 'Bremen', 'Ruhrgebiet'];
 
@@ -529,16 +530,38 @@ export function PostEditor({ initialData, isEditing = false, postId, lang = 'de'
                                             </div>
 
                                             {/* Hover Insertion (Between) */}
-                                            <div className={`absolute -bottom-8 left-0 right-0 z-20 h-16 flex justify-center items-center opacity-0 group-hover/wrapper:opacity-100 hover:opacity-100 transition-opacity`}>
+                                            <div className="absolute -bottom-8 left-0 right-0 z-20 h-16 flex justify-center items-center md:opacity-0 md:group-hover/wrapper:opacity-100 md:hover:opacity-100 transition-opacity">
                                                 <div className="absolute top-1/2 left-1/3 right-1/3 h-0.5 bg-gmrt-blue/10 pointer-events-none rounded-full"></div>
-                                                <div className="flex items-center gap-1 bg-white border border-slate-200 shadow-xl p-1.5 px-6 rounded-full scale-95 hover:scale-100 transition-transform relative z-30">
+
+                                                {/* Mobile Trigger */}
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setOpenMobileMenuIndex(index)}
+                                                    className={`md:hidden relative z-30 bg-white text-slate-400 hover:text-gmrt-blue p-2 rounded-full shadow-sm border border-slate-200 transition-transform hover:scale-110 ${openMobileMenuIndex === index ? 'hidden' : 'flex'}`}
+                                                >
+                                                    <Plus size={20} />
+                                                </button>
+
+                                                {/* Toolbar */}
+                                                <div className={`items-center gap-1 bg-white border border-slate-200 shadow-xl p-1.5 px-6 rounded-full scale-100 md:scale-95 md:hover:scale-100 transition-transform relative z-30 ${openMobileMenuIndex === index ? 'flex' : 'hidden md:flex'}`}>
                                                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-2 select-none border-r border-slate-100 pr-2">{t.insert}</span>
-                                                    <InsertButton onClick={() => addBlock('headline', index)} icon={Heading} label={t.headline} />
-                                                    <InsertButton onClick={() => addBlock('text', index)} icon={Type} label={t.text} />
-                                                    <InsertButton onClick={() => addBlock('image', index)} icon={ImageIcon} label={t.image} />
-                                                    <InsertButton onClick={() => addBlock('video', index)} icon={Video} label={t.video} />
-                                                    <InsertButton onClick={() => addBlock('pdf', index)} icon={FileText} label={t.pdf} />
-                                                    <InsertButton onClick={() => addBlock('link', index)} icon={LinkIcon} label={t.link} />
+                                                    <InsertButton onClick={() => { addBlock('headline', index); setOpenMobileMenuIndex(null); }} icon={Heading} label={t.headline} />
+                                                    <InsertButton onClick={() => { addBlock('text', index); setOpenMobileMenuIndex(null); }} icon={Type} label={t.text} />
+                                                    <InsertButton onClick={() => { addBlock('image', index); setOpenMobileMenuIndex(null); }} icon={ImageIcon} label={t.image} />
+                                                    <InsertButton onClick={() => { addBlock('video', index); setOpenMobileMenuIndex(null); }} icon={Video} label={t.video} />
+                                                    <InsertButton onClick={() => { addBlock('pdf', index); setOpenMobileMenuIndex(null); }} icon={FileText} label={t.pdf} />
+                                                    <InsertButton onClick={() => { addBlock('link', index); setOpenMobileMenuIndex(null); }} icon={LinkIcon} label={t.link} />
+
+                                                    {/* Mobile Close Button */}
+                                                    <div className="md:hidden border-l border-slate-100 pl-2 ml-1">
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setOpenMobileMenuIndex(null)}
+                                                            className="text-slate-400 hover:text-slate-600 p-1"
+                                                        >
+                                                            <X size={16} />
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </motion.div>

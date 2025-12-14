@@ -121,6 +121,21 @@ export default async function BlogPage({ params, searchParams }: { params: Promi
                 </div>
             ) : (
                 <>
+                    {/* Drafts Section - Admin Only */}
+                    {draftPosts.length > 0 && (
+                        <div className="max-w-[1400px] mx-auto px-6 md:px-12 pt-20 pb-10">
+                            <h2 className="text-2xl font-bold text-slate-400 mb-8 flex items-center uppercase tracking-widest text-sm">
+                                <span className="w-2 h-8 bg-slate-300 mr-3 rounded-sm"></span>
+                                {lang === 'de' ? 'Entwürfe (Nur für Admins)' : 'Drafts (Admin Only)'}
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {draftPosts.map((post: any) => (
+                                    <EventCard key={post.id} post={post} lang={lang} isAdmin={isAdmin} />
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
                     {/* Upcoming Events Section */}
                     {upcomingPosts.length > 0 && (
                         <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-20">

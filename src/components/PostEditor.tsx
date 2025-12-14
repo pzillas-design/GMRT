@@ -9,69 +9,31 @@ import { Button } from '@/components/ui/Button';
 // ... checks ...
 
 // ... inside component ...
-const handleSubmit = async (e?: React.FormEvent, isDraft: boolean = false) => {
-    if (e) e.preventDefault();
-    setIsSaving(true);
+// ... inside component ...
 
-    if (!title.trim()) {
-        toastError(lang === 'de' ? 'Bitte geben Sie einen Titel ein.' : 'Please enter a title.');
-        setIsSaving(false);
-        return;
-    }
+if (!response.ok) throw new Error('Failed to save post');
 
-    try {
-        const finalLocation = isCustomLocation ? customLocation : location;
-        const dateStr = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-        const eventDate = new Date(dateStr);
+const savedPost = await response.json();
 
-        if (isNaN(eventDate.getTime())) {
-            toastError(lang === 'de' ? 'Bitte geben Sie ein gültiges Datum ein.' : 'Please enter a valid date.');
-            setIsSaving(false);
-            return;
-        }
+// Distinct message for draft vs publish
+const msg = isDraft
+    ? (lang === 'de' ? 'Entwurf gespeichert' : 'Draft saved')
+    : (lang === 'de' ? 'Beitrag veröffentlicht' : 'Post published');
 
-        const payload = {
-            title,
-            coverImage,
-            location: finalLocation,
-            eventDate: eventDate.toISOString(),
-            contentBlocks: JSON.stringify(blocks),
-            content: blocks.map(b => b.content).join('\n'),
-            published: !isDraft
-        };
+success(msg);
 
-        const url = isEditing && postId ? `/api/posts/${postId}` : '/api/posts';
-        const method = isEditing ? 'PUT' : 'POST';
-
-        const response = await fetch(url, {
-            method,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) throw new Error('Failed to save post');
-
-        const savedPost = await response.json();
-
-        // Distinct message for draft vs publish
-        const msg = isDraft
-            ? (lang === 'de' ? 'Entwurf gespeichert' : 'Draft saved')
-            : (lang === 'de' ? 'Beitrag veröffentlicht' : 'Post published');
-
-        success(msg);
-
-        if (isEditing) {
-            router.push(`/${lang}/posts/${postId}`);
-        } else {
-            router.push(`/${lang}/posts/${savedPost.id}`);
-        }
-        router.refresh();
+if (isEditing) {
+    router.push(`/${lang}/posts/${postId}`);
+} else {
+    router.push(`/${lang}/posts/${savedPost.id}`);
+}
+router.refresh();
     } catch (error) {
-        console.error('Error saving post:', error);
-        toastError(lang === 'de' ? 'Fehler beim Speichern des Beitrags.' : 'Error saving post.');
-    } finally {
-        setIsSaving(false);
-    }
+    console.error('Error saving post:', error);
+    toastError(lang === 'de' ? 'Fehler beim Speichern des Beitrags.' : 'Error saving post.');
+} finally {
+    setIsSaving(false);
+}
 };
 // ... t dict ...
 

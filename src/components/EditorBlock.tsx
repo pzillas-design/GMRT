@@ -130,8 +130,23 @@ export const EditorBlock: React.FC<EditorBlockProps> = ({
                         )}
 
                         {block.type === 'video' && block.content && (
-                            <div className="relative w-full overflow-hidden rounded-lg bg-black shadow-sm border border-slate-200 group/video">
-                                <video src={block.content} controls className="w-full h-auto max-h-[500px]" />
+                            <div className="relative w-full overflow-hidden rounded-lg bg-black shadow-sm border border-slate-200 group/video aspect-video">
+                                {(() => {
+                                    const ytMatch = block.content.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+                                    const vimeoMatch = block.content.match(/(?:vimeo\.com\/)([0-9]+)/);
+
+                                    if (ytMatch && ytMatch[1]) {
+                                        return (
+                                            <iframe src={`https://www.youtube.com/embed/${ytMatch[1]}`} className="w-full h-full" allowFullScreen title="YouTube Preview" />
+                                        );
+                                    } else if (vimeoMatch && vimeoMatch[1]) {
+                                        return (
+                                            <iframe src={`https://player.vimeo.com/video/${vimeoMatch[1]}`} className="w-full h-full" allowFullScreen title="Vimeo Preview" />
+                                        );
+                                    } else {
+                                        return <video src={block.content} controls className="w-full h-full" />;
+                                    }
+                                })()}
                                 <div className="absolute top-4 right-4 opacity-0 group-hover/video:opacity-100 transition-opacity">
                                     <button
                                         type="button"

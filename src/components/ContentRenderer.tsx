@@ -90,13 +90,14 @@ export function ContentRenderer({ blocks }: ContentRendererProps) {
                         let videoSrc = block.content;
                         if (!videoSrc) return null;
 
-                        // Simple Youtube/Vimeo embedding logic
-                        if (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be')) {
-                            const videoId = videoSrc.includes('v=') ? videoSrc.split('v=')[1].split('&')[0] : videoSrc.split('/').pop();
-                            videoSrc = `https://www.youtube.com/embed/${videoId}`;
-                        } else if (videoSrc.includes('vimeo.com')) {
-                            const videoId = videoSrc.split('/').pop();
-                            videoSrc = `https://player.vimeo.com/video/${videoId}`;
+                        // Robust Youtube/Vimeo embedding logic
+                        const ytMatch = videoSrc.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+                        const vimeoMatch = videoSrc.match(/(?:vimeo\.com\/)([0-9]+)/);
+
+                        if (ytMatch && ytMatch[1]) {
+                            videoSrc = `https://www.youtube.com/embed/${ytMatch[1]}`;
+                        } else if (vimeoMatch && vimeoMatch[1]) {
+                            videoSrc = `https://player.vimeo.com/video/${vimeoMatch[1]}`;
                         }
 
                         return (
